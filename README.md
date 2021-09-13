@@ -65,7 +65,7 @@ workflow
 12.对接示例开发
 
 ## 在线体验
-- cs/tdkj123456
+- admin/123456
 - 新的更新第一时间会在体验服务上出现
 
 演示地址：http://localhost  
