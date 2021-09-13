@@ -175,7 +175,7 @@ export default {
       this.loading = true;
       listForm(this.queryParams).then(response => {
         this.formList = response.rows;
-        this.total = response.total;
+        this.total = response.totalNum;
         this.loading = false;
       });
     },
