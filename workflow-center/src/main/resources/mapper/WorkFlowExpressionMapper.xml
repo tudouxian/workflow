@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workflow.process.center.mapper.WorkFlowExpressionMapper">
+
+    <resultMap type="com.workflow.process.center.domain.entity.WorkFlowExpression" id="WorkFlowExpressionBaseResultMap">
+        <result property="id" column="id"/>
+        <result property="expressionName" column="expression_name"/>
+        <result property="expressionValue" column="expression_value"/>
+        <result property="systemExpression" column="system_expression"/>
+        <result property="desc" column="desc"/>
+        <result property="creator" column="creator"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updator" column="updator"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <!-- 查询条件 -->
+    <sql id="whereSql">
+        <where>
+            <if test="id != null">
+                and a.id = #{id}
+            </if>
+            <if test="expressionName != null and expressionName != ''">
+                and a.expression_name = #{expressionName}
+            </if>
+            <if test="expressionValue != null and expressionValue != ''">
+                and a.expression_value = #{expressionValue}
+            </if>
+            <if test="systemExpression != null">
+                and a.system_expression = #{systemExpression}
+            </if>
+            <if test="desc != null and desc != ''">
+                and a.desc = #{desc}
+            </if>
+            <if test="creator != null and creator != ''">
+                and a.creator = #{creator}
+            </if>
+            <if test="createTime != null">
+                and a.create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and a.update_time = #{updateTime}
+            </if>
+            <if test="updator != null and updator != ''">
+                and a.updator = #{updator}
+            </if>
+            <if test="delFlag != null">
+                and a.del_flag = #{delFlag}
+            </if>
+        </where>
+    </sql>
+
+</mapper>

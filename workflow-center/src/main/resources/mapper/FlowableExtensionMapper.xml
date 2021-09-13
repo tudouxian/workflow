@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workflow.process.center.mapper.FlowableExtensionMapper">
+    <select id="queryActivityInstance" resultType="org.flowable.engine.impl.persistence.entity.ActivityInstanceEntityImpl">
+        select t.* from
+        act_ru_actinst t
+       <where>
+           <if test="processInstanceId !=null and processInstanceId != ''" >
+               and t.PROC_INST_ID_=#{processInstanceId}
+           </if>
+           <if test="disActivityId !=null and disActivityId !=''" >
+              and t.ACT_ID_ = #{disActivityId}
+           </if>
+           <if test="endTime !=null" >
+               and (t.END_TIME_ >= #{endTime} or t.END_TIME_ is null)
+           </if>
+       </where>
+         order by t.END_TIME_ ASC
+
+    </select>
+
+    <select id="queryActivityInstanceByType" resultType="org.flowable.engine.impl.persistence.entity.ActivityInstanceEntityImpl">
+        select
+        t.ID_ as  id,
+        t.PROC_DEF_ID_ as  processDefinitionId,
+        t.PROC_INST_ID_ as  processInstanceId,
+        t.CALL_PROC_INST_ID_ as  calledProcessInstanceId,
+        t.EXECUTION_ID_ as  executionId,
+        t.ACT_ID_ as  activityId,
+        t.ACT_NAME_ as  activityName,
+        t.ACT_TYPE_ as  activityType,
+        t.TASK_ID_ as  taskId,
+        t.START_TIME_ as  startTime,
+        t.END_TIME_ as  endTime,
+        t.DURATION_ as  durationInMillis,
+        t.ASSIGNEE_ as  assignee,
+        t.TENANT_ID_ as  tenantId,
+        t.TRANSACTION_ORDER_ as  transactionOrder
+
+        from
+        act_ru_actinst t
+        <where>
+            <if test="processInstanceId !=null and processInstanceId != ''" >
+                and t.PROC_INST_ID_=#{processInstanceId}
+            </if>
+            <if test="actType !=null and actType !=''" >
+                and t.ACT_TYPE_ = #{actType}
+            </if>
+            and t.END_TIME_ is not null
+        </where>
+
+    </select>
+
+    <select id="queryActivityInstanceByTypeAndRemoveDuplicates" resultType="org.flowable.engine.impl.persistence.entity.ActivityInstanceEntityImpl">
+        SELECT
+        t.ID_ as  id,
+        t.PROC_DEF_ID_ as  processDefinitionId,
+        t.PROC_INST_ID_ as  processInstanceId,
+        t.CALL_PROC_INST_ID_ as  calledProcessInstanceId,
+        t.EXECUTION_ID_ as  executionId,
+        t.ACT_ID_ as  activityId,
+        t.ACT_NAME_ as  activityName,
+        t.ACT_TYPE_ as  activityType,
+        t.TASK_ID_ as  taskId,
+        t.START_TIME_ as  startTime,
+        t.END_TIME_ as  endTime,
+        t.DURATION_ as  durationInMillis,
+        t.ASSIGNEE_ as  assignee,
+        t.TENANT_ID_ as  tenantId,
+        t.TRANSACTION_ORDER_ as  transactionOrder
+        FROM
+        (
+        SELECT t1.ID_,t1.act_id_,max(t1.END_TIME_) as END_TIME_   from act_ru_actinst t1    GROUP BY t1.ID_,t1.act_id_
+        ) main
+        LEFT JOIN
+        act_ru_actinst t ON main.ID_ = t.ID_
+        <where>
+            <if test="processInstanceId !=null and processInstanceId != ''" >
+                and t.PROC_INST_ID_=#{processInstanceId}
+            </if>
+            <if test="actType !=null and actType !=''" >
+                and t.ACT_TYPE_ = #{actType}
+            </if>
+            <if test="actId !=null and actId !=''" >
+                and t.ACT_ID_ != #{actId}
+            </if>
+            and main.END_TIME_ is not null
+        </where>
+    </select>
+
+    <delete id="deleteRunActinstsByIds" parameterType="java.util.List">
+        delete from act_ru_actinst where ID_ in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <delete id="deleteHisActinstsByIds" parameterType="java.util.List">
+        delete from act_hi_actinst where ID_ in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="querySubTaskByParentTaskId"  resultType="Integer">
+          select count(1) from  act_ru_task where PARENT_TASK_ID_=#{parentTaskId}
+    </select>
+
+</mapper>

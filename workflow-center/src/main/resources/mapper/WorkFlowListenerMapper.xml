@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workflow.process.center.mapper.WorkFlowListenerMapper">
+
+    <resultMap type="com.workflow.process.center.domain.entity.WorkFlowListener" id="WorkFlowListenerBaseResultMap">
+        <result property="id" column="id"/>
+        <result property="listenerName" column="listener_name"/>
+        <result property="listenerType" column="listener_type"/>
+        <result property="eventType" column="event_type"/>
+        <result property="valueType" column="value_type"/>
+        <result property="listenerValue" column="listener_value"/>
+        <result property="systemListener" column="system_listener"/>
+        <result property="desc" column="desc"/>
+        <result property="creator" column="creator"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updator" column="updator"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <!-- 查询条件 -->
+    <sql id="whereSql">
+        <where>
+            <if test="id != null">
+                and a.id = #{id}
+            </if>
+            <if test="listenerName != null and listenerName != ''">
+                and a.listener_name = #{listenerName}
+            </if>
+            <if test="listenerType != null">
+                and a.listener_type = #{listenerType}
+            </if>
+            <if test="eventType != null and eventType != ''">
+                and a.event_type = #{eventType}
+            </if>
+            <if test="valueType != null and valueType != ''">
+                and a.value_type = #{valueType}
+            </if>
+            <if test="listenerValue != null and listenerValue != ''">
+                and a.listener_value = #{listenerValue}
+            </if>
+            <if test="systemListener != null">
+                and a.system_listener = #{systemListener}
+            </if>
+            <if test="desc != null and desc != ''">
+                and a.desc = #{desc}
+            </if>
+            <if test="creator != null and creator != ''">
+                and a.creator = #{creator}
+            </if>
+            <if test="createTime != null">
+                and a.create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and a.update_time = #{updateTime}
+            </if>
+            <if test="updator != null and updator != ''">
+                and a.updator = #{updator}
+            </if>
+            <if test="delFlag != null">
+                and a.del_flag = #{delFlag}
+            </if>
+        </where>
+    </sql>
+
+</mapper>

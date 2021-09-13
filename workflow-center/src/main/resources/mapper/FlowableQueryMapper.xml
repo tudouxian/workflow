@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workflow.process.center.mapper.FlowableQueryMapper">
+
+    <select id="findMyProcessinstances"
+            parameterType="com.workflow.process.center.domain.dto.ProcessInstanceQueryDTO"
+           resultType="com.workflow.process.center.domain.dto.ProcessInstanceDTO"  >
+        SELECT DISTINCT
+        t1.PROC_INST_ID_ AS processInstanceId,
+        t1.NAME_ AS processInstanceName,
+        t1.START_TIME_ AS startTime,
+        t1.END_TIME_ AS endTime,
+        t1.BUSINESS_KEY_ AS businessKey,
+        t1.PROC_DEF_ID_ AS processDefinitionId,
+        t1.TENANT_ID_ AS tenantId,
+        t7.service_name AS serviceName,
+        t2.`tenant_name` AS tenantName,
+        t3.NAME_ AS processDefinitionName,
+        t3.KEY_ AS processDefinitionKey,
+        t4.process_status AS processStatus
+
+        FROM
+        act_hi_procinst t1
+        INNER JOIN work_flow_tenant t2 ON t1.TENANT_ID_ = t2.tennat_id
+        INNER JOIN act_re_procdef t3 ON t3.ID_ = t1.PROC_DEF_ID_
+        left join work_flow_extend_hisprocinst t4 on t1.PROC_INST_ID_ = t4.process_instance_id
+        LEFT JOIN work_flow_service t7 ON t4.service_id = t7.id
+        LEFT JOIN work_flow_model_info t6 ON t6.model_key=t3.KEY_
+        WHERE 1=1
+        <if test="userId !=null and userId !=''">
+            and t1.START_USER_ID_=#{userId}
+        </if>
+        <if test="businessKey!=null and businessKey!=''">
+            AND t1.BUSINESS_KEY_ LIKE CONCAT('%',#{businessKey},'%')
+        </if>
+        <if test="processStatus!=null and processStatus!=''">
+            AND t4.process_status = #{processStatus}
+        </if>
+        <if test="serviceName!=null and serviceName!=''">
+            AND t7.service_name LIKE CONCAT('%',#{serviceName},'%')
+        </if>
+        <if test="serviceCode!=null and serviceCode!=''">
+            AND t7.service_code = #{serviceCode}
+        </if>
+        <if test="processName != null  and processName != ''"  >
+            AND t1.NAME_ LIKE CONCAT('%',#{processName},'%')
+        </if>
+        <if test="tenantId !=null and tenantId !=''">
+            AND t1.TENANT_ID_=#{tenantId}
+        </if>
+        <if test="keyword !=null and keyword !=''">
+            AND t1.NAME_ LIKE CONCAT('%',#{keyword},'%')
+        </if>
+        <if test="startTime !=null and startTime !=''">
+            AND t1.START_TIME_ <![CDATA[ >= ]]> #{startTime}
+        </if>
+        <if test="endTime !=null and endTime !=''">
+            AND t1.START_TIME_<![CDATA[ <= ]]> #{endTime}
+        </if>
+        order by t1.START_TIME_ desc
+    </select>
+
+    <select id="findToDoUsers"  resultType="String">
+               SELECT ASSIGNEE_ FROM `act_ru_task`  WHERE ASSIGNEE_ IS NOT NULL GROUP BY ASSIGNEE_
+    </select>
+
+    <select id="findMyToDoTasks" parameterType="com.workflow.process.center.domain.dto.TaskQueryDTO"
+            resultType="com.workflow.process.center.domain.dto.TaskDTO"  >
+        SELECT DISTINCT
+        t1.ID_ AS taskId,
+        t1.NAME_ AS taskName,
+        t1.CREATE_TIME_ AS taskCreateTime,
+        t1.ASSIGNEE_ AS assignee,
+        t1.DESCRIPTION_ AS description,
+        t1.TASK_DEF_KEY_ AS taskDefKey,
+        t1.CATEGORY_ AS taskCategory,
+        t2.BUSINESS_KEY_ AS businessKey,
+        t2.PROC_INST_ID_ AS processInstId,
+        t2.PROC_DEF_ID_ AS processDefId,
+        t2.START_TIME_  AS processStartTime,
+        t2.START_USER_ID_ AS startUserId,
+        t3.NAME_ AS processDefName,
+        t3.KEY_ AS processDefKey,
+        t6.service_name AS serviceName,
+        t5.process_status AS processStatus,
+        t4.tenant_name AS tenantName
+        FROM
+        act_ru_task t1
+        INNER JOIN act_ru_execution t2 ON t1.PROC_INST_ID_ = t2.PROC_INST_ID_
+        INNER JOIN work_flow_tenant t4 ON t2.TENANT_ID_ = t4.tennat_id
+        LEFT JOIN work_flow_extend_hisprocinst t5 on t2.PROC_INST_ID_ = t5.process_instance_id
+        LEFT JOIN work_flow_service t6 ON t5.service_id = t6.id
+        LEFT JOIN  act_re_procdef t3 ON t2.PROC_DEF_ID_ = t3.ID_
+        WHERE t2.BUSINESS_KEY_ is not null
+        <choose>
+            <when test="tenantIds !=null and tenantIds.size() &gt; 0">
+                and t1.TENANT_ID_ in
+                <foreach item="tId" collection="tenantIds" separator="," open="(" close=")" index="">
+                    #{tId}
+                </foreach>
+            </when>
+            <otherwise>
+                <if test="tenantId != '' and tenantId != null">
+                    and t1.TENANT_ID_ = #{tenantId,jdbcType=VARCHAR}
+                </if>
+            </otherwise>
+        </choose>
+        <if test="keyword !=null and keyword !=''">
+            and t2.NAME_ LIKE CONCAT('%',#{keyword},'%')
+        </if>
+        <if test="taskName != null  and taskName != ''"  >
+            AND t1.NAME_ LIKE CONCAT('%',#{taskName},'%')
+        </if>
+        <if test="assignee != null and assignee!=''">
+            AND  t1.ASSIGNEE_ = #{assignee}
+        </if>
+        <if test="processName != null  and processName != ''"  >
+            AND t3.NAME_ LIKE CONCAT('%',#{processName},'%')
+        </if>
+        <if test="startTime!=null and startTime!=''">
+            AND t1.CREATE_TIME_ <![CDATA[ >= ]]> #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            AND t1.CREATE_TIME_ <![CDATA[ <= ]]> #{endTime}
+        </if>
+        <if test="businessKey!=null and businessKey!=''">
+            AND t2.BUSINESS_KEY_ LIKE CONCAT('%',#{businessKey},'%')
+        </if>
+        <if test="serviceCode!=null and serviceCode!=''">
+            AND t6.service_code = #{serviceCode}
+        </if>
+        ORDER BY t1.CREATE_TIME_ ASC
+    </select>
+
+    <select id="findAllDueDateTasks" parameterType="com.workflow.process.center.domain.dto.TaskQueryDTO"
+            resultType="com.workflow.process.center.domain.dto.TaskDTO"  >
+        SELECT DISTINCT
+        t1.ID_ AS taskId,
+        t1.NAME_ AS taskName,
+        t1.CREATE_TIME_ AS taskCreateTime,
+        t1.DUE_DATE_ as dueDate,
+        t1.ASSIGNEE_ AS assignee,
+        t1.DESCRIPTION_ AS description,
+        t1.TASK_DEF_KEY_ AS taskDefKey,
+        t1.CATEGORY_ AS taskCategory,
+        t2.BUSINESS_KEY_ AS businessKey,
+        t2.PROC_INST_ID_ AS processInstId,
+        t2.PROC_DEF_ID_ AS processDefId,
+        t2.START_TIME_  AS processStartTime,
+        t2.START_USER_ID_ AS startUserId,
+        t3.NAME_ AS processDefName,
+        t3.KEY_ AS processDefKey,
+        t6.service_name AS serviceName,
+        t5.process_status AS processStatus,
+        t4.tenant_name AS tenantName
+        FROM
+        act_ru_task t1
+        INNER JOIN act_ru_execution t2 ON t1.PROC_INST_ID_ = t2.PROC_INST_ID_
+        INNER JOIN work_flow_tenant t4 ON t2.TENANT_ID_ = t4.tennat_id
+        LEFT JOIN work_flow_extend_hisprocinst t5 on t2.PROC_INST_ID_ = t5.process_instance_id
+        LEFT JOIN work_flow_service t6 ON t5.service_id = t6.id
+        LEFT JOIN  act_re_procdef t3 ON t2.PROC_DEF_ID_ = t3.ID_
+        WHERE t2.BUSINESS_KEY_ is not null and t1.DUE_DATE_ is not null
+        <choose>
+            <when test="tenantIds !=null and tenantIds.size() &gt; 0">
+                and t1.TENANT_ID_ in
+                <foreach item="tId" collection="tenantIds" separator="," open="(" close=")" index="">
+                    #{tId}
+                </foreach>
+            </when>
+            <otherwise>
+                <if test="tenantId != '' and tenantId != null">
+                    and t1.TENANT_ID_ = #{tenantId,jdbcType=VARCHAR}
+                </if>
+            </otherwise>
+        </choose>
+        <if test="keyword !=null and keyword !=''">
+            and t2.NAME_ LIKE CONCAT('%',#{keyword},'%')
+        </if>
+        <if test="taskName != null  and taskName != ''"  >
+            AND t1.NAME_ LIKE CONCAT('%',#{taskName},'%')
+        </if>
+        <if test="assignee != null and assignee!=''">
+            AND  t1.ASSIGNEE_ = #{assignee}
+        </if>
+        <if test="processName != null  and processName != ''"  >
+            AND t3.NAME_ LIKE CONCAT('%',#{processName},'%')
+        </if>
+        <if test="startTime!=null and startTime!=''">
+            AND t1.CREATE_TIME_ <![CDATA[ >= ]]> #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            AND t1.CREATE_TIME_ <![CDATA[ <= ]]> #{endTime}
+        </if>
+        <if test="businessKey!=null and businessKey!=''">
+            AND t2.BUSINESS_KEY_ LIKE CONCAT('%',#{businessKey},'%')
+        </if>
+        ORDER BY t1.CREATE_TIME_ ASC
+    </select>
+
+    <select id="findMyToDoGroupTasks" parameterType="com.workflow.process.center.domain.dto.TaskQueryDTO"
+            resultType="com.workflow.process.center.domain.dto.TaskDTO" >
+        SELECT DISTINCT
+        t1.ID_ AS taskId,
+        t1.NAME_ AS taskName,
+        t1.CREATE_TIME_ AS taskCreateTime,
+        t1.ASSIGNEE_ AS assignee,
+        t1.DESCRIPTION_ AS description,
+        t1.TASK_DEF_KEY_ AS taskDefKey,
+        t1.CATEGORY_ AS taskCategory,
+        t2.BUSINESS_KEY_ AS businessKey,
+        t2.PROC_INST_ID_ AS processInstId,
+        t2.PROC_DEF_ID_ AS processDefId,
+        t2.START_TIME_  AS processStartTime,
+        t2.START_USER_ID_ AS startUserId,
+        t7.service_name AS serviceName,
+        t3.NAME_ AS processDefName,
+        t3.KEY_ AS processDefKey,
+        t6.process_status AS processStatus,
+        t4.tenant_name AS tenantName
+        FROM
+        act_ru_task t1
+        INNER JOIN act_ru_execution t2 ON t1.PROC_INST_ID_ = t2.PROC_INST_ID_
+        LEFT JOIN  act_re_procdef t3 ON t2.PROC_DEF_ID_ = t3.ID_
+        INNER JOIN work_flow_tenant t4 ON t2.TENANT_ID_ = t4.tennat_id
+        LEFT JOIN act_ru_identitylink t5 ON t5.TASK_ID_ = t1.ID_
+        LEFT JOIN work_flow_extend_hisprocinst t6 on t2.PROC_INST_ID_ = t6.process_instance_id
+        LEFT JOIN work_flow_service t7 ON t6.service_id = t7.id
+        WHERE t2.BUSINESS_KEY_ is not null and t1.ASSIGNEE_ is null
+        <choose>
+            <when test="tenantIds !=null and tenantIds.size() &gt; 0">
+                and t1.TENANT_ID_ in
+                <foreach item="tId" collection="tenantIds" separator="," open="(" close=")" index="">
+                    #{tId}
+                </foreach>
+            </when>
+            <otherwise>
+                <if test="tenantId != '' and tenantId != null">
+                    and t1.TENANT_ID_ = #{tenantId,jdbcType=VARCHAR}
+                </if>
+            </otherwise>
+        </choose>
+        <if test="keyword !=null and keyword !=''">
+            and t2.NAME_ LIKE CONCAT('%',#{keyword},'%')
+        </if>
+        <if test="taskName != null  and taskName != ''"  >
+            AND t1.NAME_ LIKE CONCAT('%',#{taskName},'%')
+        </if>
+        <if test="processName != null  and processName != ''"  >
+            AND t3.NAME_ LIKE CONCAT('%',#{processName},'%')
+        </if>
+        <if test="startTime!=null and startTime!=''">
+            AND t1.CREATE_TIME_ <![CDATA[ >= ]]> #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            AND t1.CREATE_TIME_ <![CDATA[ <= ]]> #{endTime}
+        </if>
+        <if test="serviceCode!=null and serviceCode!=''">
+            AND t7.service_code = #{serviceCode}
+        </if>
+        <if test="businessKey!=null and businessKey!=''">
+            AND t2.BUSINESS_KEY_ LIKE CONCAT('%',#{businessKey},'%')
+        </if>
+        <if test="(assignee != null and assignee != '') or (groups != null and groups.size > 0) ">
+            AND (
+            <if test="assignee != null and assignee != ''">
+                t5.USER_ID_ = #{assignee}
+            </if>
+            <if test="assignee == null or assignee == ''">
+                1 = 1
+            </if>
+            <if test="groups != null and groups.size > 0"  >
+                OR  1 IN
+                <foreach collection="groups" index="index" item="groupKey" open="(" separator="," close=")">
+                    FuncGroupCompare(t5.GROUP_ID_,#{groupKey})
+                </foreach>
+            </if>
+            )
+        </if>
+
+
+        ORDER BY t1.CREATE_TIME_ ASC
+    </select>
+
+    <select id="findDoneUsers"  resultType="String">
+     SELECT ASSIGNEE_ FROM `act_hi_taskinst`
+     WHERE ASSIGNEE_ IS NOT NULL AND END_TIME_ IS NOT NULL
+     GROUP BY ASSIGNEE_
+    </select>
+
+    <select id="findMyDoneTasks" parameterType="com.workflow.process.center.domain.dto.TaskQueryDTO"
+            resultType="com.workflow.process.center.domain.dto.TaskDTO">
+
+        SELECT DISTINCT
+        t1.ID_ AS taskId,
+        t1.NAME_ AS taskName,
+        t1.START_TIME_ AS taskCreateTime,
+        t1.END_TIME_ AS taskEndTime,
+        t1.ASSIGNEE_ AS assignee,
+        t1.DESCRIPTION_ AS description,
+        t1.TASK_DEF_KEY_ AS taskDefKey,
+        t1.CATEGORY_ AS taskCategory,
+        t1.DURATION_ AS duration,
+        t2.BUSINESS_KEY_ AS businessKey,
+        t2.PROC_INST_ID_ AS processInstId,
+        t2.PROC_DEF_ID_ AS processDefId,
+        t2.START_TIME_  AS processStartTime,
+        t2.END_TIME_ AS processEndTime,
+        t2.START_USER_ID_ AS startUserId,
+        t3.NAME_ AS processDefName,
+        t3.KEY_ AS processDefKey,
+        t5.process_status AS processStatus,
+        t7.service_name AS serviceName,
+        t4.tenant_name AS tenantName
+        FROM act_hi_taskinst t1
+        INNER JOIN act_hi_procinst t2 ON t1.PROC_INST_ID_ = t2.PROC_INST_ID_
+        INNER JOIN act_re_procdef t3 ON t2.PROC_DEF_ID_=t3.ID_
+        INNER JOIN work_flow_tenant t4 ON t1.TENANT_ID_ = t4.tennat_id
+        LEFT JOIN work_flow_extend_hisprocinst t5 on t2.PROC_INST_ID_ = t5.process_instance_id
+        LEFT JOIN work_flow_service t7 ON t5.service_id = t7.id
+        LEFT JOIN act_hi_identitylink t6 ON t6.TASK_ID_ = t1.ID_
+        <where>
+             t1.END_TIME_ is not null
+            <choose>
+                <when test="tenantIds !=null and tenantIds.size() &gt; 0">
+                    and t1.TENANT_ID_ in
+                    <foreach item="tId" collection="tenantIds" separator="," open="(" close=")" index="">
+                        #{tId}
+                    </foreach>
+                </when>
+                <otherwise>
+                    <if test="tenantId != '' and tenantId != null">
+                        and t1.TENANT_ID_ = #{tenantId,jdbcType=VARCHAR}
+                    </if>
+                </otherwise>
+            </choose>
+            <if test="userId!=null and userId !=''">
+                AND (
+                t1.ASSIGNEE_ = #{userId}
+                OR (
+                ( t1.ASSIGNEE_ IS NULL  OR t1.ASSIGNEE_ = '' )
+                AND (
+                t6.USER_ID_ = #{userId}
+                <if test="groups != null and groups.size > 0"  >
+                    OR  1 IN
+                    <foreach collection="groups" index="index" item="groupKey" open="(" separator="," close=")">
+                        FuncGroupCompare(t6.GROUP_ID_,#{groupKey})
+                    </foreach>
+                </if>
+                )
+                )
+                )
+            </if>
+            <if test="keyword!=null and keyword!=''">
+                AND t2.NAME_ LIKE CONCAT('%',#{keyword},'%')
+            </if>
+            <if test="taskName != null  and taskName != ''"  >
+                AND t1.NAME_ LIKE CONCAT('%',#{taskName},'%')
+            </if>
+            <if test="processName != null  and processName != ''"  >
+                AND t3.NAME_ LIKE CONCAT('%',#{processName},'%')
+            </if>
+            <if test="startTime!=null and startTime!=''">
+                AND t1.START_TIME_ <![CDATA[ >= ]]> #{startTime}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                AND t1.START_TIME_ <![CDATA[ <= ]]> #{endTime}
+            </if>
+            <if test="serviceCode!=null and serviceCode!=''">
+                AND t7.service_code = #{serviceCode}
+            </if>
+            <if test="businessKey!=null and businessKey!=''">
+                AND t2.BUSINESS_KEY_ LIKE CONCAT('%',#{businessKey},'%')
+            </if>
+        </where>
+        order by t1.END_TIME_ desc
+    </select>
+
+
+    <select id="listDefinitionsAll" parameterType="com.workflow.process.center.domain.dto.ServiceReProcessDefinitionDTO" resultType="com.workflow.process.center.domain.dto.ServiceReProcessDefinitionDTO">
+         SELECT
+        t1.ID_ as id,
+        t1.NAME_ as name,
+        t1.KEY_ as `key`,
+        t1.VERSION_ as version,
+        t1.CATEGORY_ as categoryId,
+        t2.category_name as category
+
+        FROM act_re_procdef t1
+        left join work_flow_category  t2 on t1.CATEGORY_ = t2.id
+        <where>
+            t1.SUSPENSION_STATE_ = 1
+            <if test="key != null and key != ''" >
+               and t1.KEY_  = #{key}
+            </if>
+            <if test="id !=null and id != ''"  >
+             and   t1.ID_ =  #{id}
+            </if>
+        </where>
+
+    </select>
+
+    <select id="listDefinitionsCategory"    resultType="Map">
+        SELECT
+        t1.CATEGORY_ as categoryId,
+        t2.category_name as category
+        FROM act_re_procdef t1
+        left join work_flow_category  t2 on t1.CATEGORY_ = t2.id
+        <where>
+            t1.SUSPENSION_STATE_ = 1
+        </where>
+        GROUP BY t1.CATEGORY_
+    </select>
+
+    <select id="listDefinitionsKeyAndName"    resultType="Map">
+        SELECT
+        t1.KEY_ as `key`,
+        t1.NAME_ as name
+        FROM act_re_procdef t1
+        <where>
+            t1.SUSPENSION_STATE_ = 1
+            <if test="categoryId !=null and categoryId !=''"  >
+             and t1.CATEGORY_ =   #{categoryId}
+            </if>
+        </where>
+        GROUP BY t1.KEY_,t1.NAME_
+    </select>
+</mapper>

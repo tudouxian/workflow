@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workflow.process.center.mapper.WorkFlowServiceMapper">
+
+    <resultMap type="com.workflow.process.center.domain.entity.WorkFlowService" id="WorkFlowServiceBaseResultMap">
+        <result property="id" column="id"/>
+        <result property="serviceName" column="service_name"/>
+        <result property="serviceCode" column="service_code"/>
+        <result property="iconUrl" column="icon_url"/>
+        <result property="serviceCategoryId" column="service_category_id"/>
+        <result property="type" column="type"/>
+        <result property="processDefId" column="process_def_id"/>
+        <result property="status" column="status"/>
+        <result property="openWay" column="open_way"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="desc" column="desc"/>
+        <result property="tenantId" column="tenant_id"/>
+        <result property="creator" column="creator"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updator" column="updator"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <!-- 查询条件 -->
+    <sql id="whereSql">
+        <where>
+            and a.del_flag = 0
+            <if test="id != null">
+                and a.id = #{id}
+            </if>
+            <if test="serviceName != null and serviceName != ''">
+                and a.service_name = #{serviceName}
+            </if>
+            <if test="serviceCode != null and serviceCode != ''">
+                and a.service_code = #{serviceCode}
+            </if>
+            <if test="iconUrl != null and iconUrl != ''">
+                and a.icon_url = #{iconUrl}
+            </if>
+            <if test="serviceCategoryId != null">
+                and a.service_category_id = #{serviceCategoryId}
+            </if>
+            <if test="type != null">
+                and a.type = #{type}
+            </if>
+            <if test="processDefId != null and processDefId != ''">
+                and a.process_def_id = #{processDefId}
+            </if>
+            <if test="status != null">
+                and a.status = #{status}
+            </if>
+            <if test="openWay != null">
+                and a.open_way = #{openWay}
+            </if>
+            <if test="orderNum != null">
+                and a.order_num = #{orderNum}
+            </if>
+            <if test="desc != null and desc != ''">
+                and a.desc = #{desc}
+            </if>
+            <if test="tenantId != null and tenantId != ''">
+                and a.tenant_id = #{tenantId}
+            </if>
+            <if test="creator != null and creator != ''">
+                and a.creator = #{creator}
+            </if>
+            <if test="createTime != null">
+                and a.create_time = #{createTime}
+            </if>
+            <if test="updator != null and updator != ''">
+                and a.updator = #{updator}
+            </if>
+            <if test="updateTime != null">
+                and a.update_time = #{updateTime}
+            </if>
+        </where>
+    </sql>
+
+    <select id="listAll"  parameterType="com.workflow.process.center.domain.entity.WorkFlowService"   resultMap="WorkFlowServiceBaseResultMap">
+        select a.*,b.category_name  as serviceCategoryName,t.tenant_name as tenantName
+        from work_flow_service a
+        left join work_flow_service_category b on  a.service_category_id = b.id
+        left join work_flow_tenant t on a.tenant_id = t.tennat_id
+        <include refid="whereSql"/>
+    </select>
+</mapper>

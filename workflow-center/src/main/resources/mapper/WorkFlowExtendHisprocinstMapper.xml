@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workflow.process.center.mapper.WorkFlowExtendHisprocinstMapper">
+
+    <resultMap type="com.workflow.process.center.domain.entity.WorkFlowExtendHisprocinst"
+               id="WorkFlowExtendHisprocinstBaseResultMap">
+        <result property="id" column="id"/>
+        <result property="serviceID" column="service_id"/>
+        <result property="modelKey" column="model_key"/>
+        <result property="processInstanceId" column="process_instance_id"/>
+        <result property="processDefinitionId" column="process_definition_id"/>
+        <result property="businessKey" column="business_key"/>
+        <result property="processName" column="process_name"/>
+        <result property="processStatus" column="process_status"/>
+        <result property="tenantId" column="tenant_id"/>
+        <result property="creator" column="creator"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updator" column="updator"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+</mapper>

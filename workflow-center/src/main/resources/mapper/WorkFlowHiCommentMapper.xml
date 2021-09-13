@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workflow.process.center.mapper.WorkFlowHiCommentMapper">
+
+    <resultMap type="com.workflow.process.center.domain.entity.WorkFlowHiComment" id="WorkFlowHiCommentBaseResultMap">
+        <result property="id" column="id"/>
+        <result property="type" column="type"/>
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="time" column="time"/>
+        <result property="taskId" column="task_id"/>
+        <result property="taskName" column="task_name"/>
+        <result property="activityId" column="activity_id"/>
+        <result property="activityName" column="activity_name"/>
+        <result property="processInsId" column="process_ins_id"/>
+        <result property="action" column="action"/>
+        <result property="message" column="message"/>
+        <result property="createTime" column="create_time"/>
+        <result property="creator" column="creator"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updator" column="updator"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="tenantId" column="tenant_id"/>
+    </resultMap>
+
+</mapper>
