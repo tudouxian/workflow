@@ -216,6 +216,12 @@
 
             <dependency>
                 <groupId>com.workflow</groupId>
+                <artifactId>workflow-form</artifactId>
+                <version>${workflow.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.workflow</groupId>
                 <artifactId>workflow-process-common</artifactId>
                 <version>${workflow.version}</version>
             </dependency>

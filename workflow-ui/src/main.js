@@ -30,6 +30,8 @@ import ImageUpload from "@/components/ImageUpload"
 import DictTag from '@/components/DictTag'
 // 头部标签组件
 import VueMeta from 'vue-meta'
+//import Tinymce from '@/components/tinymce/index.vue'
+
 
 //模型设计器
 import { vuePlugin } from "@/plugins/highlight";
@@ -67,6 +69,7 @@ Vue.component('RightToolbar', RightToolbar)
 Vue.component('Editor', Editor)
 Vue.component('FileUpload', FileUpload)
 Vue.component('ImageUpload', ImageUpload)
+//Vue.component('tinymce', Tinymce)
 
 Vue.use(vuePlugin)
 Vue.use(directive)

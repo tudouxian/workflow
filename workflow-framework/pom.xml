@@ -64,6 +64,11 @@
             <artifactId>workflow-center</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.workflow</groupId>
+            <artifactId>workflow-form</artifactId>
+        </dependency>
+
 
     </dependencies>
 

@@ -62,10 +62,10 @@
           size="mini"
           @click="handleExport"
           v-hasPermi="['system:deployment:export']"
-        >导出</el-button>-->
+        >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
-    </el-row>
+    </el-row>-->
 
     <el-table v-loading="loading" fit :data="definitionList" border   @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
@@ -239,7 +239,6 @@
 import { listDefinition, updateState, delDeployment, addDeployment, updateDeployment, exportDeployment, definitionStart, saveXml, readXml} from "@/api/processCenter/definition";
 import dict from './dict'
 import { getToken } from "@/utils/auth";
-import { getForm, addDeployForm ,listForm } from "@/api/processCenter/form";
 import Parser from '@/components/parser/Parser'
 import flow from '@/views/processCore/processMeta/task/record/flow'
 
@@ -396,13 +395,13 @@ export default {
       })
     },
     /** 表单查看 */
-    handleForm(formId){
+   /* handleForm(formId){
       getForm(formId).then(res =>{
         this.formTitle = "表单详情";
         this.formConfOpen = true;
         this.formConf = JSON.parse(res.data.formContent)
       })
-    },
+    },*/
     /** 启动流程 */
     handleDefinitionStart(row){
       definitionStart(row.id).then(res =>{
@@ -436,14 +435,14 @@ export default {
     //     this.formDeployTitle = "挂载表单";
     //   })
     // },
-    /** 挂载表单 */
+   /* /!** 挂载表单 *!/
     submitFormDeploy(){
       addDeployForm(this.formDeployParam).then(res =>{
         this.msgSuccess(res.msg);
         this.formDeployOpen = false;
         this.getList();
       })
-    },
+    },*/
     /** 挂起/激活流程 */
     handleUpdateSuspensionState(row){
       let state = 1;
