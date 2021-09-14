@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workflow.form.center.mapper.WorkFlowFormModelMapper">
+
+    <resultMap type="com.workflow.form.center.domain.entity.WorkFlowFormModel" id="WorkFlowFormModelBaseResultMap">
+        <result property="modelId" column="model_id"/>
+        <result property="modelInfoId" column="model_info_id"/>
+        <result property="formKey" column="form_key"/>
+        <result property="formJson" column="form_json"/>
+        <result property="formType" column="form_type"/>
+        <result property="status" column="status"/>
+        <result property="mainVersion" column="main_version"/>
+        <result property="configJson" column="config_json"/>
+        <result property="releaseNote" column="release_note"/>
+        <result property="version" column="version"/>
+        <result property="creator" column="creator"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updator" column="updator"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+</mapper>
