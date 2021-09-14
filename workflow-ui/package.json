@@ -46,7 +46,7 @@
     "file-saver": "2.0.4",
     "form-gen-parser": "^1.0.3",
     "fuse.js": "6.4.3",
-    "highlight.js": "^10.7.3",
+    "highlight.js": "10.7.3",
     "js-beautify": "1.13.0",
     "js-cookie": "2.2.1",
     "jsencrypt": "3.0.0-rc.1",
