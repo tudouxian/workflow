@@ -47,6 +47,7 @@ export function updateProcessExpression(data) {
 
 // 删除流程达式
 export function delProcessExpression(data) {
+  console.log("==="+data)
   return request({
     url: '/workFlowExpression/delete',
     method: 'delete',
