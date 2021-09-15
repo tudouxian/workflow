@@ -84,4 +84,4 @@ QQ群
 ![QQ群](http://image.zmxblog92.com/qq%E7%BE%A4.jpg)
 
 ##重点
-star下，谢谢支持
+star下，谢谢支持,也欢迎一起贡献，成为commiter
