@@ -52,9 +52,9 @@
     <el-table v-loading="loading" :data="formList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="表单主键" align="center" prop="modelInfoId" />
+      <el-table-column label="表单KEY" align="center" prop="formKey" />
       <el-table-column label="表单分类" align="center" prop="categoryName" />
       <el-table-column label="表单名称" align="center" prop="formName" />
-      <el-table-column label="表单KEY" align="center" prop="formKey" />
       <el-table-column label="主版本号" align="center" prop="version" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">

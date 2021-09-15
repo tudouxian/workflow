@@ -2,7 +2,9 @@ package com.workflow.form.center.domain.entity;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -32,7 +34,7 @@ public class WorkFlowFormModelInfo implements Serializable {
      * 表单模型信息主键
      */
     @ApiModelProperty(value = "表单模型信息主键")
-    @TableField("model_info_id")
+    @TableId(value = "model_info_id",type = IdType.AUTO)
     private Integer modelInfoId;
 
     /**

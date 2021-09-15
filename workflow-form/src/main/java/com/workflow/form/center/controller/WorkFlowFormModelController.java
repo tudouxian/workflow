@@ -40,7 +40,6 @@ public class WorkFlowFormModelController {
     @ApiOperation(value = "查询所有信息", notes = "不分页")
     @GetMapping("/list")
     public ResultBean<List<WorkFlowFormModel>> list() {
-
         List<WorkFlowFormModel> list = workFlowFormModelService.list();
         return ResultBean.ofSuccess(list);
     }

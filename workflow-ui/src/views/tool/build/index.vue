@@ -123,6 +123,9 @@
         <el-form-item label="表单名称" prop="formName">
           <el-input v-model="form.formName" placeholder="请输入表单名称" />
         </el-form-item>
+        <el-form-item label="表单KEY" prop="formKey">
+          <el-input v-model="form.formKey" placeholder="请输入表单KEY" />
+        </el-form-item>
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" placeholder="请输入备注" />
         </el-form-item>
@@ -163,7 +166,7 @@ import {
   getDrawingList, saveDrawingList, getIdGlobal, saveIdGlobal, getFormConf
 } from '@/utils/db'
 import loadBeautifier from '@/utils/loadBeautifier'
-import {getForm, addForm, updateForm} from "@/api/formGenerator/form";
+import {getForm, addForm, updateForm} from "@/api/formGenerator/formModel";
 
 let beautifier
 const emptyActiveData = { style: {}, autosize: {} }
@@ -223,8 +226,9 @@ export default {
       // 表单参数
       form: {
         formId: null,
+        formKey: null,
         formName: null,
-        formContent: null,
+        formJson: null,
         remark: null
       },
       // 表单校验
@@ -281,7 +285,7 @@ export default {
     const formId =  that.$route.query && that.$route.query.formId;
     if (formId) {
       getForm(formId).then(res =>{
-        that.formConf = JSON.parse(res.data.formContent);
+        that.formConf = JSON.parse(res.data.formJson);
         that.drawingList = that.formConf.fields;
         that.form = res.data;
       })
@@ -508,7 +512,7 @@ export default {
       this.formData = {
         fields: deepClone(this.drawingList),
       }
-     this.form.formContent = JSON.stringify(this.formData);
+     this.form.formJson = JSON.stringify(this.formData);
      this.formOpen = true;
      this.formTitle = "添加表单";
     },
@@ -517,7 +521,7 @@ export default {
       this.form = {
         formId: null,
         formName: null,
-        formContent: null,
+        formJson: null,
         remark: null
       };
       this.resetForm("form");
