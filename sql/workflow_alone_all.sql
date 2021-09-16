@@ -11,7 +11,7 @@
  Target Server Version : 50718
  File Encoding         : 65001
 
- Date: 13/09/2021 11:53:15
+ Date: 16/09/2021 15:37:00
 */
 
 SET NAMES utf8mb4;
@@ -1845,7 +1845,13 @@ CREATE TABLE `gen_table`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`table_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of gen_table
+-- ----------------------------
+INSERT INTO `gen_table` VALUES (1, 'work_flow_form_category', '表单分类表', '', '', 'WorkFlowFormCategory', 'tree', 'com.workflow.form.center', 'formCore', 'formCategory', '表单分类', 'tudouxian', '0', '/', '{\"treeCode\":\"id\",\"treeName\":\"category_name\",\"treeParentCode\":\"parent_id\",\"parentMenuId\":2007}', 'admin', '2021-09-14 03:05:33', '', '2021-09-14 03:12:44', NULL);
+INSERT INTO `gen_table` VALUES (2, 'work_flow_email', '租户邮箱服务配置', NULL, NULL, 'WorkFlowEmail', 'crud', 'com.workflow.process.center', 'email', 'email', '租户邮箱配置', 'tudouxian', '0', '/', '{\"parentMenuId\":2008}', 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19', NULL);
 
 -- ----------------------------
 -- Table structure for gen_table_column
@@ -1875,7 +1881,35 @@ CREATE TABLE `gen_table_column`  (
   `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`column_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of gen_table_column
+-- ----------------------------
+INSERT INTO `gen_table_column` VALUES (1, '1', 'id', '主键', 'int(11)', 'Long', 'id', '1', '1', NULL, NULL, NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-09-14 03:05:33', '', '2021-09-14 03:12:44');
+INSERT INTO `gen_table_column` VALUES (2, '1', 'code', '分类编码', 'varchar(255)', 'String', 'code', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2021-09-14 03:05:33', '', '2021-09-14 03:12:44');
+INSERT INTO `gen_table_column` VALUES (3, '1', 'category_name', '分类名称', 'varchar(100)', 'String', 'categoryName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 3, 'admin', '2021-09-14 03:05:33', '', '2021-09-14 03:12:44');
+INSERT INTO `gen_table_column` VALUES (4, '1', 'order_num', '排序', 'int(11)', 'Long', 'orderNum', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 4, 'admin', '2021-09-14 03:05:33', '', '2021-09-14 03:12:44');
+INSERT INTO `gen_table_column` VALUES (5, '1', 'parent_id', '上级分类id', 'int(11)', 'Long', 'parentId', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 5, 'admin', '2021-09-14 03:05:33', '', '2021-09-14 03:12:44');
+INSERT INTO `gen_table_column` VALUES (6, '1', 'desc', '描述', 'varchar(255)', 'String', 'desc', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 6, 'admin', '2021-09-14 03:05:33', '', '2021-09-14 03:12:44');
+INSERT INTO `gen_table_column` VALUES (7, '1', 'creator', '创建人', 'varchar(255)', 'String', 'creator', '0', '0', NULL, NULL, NULL, NULL, NULL, 'EQ', 'input', '', 7, 'admin', '2021-09-14 03:05:33', '', '2021-09-14 03:12:44');
+INSERT INTO `gen_table_column` VALUES (8, '1', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, NULL, NULL, NULL, NULL, 'EQ', 'datetime', '', 8, 'admin', '2021-09-14 03:05:33', '', '2021-09-14 03:12:44');
+INSERT INTO `gen_table_column` VALUES (9, '1', 'updator', '更新人', 'varchar(255)', 'String', 'updator', '0', '0', NULL, NULL, NULL, NULL, NULL, 'EQ', 'input', '', 9, 'admin', '2021-09-14 03:05:33', '', '2021-09-14 03:12:44');
+INSERT INTO `gen_table_column` VALUES (10, '1', 'update_time', '修改时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, NULL, NULL, NULL, NULL, 'EQ', 'datetime', '', 10, 'admin', '2021-09-14 03:05:33', '', '2021-09-14 03:12:44');
+INSERT INTO `gen_table_column` VALUES (11, '2', 'id', '主键', 'int(32)', 'Long', 'id', '1', '1', NULL, NULL, NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (12, '2', 'tennat_id', '租户标示', 'varchar(64)', 'String', 'tennatId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', '', 2, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (13, '2', 'mail_server_host', '邮箱服务eg:smtp.163.com', 'varchar(64)', 'String', 'mailServerHost', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (14, '2', 'mail_server_port', '邮箱服务端口eg:465', 'int(11)', 'Long', 'mailServerPort', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (15, '2', 'mail_default_from', '邮箱服务默认发送邮箱', 'varchar(255)', 'String', 'mailDefaultFrom', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (16, '2', 'mail_username', '邮箱服务账号', 'varchar(255)', 'String', 'mailUsername', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 6, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (17, '2', 'mail_password', '邮箱服务密码', 'varchar(255)', 'String', 'mailPassword', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (18, '2', 'mail_ssl', '是否使用SSL-0-是  1-否', 'int(11)', 'Long', 'mailSsl', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', '', 8, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (19, '2', 'note', '邮箱备注', 'varchar(255)', 'String', 'note', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 9, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (20, '2', 'creator', '创建人', 'varchar(32)', 'String', 'creator', '0', '0', NULL, NULL, NULL, NULL, NULL, 'EQ', 'input', '', 10, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (21, '2', 'create_time', '创建时间', 'timestamp', 'Date', 'createTime', '0', '0', NULL, NULL, NULL, NULL, NULL, 'EQ', 'datetime', '', 11, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (22, '2', 'update_time', '更新时间', 'timestamp', 'Date', 'updateTime', '0', '0', NULL, NULL, NULL, NULL, NULL, 'EQ', 'datetime', '', 12, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (23, '2', 'updator', '更新人', 'varchar(32)', 'String', 'updator', '0', '0', NULL, NULL, NULL, NULL, NULL, 'EQ', 'input', '', 13, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
+INSERT INTO `gen_table_column` VALUES (24, '2', 'del_flag', '删除标识1表示删除0表示存在', 'int(1)', 'Integer', 'delFlag', '0', '0', NULL, NULL, NULL, NULL, NULL, 'EQ', 'input', '', 14, 'admin', '2021-09-16 05:57:53', '', '2021-09-16 06:04:19');
 
 -- ----------------------------
 -- Table structure for qrtz_blob_triggers
@@ -2018,7 +2052,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- Records of qrtz_scheduler_state
 -- ----------------------------
 INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', 'LAPTOP-VESM13MU1631451572824', 1631457312158, 15000);
-INSERT INTO `qrtz_scheduler_state` VALUES ('workflowScheduler', 'LAPTOP-VESM13MU1631501143413', 1631505201819, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('workflowScheduler', 'LAPTOP-VESM13MU1631775949724', 1631777836383, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -2090,9 +2124,9 @@ CREATE TABLE `qrtz_triggers`  (
 INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1631451580000, -1, 5, 'PAUSED', 'CRON', 1631451572000, 0, NULL, 2, '');
 INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1631451585000, -1, 5, 'PAUSED', 'CRON', 1631451573000, 0, NULL, 2, '');
 INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1631451580000, -1, 5, 'PAUSED', 'CRON', 1631451573000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('workflowScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1631501150000, -1, 5, 'PAUSED', 'CRON', 1631501143000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('workflowScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1631501145000, -1, 5, 'PAUSED', 'CRON', 1631501143000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('workflowScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1631501160000, -1, 5, 'PAUSED', 'CRON', 1631501143000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('workflowScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1631775950000, -1, 5, 'PAUSED', 'CRON', 1631775949000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('workflowScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1631775960000, -1, 5, 'PAUSED', 'CRON', 1631775950000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('workflowScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1631775960000, -1, 5, 'PAUSED', 'CRON', 1631775950000, 0, NULL, 2, '');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -2302,7 +2336,7 @@ CREATE TABLE `sys_logininfor`  (
   `msg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 118 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 133 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -2325,6 +2359,21 @@ INSERT INTO `sys_logininfor` VALUES (114, 'admin', '127.0.0.1', '内网IP', 'Chr
 INSERT INTO `sys_logininfor` VALUES (115, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2021-09-13 03:39:56');
 INSERT INTO `sys_logininfor` VALUES (116, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2021-09-13 03:42:45');
 INSERT INTO `sys_logininfor` VALUES (117, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2021-09-13 03:48:10');
+INSERT INTO `sys_logininfor` VALUES (118, 'admin', '127.0.0.1', '内网IP', 'Firefox 9', 'Windows 10', '0', '登录成功', '2021-09-13 05:44:13');
+INSERT INTO `sys_logininfor` VALUES (119, 'admin', '127.0.0.1', '内网IP', 'Firefox 9', 'Windows 10', '0', '登录成功', '2021-09-13 06:08:02');
+INSERT INTO `sys_logininfor` VALUES (120, 'admin', '127.0.0.1', '内网IP', 'Firefox 9', 'Windows 10', '0', '登录成功', '2021-09-13 07:06:53');
+INSERT INTO `sys_logininfor` VALUES (121, 'superAdmin', '127.0.0.1', '内网IP', 'Firefox 9', 'Windows 10', '1', '登录用户：superAdmin 不存在', '2021-09-13 11:30:53');
+INSERT INTO `sys_logininfor` VALUES (122, 'admin', '127.0.0.1', '内网IP', 'Firefox 9', 'Windows 10', '1', '用户不存在/密码错误', '2021-09-13 11:31:08');
+INSERT INTO `sys_logininfor` VALUES (123, 'admin', '127.0.0.1', '内网IP', 'Firefox 9', 'Windows 10', '1', '验证码错误', '2021-09-13 11:31:21');
+INSERT INTO `sys_logininfor` VALUES (124, 'admin', '127.0.0.1', '内网IP', 'Firefox 9', 'Windows 10', '1', '用户不存在/密码错误', '2021-09-13 11:31:25');
+INSERT INTO `sys_logininfor` VALUES (125, 'admin', '127.0.0.1', '内网IP', 'Firefox 9', 'Windows 10', '0', '登录成功', '2021-09-13 11:31:50');
+INSERT INTO `sys_logininfor` VALUES (126, 'admin', '127.0.0.1', '内网IP', 'Firefox 9', 'Windows 10', '0', '登录成功', '2021-09-14 02:29:58');
+INSERT INTO `sys_logininfor` VALUES (127, 'admin', '127.0.0.1', '内网IP', 'Firefox 9', 'Windows 10', '0', '登录成功', '2021-09-14 05:43:46');
+INSERT INTO `sys_logininfor` VALUES (128, 'admin', '127.0.0.1', '内网IP', 'Firefox 9', 'Windows 10', '0', '登录成功', '2021-09-14 05:55:38');
+INSERT INTO `sys_logininfor` VALUES (129, 'sjy_yujm', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '1', '登录用户：sjy_yujm 不存在', '2021-09-16 05:55:53');
+INSERT INTO `sys_logininfor` VALUES (130, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '1', '验证码错误', '2021-09-16 05:56:03');
+INSERT INTO `sys_logininfor` VALUES (131, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-09-16 05:56:07');
+INSERT INTO `sys_logininfor` VALUES (132, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2021-09-16 07:18:21');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -2351,7 +2400,7 @@ CREATE TABLE `sys_menu`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2026 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2039 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -2374,8 +2423,8 @@ INSERT INTO `sys_menu` VALUES (110, '定时任务', 2, 2, 'job', 'monitor/job/in
 INSERT INTO `sys_menu` VALUES (111, '数据监控', 2, 3, 'druid', 'monitor/druid/index', '', 1, 0, 'C', '0', '0', 'monitor:druid:list', 'druid', 'admin', '2021-09-10 12:12:34', '', NULL, '数据监控菜单');
 INSERT INTO `sys_menu` VALUES (112, '服务监控', 2, 4, 'server', 'monitor/server/index', '', 1, 0, 'C', '0', '0', 'monitor:server:list', 'server', 'admin', '2021-09-10 12:12:34', '', NULL, '服务监控菜单');
 INSERT INTO `sys_menu` VALUES (113, '缓存监控', 2, 5, 'cache', 'monitor/cache/index', '', 1, 0, 'C', '0', '0', 'monitor:cache:list', 'redis', 'admin', '2021-09-10 12:12:34', '', NULL, '缓存监控菜单');
-INSERT INTO `sys_menu` VALUES (114, '表单构建', 2007, 1, 'build', 'tool/build/index', '', 1, 0, 'C', '0', '0', 'tool:build:list', 'build', 'admin', '2021-09-10 12:12:34', 'admin', '2021-09-12 13:00:27', '表单构建菜单');
-INSERT INTO `sys_menu` VALUES (115, '代码生成', 3, 2, 'gen', 'tool/gen/index', '', 1, 0, 'C', '0', '0', 'tool:gen:list', 'code', 'admin', '2021-09-10 12:12:34', '', NULL, '代码生成菜单');
+INSERT INTO `sys_menu` VALUES (114, '表单构建', 3, 1, 'build', 'tool/build/index', '', 1, 0, 'C', '0', '0', 'tool:build:list', 'build', 'admin', '2021-09-10 12:12:34', 'admin', '2021-09-13 06:09:01', '表单构建菜单');
+INSERT INTO `sys_menu` VALUES (115, '代码生成', 3, 2, 'gen', 'tool/gen/index', '', 1, 1, 'C', '0', '0', '', 'code', 'admin', '2021-09-10 12:12:34', 'admin', '2021-09-14 02:33:57', '代码生成菜单');
 INSERT INTO `sys_menu` VALUES (116, '系统接口', 3, 3, 'swagger', 'tool/swagger/index', '', 1, 0, 'C', '0', '0', 'tool:swagger:list', 'swagger', 'admin', '2021-09-10 12:12:34', '', NULL, '系统接口菜单');
 INSERT INTO `sys_menu` VALUES (500, '操作日志', 108, 1, 'operlog', 'monitor/operlog/index', '', 1, 0, 'C', '0', '0', 'monitor:operlog:list', 'form', 'admin', '2021-09-10 12:12:34', '', NULL, '操作日志菜单');
 INSERT INTO `sys_menu` VALUES (501, '登录日志', 108, 2, 'logininfor', 'monitor/logininfor/index', '', 1, 0, 'C', '0', '0', 'monitor:logininfor:list', 'logininfor', 'admin', '2021-09-10 12:12:34', '', NULL, '登录日志菜单');
@@ -2465,6 +2514,18 @@ INSERT INTO `sys_menu` VALUES (2022, '流程监听器', 2006, 5, 'processListene
 INSERT INTO `sys_menu` VALUES (2023, '流程审核按钮', 2006, 6, 'processButton', 'processCore/processService/processButton/index', NULL, 1, 1, 'C', '0', '0', '', 'button', 'admin', '2021-09-12 11:34:41', 'admin', '2021-09-12 13:43:27', '');
 INSERT INTO `sys_menu` VALUES (2024, '流程定义', 2009, 1, 'processMeta/processDef', 'processCore/processMeta/definition/index', NULL, 1, 1, 'C', '0', '0', '', 'icon', 'admin', '2021-09-12 12:08:40', 'admin', '2021-09-12 13:04:21', '');
 INSERT INTO `sys_menu` VALUES (2025, '租户管理', 2008, 1, 'processConfig/processTenant', 'processCore/processConfig/processTenant/index', NULL, 1, 1, 'C', '0', '0', '', 'international', 'admin', '2021-09-12 12:47:28', 'admin', '2021-09-12 13:04:00', '');
+INSERT INTO `sys_menu` VALUES (2026, '表单模型设计器', 2007, 1, 'formDesign', 'formCore/formDesign/index', NULL, 1, 1, 'C', '0', '0', NULL, 'build', 'admin', '2021-09-13 06:09:45', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2027, '表单分类', 2007, 1, 'formCategory', 'formCore/formCategory/index', NULL, 1, 0, 'C', '0', '0', 'formCore:formCategory:list', 'cascader', 'admin', '2021-09-14 03:19:33', 'admin', '2021-09-14 05:44:31', '表单分类菜单');
+INSERT INTO `sys_menu` VALUES (2028, '表单分类查询', 2027, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'formCore:formCategory:query', '#', 'admin', '2021-09-14 03:19:33', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2029, '表单分类新增', 2027, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'formCore:formCategory:add', '#', 'admin', '2021-09-14 03:19:33', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2030, '表单分类修改', 2027, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'formCore:formCategory:edit', '#', 'admin', '2021-09-14 03:19:33', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2031, '表单分类删除', 2027, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'formCore:formCategory:remove', '#', 'admin', '2021-09-14 03:19:33', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2032, '表单分类导出', 2027, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'formCore:formCategory:export', '#', 'admin', '2021-09-14 03:19:33', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2033, '租户邮箱配置', 2008, 1, 'email', 'processCore/processConfig/email/index', NULL, 1, 0, 'C', '0', '0', 'email:email:list', 'email', 'admin', '2021-09-16 06:05:53', 'admin', '2021-09-16 07:16:29', '租户邮箱配置菜单');
+INSERT INTO `sys_menu` VALUES (2034, '租户邮箱配置查询', 2033, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'email:email:query', '#', 'admin', '2021-09-16 06:05:53', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2035, '租户邮箱配置新增', 2033, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'email:email:add', '#', 'admin', '2021-09-16 06:05:53', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2036, '租户邮箱配置修改', 2033, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'email:email:edit', '#', 'admin', '2021-09-16 06:05:53', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2037, '租户邮箱配置删除', 2033, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'email:email:remove', '#', 'admin', '2021-09-16 06:05:53', '', NULL, '');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -2512,7 +2573,7 @@ CREATE TABLE `sys_oper_log`  (
   `error_msg` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 174 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 188 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -2591,6 +2652,20 @@ INSERT INTO `sys_oper_log` VALUES (170, '菜单管理', 2, 'com.workflow.web.con
 INSERT INTO `sys_oper_log` VALUES (171, '菜单管理', 2, 'com.workflow.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"visible\":\"0\",\"icon\":\"message\",\"orderNum\":\"5\",\"menuName\":\"流程监听器\",\"params\":{},\"parentId\":2006,\"isCache\":\"1\",\"path\":\"processListener\",\"component\":\"processCore/processService/processListener/index\",\"children\":[],\"createTime\":1631417636000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2022,\"menuType\":\"C\",\"perms\":\"\",\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-12 13:43:19');
 INSERT INTO `sys_oper_log` VALUES (172, '菜单管理', 2, 'com.workflow.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"visible\":\"0\",\"icon\":\"button\",\"orderNum\":\"6\",\"menuName\":\"流程审核按钮\",\"params\":{},\"parentId\":2006,\"isCache\":\"1\",\"path\":\"processButton\",\"component\":\"processCore/processService/processButton/index\",\"children\":[],\"createTime\":1631417681000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2023,\"menuType\":\"C\",\"perms\":\"\",\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-12 13:43:27');
 INSERT INTO `sys_oper_log` VALUES (173, '菜单管理', 2, 'com.workflow.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"visible\":\"0\",\"query\":\"\",\"icon\":\"guide\",\"orderNum\":\"5\",\"menuName\":\"数据迁移\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"http://localhost\",\"children\":[],\"createTime\":1631247154000,\"updateBy\":\"admin\",\"isFrame\":\"0\",\"menuId\":4,\"menuType\":\"M\",\"perms\":\"\",\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-12 14:33:05');
+INSERT INTO `sys_oper_log` VALUES (174, '菜单管理', 2, 'com.workflow.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"visible\":\"0\",\"query\":\"\",\"icon\":\"build\",\"orderNum\":\"1\",\"menuName\":\"表单构建\",\"params\":{},\"parentId\":3,\"isCache\":\"0\",\"path\":\"build\",\"component\":\"tool/build/index\",\"children\":[],\"createTime\":1631247154000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":114,\"menuType\":\"C\",\"perms\":\"tool:build:list\",\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-13 06:09:01');
+INSERT INTO `sys_oper_log` VALUES (175, '菜单管理', 1, 'com.workflow.web.controller.system.SysMenuController.add()', 'POST', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"visible\":\"0\",\"icon\":\"build\",\"orderNum\":\"1\",\"menuName\":\"表单模型设计器\",\"params\":{},\"parentId\":2007,\"isCache\":\"1\",\"path\":\"formDesign\",\"component\":\"formCore/formDesign/index\",\"createBy\":\"admin\",\"children\":[],\"isFrame\":\"1\",\"menuType\":\"C\",\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-13 06:09:45');
+INSERT INTO `sys_oper_log` VALUES (176, '菜单管理', 2, 'com.workflow.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"visible\":\"0\",\"query\":\"\",\"icon\":\"code\",\"orderNum\":\"2\",\"menuName\":\"代码生成\",\"params\":{},\"parentId\":3,\"isCache\":\"0\",\"path\":\"gen\",\"component\":\"tool/gen/index\",\"children\":[],\"createTime\":1631247154000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":115,\"menuType\":\"C\",\"perms\":\"tool:gen:list\",\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-14 02:33:46');
+INSERT INTO `sys_oper_log` VALUES (177, '菜单管理', 2, 'com.workflow.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"visible\":\"0\",\"query\":\"\",\"icon\":\"code\",\"orderNum\":\"2\",\"menuName\":\"代码生成\",\"params\":{},\"parentId\":3,\"isCache\":\"1\",\"path\":\"gen\",\"component\":\"tool/gen/index\",\"children\":[],\"createTime\":1631247154000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":115,\"menuType\":\"C\",\"perms\":\"\",\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-14 02:33:57');
+INSERT INTO `sys_oper_log` VALUES (178, '代码生成', 6, 'com.workflow.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', NULL, '/tool/gen/importTable', '127.0.0.1', '内网IP', 'work_flow_form_category', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-14 03:05:33');
+INSERT INTO `sys_oper_log` VALUES (179, '代码生成', 2, 'com.workflow.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', NULL, '/tool/gen', '127.0.0.1', '内网IP', '{\"sub\":false,\"subTableName\":\"\",\"functionAuthor\":\"tudouxian\",\"columns\":[{\"capJavaField\":\"Id\",\"usableColumn\":false,\"columnId\":1,\"isIncrement\":\"1\",\"increment\":true,\"insert\":false,\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"javaField\":\"id\",\"htmlType\":\"input\",\"edit\":false,\"query\":false,\"columnComment\":\"主键\",\"sort\":1,\"list\":false,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int(11)\",\"createBy\":\"admin\",\"isPk\":\"1\",\"createTime\":1631559933000,\"tableId\":1,\"pk\":true,\"columnName\":\"id\"},{\"capJavaField\":\"Code\",\"usableColumn\":false,\"columnId\":2,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":true,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"isRequired\":\"1\",\"javaField\":\"code\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"分类编码\",\"isQuery\":\"1\",\"sort\":2,\"list\":true,\"params\":{},\"javaType\":\"String\",\"queryType\":\"EQ\",\"columnType\":\"varchar(255)\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1631559933000,\"isEdit\":\"1\",\"tableId\":1,\"pk\":false,\"columnName\":\"code\"},{\"capJavaField\":\"CategoryName\",\"usableColumn\":false,\"columnId\":3,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"categoryName\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"分类名称\",\"isQuery\":\"1\",\"sort\":3,\"list\":true,\"params\":{},\"javaType\":\"String\",\"queryType\":\"LIKE\",\"columnType\":\"varchar(100)\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1631559933000,\"isEdit\":\"1\",\"tableId\":1,\"pk\":false,\"columnName\":\"category_name\"},{\"capJavaField\":\"OrderNum\",\"usableColumn\":true,\"columnId\":4,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":true,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"orderNum\",\"htmlType\":\"input\",\"edit\":true,\"query\":false,\"columnComment\":\"排序\",\"sort\":4,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int(11)\",\"createBy\":\"admin\",\"isPk\":\"0\",\"creat', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-14 03:12:44');
+INSERT INTO `sys_oper_log` VALUES (180, '代码生成', 8, 'com.workflow.generator.controller.GenController.batchGenCode()', 'GET', 1, 'admin', NULL, '/tool/gen/batchGenCode', '127.0.0.1', '内网IP', '{}', 'null', 0, NULL, '2021-09-14 03:12:52');
+INSERT INTO `sys_oper_log` VALUES (181, '菜单管理', 2, 'com.workflow.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"visible\":\"0\",\"icon\":\"cascader\",\"orderNum\":\"1\",\"menuName\":\"表单分类\",\"params\":{},\"parentId\":2007,\"isCache\":\"0\",\"path\":\"formCategory\",\"component\":\"formCore/formCategory/index\",\"children\":[],\"createTime\":1631560773000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2027,\"menuType\":\"C\",\"perms\":\"formCore:formCategory:list\",\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-14 05:44:32');
+INSERT INTO `sys_oper_log` VALUES (182, '代码生成', 6, 'com.workflow.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', NULL, '/tool/gen/importTable', '127.0.0.1', '内网IP', 'work_flow_email', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-16 05:57:53');
+INSERT INTO `sys_oper_log` VALUES (183, '代码生成', 2, 'com.workflow.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', NULL, '/tool/gen', '127.0.0.1', '内网IP', '{\"sub\":false,\"functionAuthor\":\"tudouxian\",\"columns\":[{\"capJavaField\":\"Id\",\"usableColumn\":false,\"columnId\":11,\"isIncrement\":\"1\",\"increment\":true,\"insert\":false,\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"javaField\":\"id\",\"htmlType\":\"input\",\"edit\":false,\"query\":false,\"columnComment\":\"主键\",\"sort\":1,\"list\":false,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int(32)\",\"createBy\":\"admin\",\"isPk\":\"1\",\"createTime\":1631743073000,\"tableId\":2,\"pk\":true,\"columnName\":\"id\"},{\"capJavaField\":\"TennatId\",\"usableColumn\":false,\"columnId\":12,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"tennatId\",\"htmlType\":\"select\",\"edit\":true,\"query\":true,\"columnComment\":\"租户标示\",\"isQuery\":\"1\",\"sort\":2,\"list\":true,\"params\":{},\"javaType\":\"String\",\"queryType\":\"EQ\",\"columnType\":\"varchar(64)\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1631743073000,\"isEdit\":\"1\",\"tableId\":2,\"pk\":false,\"columnName\":\"tennat_id\"},{\"capJavaField\":\"MailServerHost\",\"usableColumn\":false,\"columnId\":13,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"mailServerHost\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"邮箱服务eg:smtp.163.com\",\"isQuery\":\"1\",\"sort\":3,\"list\":true,\"params\":{},\"javaType\":\"String\",\"queryType\":\"EQ\",\"columnType\":\"varchar(64)\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1631743073000,\"isEdit\":\"1\",\"tableId\":2,\"pk\":false,\"columnName\":\"mail_server_host\"},{\"capJavaField\":\"MailServerPort\",\"usableColumn\":false,\"columnId\":14,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"mailServerPort\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"邮箱服务端口eg:465\",\"isQuery\":\"1\",\"sort\":4,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int(11', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-16 06:04:19');
+INSERT INTO `sys_oper_log` VALUES (184, '代码生成', 8, 'com.workflow.generator.controller.GenController.batchGenCode()', 'GET', 1, 'admin', NULL, '/tool/gen/batchGenCode', '127.0.0.1', '内网IP', '{}', 'null', 0, NULL, '2021-09-16 06:04:30');
+INSERT INTO `sys_oper_log` VALUES (185, '菜单管理', 2, 'com.workflow.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"visible\":\"0\",\"icon\":\"#\",\"orderNum\":\"1\",\"menuName\":\"租户邮箱配置\",\"params\":{},\"parentId\":2008,\"isCache\":\"0\",\"path\":\"email\",\"component\":\"processCore/processConfig/email/index\",\"children\":[],\"createTime\":1631743553000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2033,\"menuType\":\"C\",\"perms\":\"email:email:list\",\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-16 06:12:04');
+INSERT INTO `sys_oper_log` VALUES (186, '菜单管理', 3, 'com.workflow.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2038', '127.0.0.1', '内网IP', '{menuId=2038}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-16 06:12:13');
+INSERT INTO `sys_oper_log` VALUES (187, '菜单管理', 2, 'com.workflow.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"visible\":\"0\",\"icon\":\"email\",\"orderNum\":\"1\",\"menuName\":\"租户邮箱配置\",\"params\":{},\"parentId\":2008,\"isCache\":\"0\",\"path\":\"email\",\"component\":\"processCore/processConfig/email/index\",\"children\":[],\"createTime\":1631743553000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2033,\"menuType\":\"C\",\"perms\":\"email:email:list\",\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-09-16 07:16:29');
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -2791,7 +2866,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '管理员', '00', 'ry@163.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-09-13 11:48:11', 'admin', '2021-09-10 12:12:34', '', '2021-09-13 03:48:10', '管理员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '管理员', '00', 'ry@163.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-09-16 15:18:22', 'admin', '2021-09-10 12:12:34', '', '2021-09-16 07:18:21', '管理员');
 INSERT INTO `sys_user` VALUES (2, 105, 'ry', '管理员', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-09-10 12:12:34', 'admin', '2021-09-10 12:12:34', '', NULL, '测试员');
 
 -- ----------------------------
@@ -2899,12 +2974,12 @@ INSERT INTO `work_flow_category` VALUES (7, '111', 0, '111', 'admin', '2021-08-1
 DROP TABLE IF EXISTS `work_flow_email`;
 CREATE TABLE `work_flow_email`  (
   `id` int(32) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `tennat_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '租户标示',
+  `tenant_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '租户标示',
   `mail_server_host` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱服务eg:smtp.163.com',
   `mail_server_port` int(11) NULL DEFAULT 0 COMMENT '邮箱服务端口eg:465',
   `mail_default_from` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱服务默认发送邮箱',
-  `mail_username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱服务',
-  `mail_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '系统url前缀',
+  `mail_username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱服务账号',
+  `mail_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱服务密码',
   `mail_ssl` int(11) NULL DEFAULT 0 COMMENT '是否使用SSL-0-是  1-否',
   `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱备注',
   `creator` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
@@ -2913,12 +2988,15 @@ CREATE TABLE `work_flow_email`  (
   `updator` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新人',
   `del_flag` int(1) NULL DEFAULT 0 COMMENT '删除标识1表示删除0表示存在',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '租户邮箱服务配置' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '租户邮箱服务配置' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of work_flow_email
 -- ----------------------------
-INSERT INTO `work_flow_email` VALUES (1, 'ZZMT', 'smtp.163.com', 465, '17757144205@163.com', '17757144205@163.com', 'RSSTMECTOYKCWAZC', 1, NULL, NULL, '2021-09-06 06:19:08', '2021-09-06 06:19:08', NULL, 0);
+INSERT INTO `work_flow_email` VALUES (1, 'ZZMT', 'smtp.163.com', 465, '17757144205@163.com', '17757144205@163.com', 'RSSTMECTOYKCWAZC', 1, NULL, NULL, '2021-09-16 06:41:50', '2021-09-16 06:41:50', NULL, 0);
+INSERT INTO `work_flow_email` VALUES (2, NULL, '111@111.com', 11, '111@111.com', '11', '111', 1, NULL, NULL, '2021-09-16 07:09:02', '2021-09-16 07:09:02', NULL, 1);
+INSERT INTO `work_flow_email` VALUES (3, 'CSLC', '112@111.com', 11, '111@111.com', '11', '11', 1, NULL, NULL, '2021-09-16 07:09:58', '2021-09-16 07:09:58', NULL, 1);
+INSERT INTO `work_flow_email` VALUES (4, 'ZZMT', '111@111.com', 122, '111@111.com', '122', '22', 1, NULL, NULL, '2021-09-16 07:09:58', '2021-09-16 07:09:58', NULL, 1);
 
 -- ----------------------------
 -- Table structure for work_flow_expression
@@ -2941,9 +3019,6 @@ CREATE TABLE `work_flow_expression`  (
 -- ----------------------------
 -- Records of work_flow_expression
 -- ----------------------------
-INSERT INTO `work_flow_expression` VALUES (4, 'ss', 'ss', 1, 'ss', NULL, '2021-09-01 07:56:20', NULL, NULL, 0);
-INSERT INTO `work_flow_expression` VALUES (5, '333', '333', 0, '333', NULL, '2021-09-01 08:05:12', NULL, NULL, 0);
-INSERT INTO `work_flow_expression` VALUES (6, 'aa', 'aa', 0, 'aa', NULL, '2021-09-03 14:10:09', NULL, NULL, 0);
 INSERT INTO `work_flow_expression` VALUES (7, 'bb', 'bb', 0, 'bb', NULL, '2021-09-03 14:10:17', NULL, NULL, 0);
 INSERT INTO `work_flow_expression` VALUES (8, 'cc', 'cc', 0, 'cc', NULL, '2021-09-03 14:10:24', NULL, NULL, 0);
 INSERT INTO `work_flow_expression` VALUES (9, 'dd', 'dd', 0, 'dd', NULL, '2021-09-03 14:10:31', NULL, NULL, 0);
@@ -2982,79 +3057,6 @@ CREATE TABLE `work_flow_extend_hisprocinst`  (
 -- ----------------------------
 -- Records of work_flow_extend_hisprocinst
 -- ----------------------------
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (1, 1, 'ZZMT01', '2501', 'ZZMT01:1:4', '7622356239519744', '株洲矛盾调解流程【2021-07-21 15:16:21】', 'SPZ', 'ZZMT', 'admin', '2021-07-24 14:26:16', '2021-07-24 14:26:16', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (2, 1, 'ZZMT01', '5001', 'ZZMT01:1:4', '7624571171770368', '株洲矛盾调解流程【2021-07-21 15:25:09】', 'SPZ', 'ZZMT', 'admin', '2021-07-24 14:26:44', '2021-07-24 14:26:44', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (3, 1, 'ZZMT01', '5010', 'ZZMT01:1:4', '7625621639401472', '株洲矛盾调解流程【2021-07-21 15:29:20】', 'SPZ', 'ZZMT', 'admin', '2021-08-26 09:03:01', '2021-08-26 09:03:01', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (4, 1, 'ZZMT01', '5019', 'ZZMT01:1:4', '7625626374770688', '株洲矛盾调解流程【2021-07-21 15:29:21】', 'SPZ', 'ZZMT', 'admin', '2021-07-24 14:27:24', '2021-07-24 14:27:24', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (5, 1, 'ZZMT01', '5028', 'ZZMT01:1:4', '7625631147888640', '株洲矛盾调解流程【2021-07-21 15:29:22】', 'BJ', 'ZZMT', 'admin', '2021-08-21 07:52:11', '2021-08-21 07:52:11', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (6, 1, 'ZZMT01', '5037', 'ZZMT01:1:4', '7625638731190272', '株洲矛盾调解流程【2021-07-21 15:29:24】', 'ZZ', 'ZZMT', 'admin', '2021-07-23 11:36:31', '2021-07-23 11:36:31', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (7, 1, 'ZZMT01', '7501', 'ZZMT01:1:4', '7636346831245312', '株洲矛盾调解流程【2021-07-21 16:11:57】', 'ZZ', 'ZZMT', 'admin', '2021-07-23 11:37:50', '2021-07-23 11:37:50', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (8, 1, 'ZZMT01', '10001', 'ZZMT01:1:4', '7637590484324352', '株洲矛盾调解流程【2021-07-21 16:16:53】', 'SPZ', 'ZZMT', 'admin', '2021-07-24 14:20:26', '2021-07-24 14:20:26', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (9, 3, 'ZZMT01', '37501', 'ZZMT01:1:4', '8278593557893120', '株洲矛盾调解流程【2021-07-23 10:44:00】', 'QZJS', 'ZZMT', 'admin', '2021-07-23 14:15:47', '2021-07-23 14:15:47', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (10, 3, 'ZZMT01', '37510', 'ZZMT01:1:4', '8278768762359808', '株洲矛盾调解流程【2021-07-23 10:44:42】', 'QZJS', 'ZZMT', 'admin', '2021-07-23 13:55:59', '2021-07-23 13:55:59', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (11, 3, 'ZZMT01', '37519', 'ZZMT01:1:4', '8279492695035904', '株洲矛盾调解流程【2021-07-23 10:47:35】', 'SPZ', 'ZZMT', 'admin', '2021-07-23 10:44:19', '2021-07-23 10:44:19', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (12, 3, 'ZZMT01', '37528', 'ZZMT01:1:4', '8280064634523648', '株洲矛盾调解流程【2021-07-23 10:49:51】', 'SPZ', 'ZZMT', 'admin', '2021-07-23 10:44:21', '2021-07-23 10:44:21', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (13, 3, 'ZZMT01', '37537', 'ZZMT01:1:4', '8280356226732032', '株洲矛盾调解流程【2021-07-23 10:51:01】', 'QZJS', 'ZZMT', 'admin', '2021-07-23 13:55:54', '2021-07-23 13:55:54', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (14, 3, 'ZZMT01', '37546', 'ZZMT01:1:4', '8281415368183808', '株洲矛盾调解流程【2021-07-23 10:55:13】', 'ZZ', 'ZZMT', 'admin', '2021-07-23 10:49:56', '2021-07-23 10:49:56', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (15, 1, 'ZZMT01', '37555', 'ZZMT01:1:4', '8327077384294400', '株洲矛盾调解流程【2021-07-23 13:56:40】', 'SPZ', 'ZZMT', 'admin', '2021-07-23 10:44:25', '2021-07-23 10:44:25', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (16, 3, 'ZZMT01', '37564', 'ZZMT01:1:4', '8327726243123200', '株洲矛盾调解流程【2021-07-23 13:59:14】', 'ZZ', 'ZZMT', 'admin', '2021-07-23 11:29:24', '2021-07-23 11:29:24', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (17, 3, 'ZZMT01', '37574', 'ZZMT01:1:4', '8328332219387904', '株洲矛盾调解流程【2021-07-23 14:01:39】', 'ZZ', 'ZZMT', 'admin', '2021-07-23 11:29:39', '2021-07-23 11:29:39', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (18, 3, 'ZZMT01', '42508', 'ZZMT01:1:4', '8393757015805952', '株洲矛盾调解流程【2021-07-23 18:21:37】', 'BJ', 'ZZMT', 'admin', '2021-07-23 10:46:03', '2021-07-23 10:46:03', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (19, 3, 'ZZMT01', '45001', 'ZZMT01:1:4', '8411681776603136', '株洲矛盾调解流程【2021-07-23 19:32:51】', 'QZJS', 'ZZMT', 'admin', '2021-07-23 13:56:02', '2021-07-23 13:56:02', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (20, 1, 'ZZMT01', '47501', 'ZZMT01:1:4', '8464901576200192', '株洲矛盾调解流程【2021-07-23 23:04:20】', 'SPZ', 'ZZMT', 'zhangsan', '2021-07-24 14:27:41', '2021-07-24 14:27:41', 'zhangsan', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (21, 1, 'ZZMT01', '50005', 'ZZMT01:2:50004', '8725872169324544', '株洲矛盾调解流程【2021-07-24 16:21:20】', 'BJ', 'ZZMT', 'admin', '2021-07-24 09:34:22', '2021-07-24 09:34:22', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (22, 1, 'ZZMT01', '60004', 'ZZMT01:3:52511', '8744500109381632', '株洲矛盾调解流程【2021-07-24 17:35:21】', 'SPZ', 'ZZMT', 'admin', '2021-07-24 09:36:16', '2021-07-24 09:36:16', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (23, 2, 'CSQJ01', '62505', 'CSQJ01:2:62504', '8979001750196224', '请假【2021-07-25 09:07:11】', 'SPZ', 'CSLC', 'admin', '2021-07-25 09:07:11', '2021-07-25 09:07:11', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (24, 1, 'ZZMT01', '67507', 'ZZMT01:3:52511', '9392654412550144', '株洲矛盾调解流程【2021-07-26 12:30:53】', 'BJ', 'ZZMT', 'admin', '2021-07-26 05:07:15', '2021-07-26 05:07:15', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (25, 1, 'ZZMT01', '67549', 'ZZMT01:4:67506', '9425742362447872', '株洲矛盾调解流程【2021-07-26 14:42:22】', 'BJ', 'ZZMT', 'admin', '2021-07-26 06:46:08', '2021-07-26 06:46:08', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (26, 1, 'ZZMT01', '67578', 'ZZMT01:4:67506', '9426854918361088', '株洲矛盾调解流程【2021-07-26 14:46:47】', 'SPZ', 'ZZMT', 'zhangsan', '2021-08-09 07:41:42', '2021-08-09 07:41:42', 'zhangsan', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (27, 1, 'ZZMT01', '70007', 'ZZMT01:4:67506', '9447877948608512', '株洲矛盾调解流程【2021-07-26 16:10:19】', 'SPZ', 'ZZMT', 'admin', '2021-07-26 16:10:20', '2021-07-26 16:10:20', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (28, 1, 'ZZMT01', '72506', 'ZZMT01:5:72505', '9512344875044864', '株洲矛盾调解流程【2021-07-26 20:26:30】', 'SPZ', 'ZZMT', 'admin', '2021-07-26 20:26:30', '2021-07-26 20:26:30', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (29, 2, 'CSQJ01', '75013', 'CSQJ01:3:75012', '10259994054365184', '请假【2021-07-28 21:57:23】', 'SPZ', 'CSLC', 'admin', '2021-07-28 21:57:24', '2021-07-28 21:57:24', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (30, 2, 'CSQJ01', '75028', 'CSQJ01:3:75012', '10264829050884096', '请假【2021-07-28 22:16:36】', 'SPZ', 'CSLC', 'lisi', '2021-07-28 22:16:36', '2021-07-28 22:16:36', 'lisi', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (31, 4, 'xueyanceshi', '80013', 'xueyanceshi:1:80012', '11983735096479744', 'xueyan测试监听器【2021-08-02 16:06:55】', 'BJ', 'ZZMT', 'admin', '2021-08-02 08:41:18', '2021-08-02 08:41:18', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (32, 5, 'TJLCMX', '85005', 'TJLCMX:1:85004', '12681595588841472', '调解流程模型【2021-08-04 14:19:58】', 'SPZ', 'ZZMT', 'admin', '2021-08-04 14:19:59', '2021-08-04 14:19:59', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (33, 6, 'CSJTQ', '87522', 'CSJTQ:2:87521', '14880649194377216', '111【2021-08-10 15:58:13】', 'SPZ', 'CSLC', 'admin', '2021-08-10 15:58:14', '2021-08-10 15:58:14', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (34, 6, 'CSJTQ', '87533', 'CSJTQ:3:87532', '14881431192997888', '111【2021-08-10 16:01:20】', 'SPZ', 'CSLC', 'admin', '2021-08-10 16:01:20', '2021-08-10 16:01:20', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (35, 6, 'CSJTQ', '87540', 'CSJTQ:3:87532', '14884108488544256', '111【2021-08-10 16:11:58】', 'SPZ', 'CSLC', 'admin', '2021-08-10 16:11:58', '2021-08-10 16:11:58', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (36, 5, 'TJLCMX', '87547', 'TJLCMX:1:85004', '14887976781877248', '调解流程模型【2021-08-10 16:27:20】', 'SPZ', 'ZZMT', 'admin', '2021-08-10 16:27:21', '2021-08-10 16:27:21', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (37, 1, 'ZZMT01', '87556', 'ZZMT01:6:75008', '14887998156050432', '株洲矛盾调解流程【2021-08-10 16:27:25】', 'SPZ', 'ZZMT', 'admin', '2021-08-10 16:27:26', '2021-08-10 16:27:26', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (38, 6, 'cs81002', '87569', 'cs81002:1:87568', '14894806698430464', '株洲矛盾调解流程【2021-08-10 16:54:28】', 'SPZ', 'ZZMT', 'admin', '2021-08-10 16:54:29', '2021-08-10 16:54:29', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (39, 6, 'CSJTQ', '87580', 'CSJTQ:3:87532', '14905437287747584', '111【2021-08-10 17:36:43】', 'SPZ', 'CSLC', 'admin', '2021-08-10 17:36:44', '2021-08-10 17:36:44', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (40, 6, 'CSJTQ', '87591', 'CSJTQ:5:87590', '14905777919758336', '111【2021-08-10 17:38:04】', 'SPZ', 'CSLC', 'admin', '2021-08-10 17:38:05', '2021-08-10 17:38:05', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (41, 5, 'TJLCMX', '92505', 'TJLCMX:2:92504', '15695296378048512', '调解流程模型【2021-08-12 21:55:20】', 'SPZ', 'ZZMT', 'admin', '2021-08-12 21:55:21', '2021-08-12 21:55:21', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (42, 5, 'TJLCMX', '92527', 'TJLCMX:2:92504', '15890871622963200', '调解流程模型【2021-08-13 10:52:29】', 'SPZ', 'ZZMT', 'admin', '2021-08-13 14:08:06', '2021-08-13 14:08:06', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (43, 6, 'CSJTQ', '92558', 'CSJTQ:5:87590', '17422568055246848', '111【2021-08-17 16:18:54】', 'SPZ', 'CSLC', 'admin', '2021-08-17 16:18:55', '2021-08-17 16:18:55', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (44, 7, 'CSJTQ', '92573', 'CSJTQ:6:92572', '17423179140173824', '111【2021-08-17 16:21:19】', 'SPZ', 'CSLC', 'admin', '2021-08-17 16:21:20', '2021-08-17 16:21:20', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (45, 2, 'leave', '5', 'leave:1:4', '20981245748056064', '请假【2021-08-27 11:59:49】', 'SPZ', 'CSLC', 'admin', '2021-08-27 11:59:49', '2021-08-27 11:59:49', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (46, 10, 'Process_1630139906507', '5005', 'Process_1630139906507:3:5004', '21730119769001984', '业务流程_1630139906507【2021-08-29 13:35:34】', 'SPZ', 'CSLC', 'admin', '2021-08-29 13:35:35', '2021-08-29 13:35:35', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (47, 11, 'Process_1629944446452', '7515', 'Process_1629944446452:2:7514', '22164802659028992', '业务流程_1629944446452【2021-08-30 18:22:51】', 'SPZ', 'CSLC', 'admin', '2021-08-30 18:22:51', '2021-08-30 18:22:51', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (48, 11, 'Process_1629944446452', '7524', 'Process_1629944446452:2:7514', '22164887388164096', '业务流程_1629944446452【2021-08-30 18:23:11】', 'SPZ', 'CSLC', 'admin', '2021-08-30 18:23:11', '2021-08-30 18:23:11', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (49, 11, 'Process_1629944446452', '10014', 'Process_1629944446452:5:10013', '22186853641883648', '业务流程_1629944446452【2021-08-30 19:50:28】', 'SPZ', 'CSLC', 'admin', '2021-08-30 19:50:29', '2021-08-30 19:50:29', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (50, 11, 'Process_1629944446452', '10023', 'Process_1629944446452:5:10013', '22186930427006976', '业务流程_1629944446452【2021-08-30 19:50:46】', 'SPZ', 'CSLC', 'admin', '2021-08-30 19:50:47', '2021-08-30 19:50:47', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (51, 11, 'Process_1629944446452', '12509', 'Process_1629944446452:7:12508', '23188296922435584', '测试监听器【2021-09-02 14:09:51】', 'SPZ', 'CSLC', 'admin', '2021-09-02 14:09:52', '2021-09-02 14:09:52', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (52, 11, 'Process_1629944446452', '12518', 'Process_1629944446452:7:12508', '23188744370786304', '测试监听器【2021-09-02 14:11:37】', 'SPZ', 'CSLC', 'admin', '2021-09-02 14:11:38', '2021-09-02 14:11:38', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (53, 11, 'Process_1629944446452', '12531', 'Process_1629944446452:8:12530', '23189493834190848', '测试监听器【2021-09-02 14:14:36】', 'SPZ', 'CSLC', 'admin', '2021-09-02 14:14:37', '2021-09-02 14:14:37', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (54, 11, 'Process_1629944446452', '15001', 'Process_1629944446452:8:12530', '23190937161306112', '测试监听器【2021-09-02 14:20:20】', 'SPZ', 'CSLC', 'admin', '2021-09-02 14:20:21', '2021-09-02 14:20:21', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (55, 11, 'Process_1629944446452', '15010', 'Process_1629944446452:8:12530', '23491233989136384', '测试监听器【2021-09-03 10:13:36】', 'SPZ', 'CSLC', 'admin', '2021-09-03 10:13:37', '2021-09-03 10:13:37', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (56, 11, 'Process_1629944446452', '17501', 'Process_1629944446452:8:12530', '23492129665978368', '测试监听器【2021-09-03 10:17:10】', 'SPZ', 'CSLC', 'admin', '2021-09-03 10:17:12', '2021-09-03 10:17:12', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (57, 11, 'Process_1629944446452', '20001', 'Process_1629944446452:8:12530', '23492957692891136', '测试监听器【2021-09-03 10:20:36】', 'SPZ', 'CSLC', 'admin', '2021-09-03 10:20:59', '2021-09-03 10:20:59', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (58, 11, 'Process_1629944446452', '15023', 'Process_1629944446452:9:15022', '23494790226251776', '测试监听器【2021-09-03 10:27:44】', 'SPZ', 'CSLC', 'admin', '2021-09-03 10:27:45', '2021-09-03 10:27:45', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (59, 11, 'Process_1629944446452', '15032', 'Process_1629944446452:9:15022', '23494915048738816', '测试监听器【2021-09-03 10:28:14】', 'SPZ', 'CSLC', 'admin', '2021-09-03 10:28:15', '2021-09-03 10:28:15', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (60, 11, 'Process_1629944446452', '22501', 'Process_1629944446452:9:15022', '23495373440028672', '测试监听器【2021-09-03 10:30:08】', 'SPZ', 'CSLC', 'admin', '2021-09-03 10:31:43', '2021-09-03 10:31:43', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (61, 11, 'Process_1629944446452', '25001', 'Process_1629944446452:9:15022', '23496374343569408', '测试监听器【2021-09-03 10:34:02】', 'SPZ', 'CSLC', 'admin', '2021-09-03 10:34:54', '2021-09-03 10:34:54', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (62, 11, 'Process_1629944446452', '25010', 'Process_1629944446452:9:15022', '23497521850617856', '测试监听器【2021-09-03 10:38:36】', 'SPZ', 'CSLC', 'admin', '2021-09-03 10:44:20', '2021-09-03 10:44:20', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (63, 11, 'Process_1629944446452', '27501', 'Process_1629944446452:9:15022', '23499796027412480', '测试监听器【2021-09-03 10:47:38】', 'SPZ', 'CSLC', 'admin', '2021-09-03 10:48:25', '2021-09-03 10:48:25', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (64, 11, 'Process_1629944446452', '30001', 'Process_1629944446452:9:15022', '23500783077167104', '测试监听器【2021-09-03 10:51:33】', 'SPZ', 'CSLC', 'admin', '2021-09-03 10:56:04', '2021-09-03 10:56:04', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (65, 11, 'Process_1629944446452', '30010', 'Process_1629944446452:9:15022', '23501934245842944', '测试监听器【2021-09-03 10:56:08】', 'SPZ', 'CSLC', 'admin', '2021-09-03 10:58:35', '2021-09-03 10:58:35', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (66, 11, 'Process_1629944446452', '35001', 'Process_1629944446452:9:15022', '23504239447904256', '测试监听器【2021-09-03 11:05:17】', 'SPZ', 'CSLC', 'admin', '2021-09-03 11:06:04', '2021-09-03 11:06:04', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (67, 11, 'Process_1629944446452', '35010', 'Process_1629944446452:9:15022', '23504455823659008', '测试监听器【2021-09-03 11:06:09】', 'SPZ', 'CSLC', 'admin', '2021-09-03 11:06:20', '2021-09-03 11:06:20', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (68, 11, 'Process_1629944446452', '40001', 'Process_1629944446452:9:15022', '23507153155395584', '测试监听器【2021-09-03 11:16:53】', 'SPZ', 'CSLC', 'admin', '2021-09-03 11:17:48', '2021-09-03 11:17:48', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (69, 11, 'Process_1629944446452', '42501', 'Process_1629944446452:9:15022', '23512435520573440', '测试监听器【2021-09-03 11:37:52】', 'SPZ', 'CSLC', 'admin', '2021-09-03 11:37:53', '2021-09-03 11:37:53', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (70, 11, 'Process_1629944446452', '45001', 'Process_1629944446452:9:15022', '23512870973214720', '测试监听器【2021-09-03 11:39:35】', 'SPZ', 'CSLC', 'admin', '2021-09-03 11:40:50', '2021-09-03 11:40:50', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (71, 11, 'Process_1629944446452', '47501', 'Process_1629944446452:9:15022', '23515254248050688', '测试监听器【2021-09-03 11:49:04】', 'SPZ', 'CSLC', 'admin', '2021-09-03 11:50:19', '2021-09-03 11:50:19', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (72, 11, 'Process_1629944446452', '47510', 'Process_1629944446452:9:15022', '23515579440828416', '测试监听器【2021-09-03 11:50:21】', 'SPZ', 'CSLC', 'admin', '2021-09-03 11:51:41', '2021-09-03 11:51:41', 'admin', 0);
-INSERT INTO `work_flow_extend_hisprocinst` VALUES (73, 11, 'Process_1629944446452', '50001', 'Process_1629944446452:9:15022', '23516234280734720', '测试监听器【2021-09-03 11:52:57】', 'SPZ', 'CSLC', 'admin', '2021-09-03 11:52:59', '2021-09-03 11:52:59', 'admin', 0);
 INSERT INTO `work_flow_extend_hisprocinst` VALUES (74, 2, 'leave', '5', 'leave:1:4', '26019871997431808', '请假【2021-09-10 09:41:31】', 'SPZ', 'CSLC', 'admin', '2021-09-10 09:41:31', '2021-09-10 09:41:31', 'admin', 0);
 
 -- ----------------------------
@@ -3066,14 +3068,19 @@ CREATE TABLE `work_flow_form_category`  (
   `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '分类编码',
   `category_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类名称',
   `order_num` int(11) NULL DEFAULT NULL COMMENT '排序',
-  `parent_id` int(11) NULL DEFAULT NULL COMMENT '上级分类id',
+  `parent_id` int(11) NULL DEFAULT 0 COMMENT '上级分类id',
   `desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述',
   `creator` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updator` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '表单分类表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '表单分类表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of work_flow_form_category
+-- ----------------------------
+INSERT INTO `work_flow_form_category` VALUES (1, 'ONE', '一级', 1, 0, '11', NULL, '2021-09-14 03:32:15', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for work_flow_form_model
@@ -3089,19 +3096,20 @@ CREATE TABLE `work_flow_form_model`  (
   `main_version` tinyint(1) NULL DEFAULT 0 COMMENT '是否为主版本',
   `config_json` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '表单表头字段配置',
   `release_note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '版本说明',
-  `version` int(11) NULL DEFAULT NULL COMMENT '版本号',
+  `version` int(11) NULL DEFAULT 1 COMMENT '版本号',
   `creator` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updator` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
   PRIMARY KEY (`model_id`) USING BTREE,
-  UNIQUE INDEX `idx_unique_form_key`(`form_key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '自定义表单模型表' ROW_FORMAT = Dynamic;
+  UNIQUE INDEX `idx_unique_form_key`(`form_key`, `version`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '自定义表单模型表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of work_flow_form_model
 -- ----------------------------
-INSERT INTO `work_flow_form_model` VALUES (1, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, '2021-08-05 11:27:13', NULL, NULL);
+INSERT INTO `work_flow_form_model` VALUES (2, NULL, 'XSXX', NULL, 0, NULL, 0, NULL, NULL, 1, NULL, '2021-09-14 06:25:49', NULL, '2021-09-14 06:30:32');
+INSERT INTO `work_flow_form_model` VALUES (3, NULL, 'XSXX1', '{\"fields\":[{\"__config__\":{\"label\":\"单行文本\",\"labelWidth\":null,\"showLabel\":true,\"changeTag\":true,\"tag\":\"el-input\",\"tagIcon\":\"input\",\"required\":true,\"layout\":\"colFormItem\",\"document\":\"https://element.eleme.cn/#/zh-CN/component/input\",\"regList\":[],\"formId\":101,\"renderKey\":\"1011631600910185\"},\"__slot__\":{\"prepend\":\"\",\"append\":\"\"},\"placeholder\":\"请输入单行文本\",\"style\":{\"width\":\"100%\"},\"clearable\":true,\"prefix-icon\":\"\",\"suffix-icon\":\"\",\"maxlength\":null,\"show-word-limit\":false,\"readonly\":false,\"disabled\":false,\"__vModel__\":\"field101\"}]}', 0, NULL, 0, NULL, NULL, 1, NULL, '2021-09-14 06:28:50', NULL, '2021-09-14 06:30:34');
 
 -- ----------------------------
 -- Table structure for work_flow_form_model_info
@@ -3121,7 +3129,13 @@ CREATE TABLE `work_flow_form_model_info`  (
   `update_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
   `del_flag` int(1) NULL DEFAULT 0 COMMENT '删除标识1表示删除0表示存在',
   PRIMARY KEY (`model_info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '表单模型信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '表单模型信息表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of work_flow_form_model_info
+-- ----------------------------
+INSERT INTO `work_flow_form_model_info` VALUES (1, NULL, NULL, '学生信息', NULL, 1, 0, NULL, '2021-09-14 05:56:00', NULL, NULL, 0);
+INSERT INTO `work_flow_form_model_info` VALUES (2, NULL, NULL, '学生信息', NULL, 1, 0, NULL, '2021-09-14 06:16:50', NULL, NULL, 0);
 
 -- ----------------------------
 -- Table structure for work_flow_hi_comment
@@ -3154,220 +3168,6 @@ CREATE TABLE `work_flow_hi_comment`  (
 -- ----------------------------
 -- Records of work_flow_hi_comment
 -- ----------------------------
-INSERT INTO `work_flow_hi_comment` VALUES (1, 'FQLC', '1', '钟明晓', '2021-07-21 08:34:19', NULL, NULL, 'startEvent1', NULL, '5001', NULL, NULL, '2021-07-21 08:34:19', 'admin', '2021-07-21 15:25:10', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (2, 'FQLC', '1', '钟明晓', '2021-07-21 08:34:17', NULL, NULL, 'startEvent1', NULL, '5010', NULL, NULL, '2021-07-21 08:34:17', 'admin', '2021-07-21 15:29:20', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (3, 'FQLC', '1', '钟明晓', '2021-07-21 08:34:16', NULL, NULL, 'startEvent1', NULL, '5019', NULL, NULL, '2021-07-21 08:34:16', 'admin', '2021-07-21 15:29:21', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (4, 'FQLC', '1', '钟明晓', '2021-07-21 08:34:15', NULL, NULL, 'startEvent1', NULL, '5028', NULL, NULL, '2021-07-21 08:34:15', 'admin', '2021-07-21 15:29:23', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (5, 'FQLC', '1', '钟明晓', '2021-07-21 08:34:12', NULL, NULL, 'startEvent1', NULL, '5037', NULL, NULL, '2021-07-21 08:34:12', 'admin', '2021-07-21 15:29:24', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (6, 'SP', '1', '钟明晓', '2021-07-21 08:34:14', '5043', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5037', '', '111', '2021-07-21 08:34:14', 'admin', '2021-07-21 15:47:08', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (7, 'FQLC', '1', '钟明晓', '2021-07-21 08:34:07', NULL, NULL, 'startEvent1', NULL, '7501', NULL, NULL, '2021-07-21 08:34:07', 'admin', '2021-07-21 16:11:58', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (8, 'FQLC', '1', '钟明晓', '2021-07-21 08:34:10', NULL, NULL, 'startEvent1', NULL, '10001', NULL, NULL, '2021-07-21 08:34:10', 'admin', '2021-07-21 16:16:54', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (9, 'SP', '1', '钟明晓', '2021-07-24 14:23:23', '2507', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '2501', '', '任务1同意', '2021-07-24 14:23:23', 'admin', '2021-07-21 16:55:47', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (10, 'SP', '1', '钟明晓', '2021-07-24 14:23:25', '5007', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5001', '', '任务1同意', '2021-07-24 14:23:25', 'admin', '2021-07-21 16:56:32', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (11, 'SP', '1', '钟明晓', '2021-07-24 14:23:27', '12513', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5001', '', '任务1=》任务2=》撤回=》任务再提交', '2021-07-24 14:23:27', 'admin', '2021-07-21 17:36:50', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (12, 'QS', '1', '钟明晓', '2021-07-24 14:23:28', '15003', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5001', '', NULL, '2021-07-24 14:23:28', 'admin', '2021-07-21 17:56:00', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (13, 'QS', '1', '钟明晓', '2021-07-24 14:23:29', '5048', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5037', '', NULL, '2021-07-24 14:23:29', 'admin', '2021-07-21 18:05:44', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (14, 'QJQ', '1', '钟明晓', '2021-07-24 14:23:30', '5016', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5010', '', NULL, '2021-07-24 14:23:30', 'admin', '2021-07-21 18:34:50', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (15, 'HJQ', '4', '钟明晓', '2021-07-24 14:23:32', '9ed76f33-d32e-4723-bc3f-d9582c7034c2', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5010', '', NULL, '2021-07-24 14:23:32', 'zhangsan', '2021-07-21 19:05:20', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (16, 'SP', '1', '钟明晓', '2021-07-24 14:25:34', '5034', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5028', '钟明晓 => 审批 => 任务1-分配单个人', '同意1', '2021-07-24 14:25:34', 'admin', '2021-07-22 14:22:41', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (17, 'QS', '1', '钟明晓', '2021-07-24 14:25:38', '12503', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '2501', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-24 14:25:38', 'admin', '2021-07-22 14:23:00', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (18, 'QS', '1', '钟明晓', '2021-07-24 14:25:42', '25003', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5028', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-24 14:25:42', 'admin', '2021-07-22 14:23:03', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (19, 'SP', '1', '钟明晓', '2021-07-22 15:03:55', '5025', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5019', '钟明晓 => 审批 => 任务1-分配单个人', '同意', '2021-07-22 15:03:56', 'admin', '2021-07-22 15:03:56', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (20, 'QS', '1', '钟明晓', '2021-07-22 15:04:13', '25011', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5019', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-22 15:04:13', 'admin', '2021-07-22 15:04:13', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (21, 'QJQ', '1', '钟明晓', '2021-07-22 15:04:51', '25011', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5019', '钟明晓 => 加签 => 任务2-分配候选角色【张三,李四】', NULL, '2021-07-22 15:04:51', 'admin', '2021-07-22 15:04:51', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (25, 'SP', '4', '张三', '2021-07-22 15:17:51', '43fe8839-f78b-4334-8908-fa4bbb6a1d23', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5019', '张三 => 审批 => 任务2-分配候选角色', '333', '2021-07-22 15:17:51', 'zhangsan', '2021-07-22 15:17:51', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (26, 'SP', '5', '李四', '2021-07-22 15:18:30', 'b1da40bb-a0bb-4e85-ba26-ffe85677f3a7', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5019', '李四 => 审批 => 任务2-分配候选角色', '444', '2021-07-22 15:18:30', 'lisi', '2021-07-22 15:18:30', 'lisi', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (27, 'BH', '1', '钟明晓', '2021-07-22 15:19:26', '25011', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5019', '钟明晓 => 驳回任务 => 【任务2-分配候选角色=>任务1-分配单个人】', NULL, '2021-07-22 15:19:26', 'admin', '2021-07-22 15:19:26', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (28, 'SP', '1', '钟明晓', '2021-07-22 15:22:11', '27504', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5019', '钟明晓 => 审批 => 任务1-分配单个人', '111', '2021-07-22 15:22:11', 'admin', '2021-07-22 15:22:11', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (29, 'QS', '1', '钟明晓', '2021-07-22 15:22:30', '27508', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5019', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-22 15:22:30', 'admin', '2021-07-22 15:22:30', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (30, 'GH', '1', '钟明晓', '2021-07-22 15:42:04', '27508', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5019', '钟明晓 => 归还任务 => 任务2-分配候选角色', '发', '2021-07-22 15:42:04', 'admin', '2021-07-22 15:42:04', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (31, 'QS', '1', '钟明晓', '2021-07-22 16:13:57', '27508', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5019', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-22 16:13:57', 'admin', '2021-07-22 16:13:57', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (32, 'GH', '1', '钟明晓', '2021-07-22 22:19:23', '5048', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5037', '钟明晓 => 归还任务 => 任务2-分配候选角色', NULL, '2021-07-22 22:19:23', 'admin', '2021-07-22 22:19:23', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (33, 'FQLC', '1', '钟明晓', '2021-07-23 10:44:01', NULL, NULL, 'startEvent1', NULL, '37501', NULL, NULL, '2021-07-23 10:44:01', 'admin', '2021-07-23 10:44:01', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (34, 'FQLC', '1', '钟明晓', '2021-07-23 10:44:43', NULL, NULL, 'startEvent1', NULL, '37510', NULL, NULL, '2021-07-23 10:44:43', 'admin', '2021-07-23 10:44:43', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (35, 'FQLC', '1', '钟明晓', '2021-07-23 10:47:35', NULL, NULL, 'startEvent1', NULL, '37519', NULL, NULL, '2021-07-23 10:47:35', 'admin', '2021-07-23 10:47:35', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (36, 'FQLC', '1', '钟明晓', '2021-07-23 10:49:52', NULL, NULL, 'startEvent1', NULL, '37528', NULL, NULL, '2021-07-23 10:49:52', 'admin', '2021-07-23 10:49:52', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (37, 'FQLC', '1', '钟明晓', '2021-07-23 10:51:01', NULL, NULL, 'startEvent1', NULL, '37537', NULL, NULL, '2021-07-23 10:51:01', 'admin', '2021-07-23 10:51:01', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (38, 'FQLC', '1', '钟明晓', '2021-07-23 10:55:14', NULL, NULL, 'startEvent1', NULL, '37546', NULL, NULL, '2021-07-23 10:55:14', 'admin', '2021-07-23 10:55:14', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (39, 'FQLC', '1', '钟明晓', '2021-07-23 13:56:40', NULL, NULL, 'startEvent1', NULL, '37555', NULL, NULL, '2021-07-23 13:56:40', 'admin', '2021-07-23 13:56:40', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (40, 'FQLC', '1', '钟明晓', '2021-07-23 13:59:15', NULL, NULL, 'startEvent1', NULL, '37564', NULL, NULL, '2021-07-23 13:59:15', 'admin', '2021-07-23 13:59:15', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (41, 'CX', '1', '钟明晓', '2021-07-23 14:01:06', NULL, NULL, NULL, NULL, '37564', '钟明晓 => 流程撤回 => ', '111', '2021-07-23 14:01:06', 'admin', '2021-07-23 14:01:06', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (42, 'FQLC', '1', '钟明晓', '2021-07-23 14:01:40', NULL, NULL, 'startEvent1', NULL, '37574', NULL, NULL, '2021-07-23 14:01:40', 'admin', '2021-07-23 14:01:40', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (43, 'BJ', '1', '钟明晓', '2021-07-23 14:25:14', NULL, NULL, NULL, NULL, '37574', NULL, NULL, '2021-07-23 14:25:14', 'admin', '2021-07-23 14:25:14', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (44, 'LCZZ', '1', '钟明晓', '2021-07-23 14:25:14', NULL, NULL, NULL, NULL, '37574', '钟明晓 => 中止流程 ', '111', '2021-07-23 14:25:14', 'admin', '2021-07-23 14:25:14', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (45, 'SP', '1', '钟明晓', '2021-07-23 14:27:27', '37534', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '37528', '钟明晓 => 审批 => 任务1-分配单个人', '111', '2021-07-23 14:27:28', 'admin', '2021-07-23 14:27:28', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (46, 'SP', '1', '钟明晓', '2021-07-23 14:27:51', '37543', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '37537', '钟明晓 => 审批 => 任务1-分配单个人', 'ki', '2021-07-23 14:27:51', 'admin', '2021-07-23 14:27:51', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (47, 'SP', '1', '钟明晓', '2021-07-23 14:29:14', '37552', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '37546', '钟明晓 => 审批 => 任务1-分配单个人', '111', '2021-07-23 14:29:14', 'admin', '2021-07-23 14:29:14', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (48, 'SP', '1', '钟明晓', '2021-07-23 14:31:41', '37561', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '37555', '钟明晓 => 审批 => 任务1-分配单个人', '1111', '2021-07-23 14:31:41', 'admin', '2021-07-23 14:31:41', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (49, 'SP', '1', '钟明晓', '2021-07-23 14:33:06', '37525', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '37519', '钟明晓 => 审批 => 任务1-分配单个人', '112', '2021-07-23 14:33:06', 'admin', '2021-07-23 14:33:06', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (50, 'BJ', '1', '钟明晓', '2021-07-23 14:38:28', NULL, NULL, NULL, NULL, '37501', NULL, NULL, '2021-07-23 14:38:28', 'admin', '2021-07-23 14:38:28', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (51, 'LCZZ', '1', '钟明晓', '2021-07-23 14:38:28', NULL, NULL, NULL, NULL, '37501', '钟明晓 => 中止流程 ', '4545', '2021-07-23 14:38:28', 'admin', '2021-07-23 14:38:28', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (52, 'FQLC', '1', '钟明晓', '2021-07-23 18:21:38', NULL, NULL, 'startEvent1', NULL, '42508', NULL, NULL, '2021-07-23 18:21:38', 'admin', '2021-07-23 18:21:38', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (53, 'SP', '1', '钟明晓', '2021-07-23 18:44:53', '42514', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '42508', '钟明晓 => 审批 => 任务1-分配单个人', '任务1同意', '2021-07-23 18:44:53', 'admin', '2021-07-23 18:44:53', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (54, 'QS', '1', '钟明晓', '2021-07-23 18:45:03', '42519', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '42508', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-23 18:45:03', 'admin', '2021-07-23 18:45:03', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (55, 'SP', '1', '钟明晓', '2021-07-23 18:45:27', '42519', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '42508', '钟明晓 => 审批 => 任务2-分配候选角色', '任务2同意', '2021-07-23 18:45:27', 'admin', '2021-07-23 18:45:27', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (56, 'QS', '1', '钟明晓', '2021-07-23 18:45:43', '42525', '任务3-分配候选角色、人', 'Activity_0w7115l', '任务3-分配候选角色、人', '42508', '钟明晓 => 拾取任务 => 任务3-分配候选角色、人', NULL, '2021-07-23 18:45:43', 'admin', '2021-07-23 18:45:43', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (57, 'SP', '1', '钟明晓', '2021-07-23 18:46:03', '42525', '任务3-分配候选角色、人', 'Activity_0w7115l', '任务3-分配候选角色、人', '42508', '钟明晓 => 审批 => 任务3-分配候选角色、人', '任务3同意', '2021-07-23 18:46:03', 'admin', '2021-07-23 18:46:03', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (58, 'BJ', '1', '钟明晓', '2021-07-23 18:46:03', NULL, NULL, NULL, NULL, '42508', NULL, NULL, '2021-07-23 18:46:03', 'admin', '2021-07-23 18:46:03', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (59, 'BJ', '1', '钟明晓', '2021-07-23 18:49:57', NULL, NULL, NULL, NULL, '37546', NULL, NULL, '2021-07-23 18:49:57', 'admin', '2021-07-23 18:49:57', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (60, 'LCZZ', '1', '钟明晓', '2021-07-23 18:49:57', NULL, NULL, NULL, NULL, '37546', '钟明晓 => 中止流程 ', NULL, '2021-07-23 18:49:57', 'admin', '2021-07-23 18:49:57', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (61, 'CX', '1', '钟明晓', '2021-07-23 18:53:29', NULL, NULL, NULL, NULL, '37537', '钟明晓 => 流程撤回 => ', '1', '2021-07-23 18:53:30', 'admin', '2021-07-23 18:53:30', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (62, 'CX', '1', '钟明晓', '2021-07-23 19:14:08', NULL, NULL, NULL, NULL, '37510', '钟明晓 => 流程撤回 => ', '1', '2021-07-23 19:14:08', 'admin', '2021-07-23 19:14:08', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (63, 'FQLC', '1', '钟明晓', '2021-07-23 19:32:52', NULL, NULL, 'startEvent1', NULL, '45001', NULL, NULL, '2021-07-23 19:32:52', 'admin', '2021-07-23 19:32:52', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (64, 'SP', '1', '钟明晓', '2021-07-23 19:33:02', '45007', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '45001', '钟明晓 => 审批 => 任务1-分配单个人', '1', '2021-07-23 19:33:02', 'admin', '2021-07-23 19:33:02', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (65, 'QS', '1', '钟明晓', '2021-07-23 19:33:13', '45012', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '45001', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-23 19:33:13', 'admin', '2021-07-23 19:33:13', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (66, 'SP', '1', '钟明晓', '2021-07-23 19:33:27', '45012', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '45001', '钟明晓 => 审批 => 任务2-分配候选角色', '2', '2021-07-23 19:33:27', 'admin', '2021-07-23 19:33:27', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (67, 'CX', '1', '钟明晓', '2021-07-23 19:34:43', NULL, NULL, NULL, NULL, '45001', '钟明晓 => 流程撤回 => ', '3', '2021-07-23 19:34:43', 'admin', '2021-07-23 19:34:43', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (68, 'BJ', '1', '钟明晓', '2021-07-23 19:36:31', NULL, NULL, NULL, NULL, '5037', NULL, NULL, '2021-07-23 19:36:31', 'admin', '2021-07-23 19:36:31', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (69, 'LCZZ', '1', '钟明晓', '2021-07-23 19:36:32', NULL, NULL, NULL, NULL, '5037', '钟明晓 => 中止流程 ', 'zz', '2021-07-23 19:36:32', 'admin', '2021-07-23 19:36:32', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (70, 'BJ', '1', '钟明晓', '2021-07-23 19:37:51', NULL, NULL, NULL, NULL, '7501', NULL, NULL, '2021-07-23 19:37:51', 'admin', '2021-07-23 19:37:51', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (71, 'LCZZ', '1', '钟明晓', '2021-07-23 19:37:51', NULL, NULL, NULL, NULL, '7501', '钟明晓 => 中止流程 ', NULL, '2021-07-23 19:37:51', 'admin', '2021-07-23 19:37:51', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (72, 'QJQ', '5', '李四', '2021-07-23 22:19:51', '78cfe4f3-2aa0-4328-84b0-3997a6fbe5b1', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5010', '李四 => 加签 => 任务1-分配单个人【徐九】', NULL, '2021-07-23 22:19:51', 'lisi', '2021-07-23 22:19:51', 'lisi', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (73, 'SP', '10', '徐九', '2021-07-23 22:20:19', 'b56c0a0a-6619-4a59-baa2-3390c130d685', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5010', '徐九 => 审批 => 任务1-分配单个人', '999', '2021-07-23 22:20:19', 'xujiu', '2021-07-23 22:20:19', 'xujiu', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (74, 'QJQ', '7', '赵六', '2021-07-23 22:31:23', '97cf1b2b-74a6-4dac-9929-e5947e5e301e', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5010', '赵六 => 加签 => 任务1-分配单个人【张三】', NULL, '2021-07-23 22:31:23', 'zhaoliu', '2021-07-23 22:31:23', 'zhaoliu', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (75, 'FQLC', '4', '张三', '2021-07-23 23:04:20', NULL, NULL, 'startEvent1', NULL, '47501', NULL, NULL, '2021-07-23 23:04:20', 'zhangsan', '2021-07-23 23:04:20', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (76, 'QJQ', '1', '钟明晓', '2021-07-23 23:05:30', '47507', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '47501', '钟明晓 => 加签 => 任务1-分配单个人【张三】', NULL, '2021-07-23 23:05:30', 'admin', '2021-07-23 23:05:30', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (77, 'SP', '4', '张三', '2021-07-23 23:06:09', '36f12b99-4d52-4dbc-93b9-757ef6b37d55', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '47501', '张三 => 审批 => 任务1-分配单个人', '完成前加签', '2021-07-23 23:06:09', 'zhangsan', '2021-07-23 23:06:09', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (78, 'FQLC', '1', '钟明晓', '2021-07-24 16:21:21', NULL, NULL, 'startEvent1', NULL, '50005', NULL, NULL, '2021-07-24 16:21:21', 'admin', '2021-07-24 16:21:21', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (79, 'SP', '1', '钟明晓', '2021-07-24 16:21:44', '50011', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '50005', '钟明晓 => 审批 => 任务1-分配单个人', '24日测试1', '2021-07-24 16:21:44', 'admin', '2021-07-24 16:21:44', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (80, 'QS', '1', '钟明晓', '2021-07-24 16:30:47', '50016', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '50005', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-24 16:30:47', 'admin', '2021-07-24 16:30:47', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (81, 'SP', '1', '钟明晓', '2021-07-24 16:31:17', '50016', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '50005', '钟明晓 => 审批 => 任务2-分配候选角色', '24日审批2', '2021-07-24 16:31:17', 'admin', '2021-07-24 16:31:17', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (82, 'QS', '1', '钟明晓', '2021-07-24 16:44:54', '52505', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '钟明晓 => 拾取任务 => 任务3-分配候选部门、人', NULL, '2021-07-24 16:44:54', 'admin', '2021-07-24 16:44:54', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (83, 'QJQ', '1', '钟明晓', '2021-07-24 16:46:32', '52505', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '钟明晓 => 加签 => 任务3-分配候选部门、人【张三】', NULL, '2021-07-24 16:46:32', 'admin', '2021-07-24 16:46:32', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (84, 'QJQ', '4', '张三', '2021-07-24 16:47:15', 'b28ff5c8-acb7-4bf5-89ab-d8b6772fe2a7', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '张三 => 加签 => 任务3-分配候选部门、人【李四】', NULL, '2021-07-24 16:47:15', 'zhangsan', '2021-07-24 16:47:15', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (85, 'SP', '5', '李四', '2021-07-24 16:47:52', '0bb00da8-b469-4981-8881-aa409b5fdace', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '李四 => 审批 => 任务3-分配候选部门、人', '加签再加签=》李四同意', '2021-07-24 16:47:52', 'lisi', '2021-07-24 16:47:52', 'lisi', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (86, 'QJQ', '1', '钟明晓', '2021-07-24 16:49:11', '52505', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '钟明晓 => 加签 => 任务3-分配候选部门、人【张三】', NULL, '2021-07-24 16:49:11', 'admin', '2021-07-24 16:49:11', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (87, 'QJQ', '4', '张三', '2021-07-24 16:50:45', 'a1794d8e-6967-4810-bb08-6e1b6698e446', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '张三 => 加签 => 任务3-分配候选部门、人【李四】', NULL, '2021-07-24 16:50:45', 'zhangsan', '2021-07-24 16:50:45', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (88, 'SP', '5', '李四', '2021-07-24 16:57:23', 'b21a527c-9c49-4d90-89ef-76de6ab03794', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '李四 => 审批 => 任务3-分配候选部门、人', NULL, '2021-07-24 16:57:23', 'lisi', '2021-07-24 16:57:23', 'lisi', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (89, 'QJQ', '1', '钟明晓', '2021-07-24 16:58:01', '52505', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '钟明晓 => 加签 => 任务3-分配候选部门、人【张三】', NULL, '2021-07-24 16:58:01', 'admin', '2021-07-24 16:58:01', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (90, 'QJQ', '4', '张三', '2021-07-24 17:01:46', 'eca417fb-102c-45b0-b11c-6592b662efad', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '张三 => 加签 => 任务3-分配候选部门、人【李四】', NULL, '2021-07-24 17:01:48', 'zhangsan', '2021-07-24 17:01:48', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (91, 'SP', '5', '李四', '2021-07-24 17:13:32', '337f2bfd-0582-4910-9834-b896d7d337ab', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '李四 => 审批 => 任务3-分配候选部门、人', NULL, '2021-07-24 17:13:32', 'lisi', '2021-07-24 17:13:32', 'lisi', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (92, 'QJQ', '1', '钟明晓', '2021-07-24 17:14:10', '52505', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '钟明晓 => 加签 => 任务3-分配候选部门、人【张三】', NULL, '2021-07-24 17:14:10', 'admin', '2021-07-24 17:14:10', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (93, 'QJQ', '4', '张三', '2021-07-24 17:14:33', 'a5ae9ad3-7f9a-4e9a-90da-0fdee9367515', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '张三 => 加签 => 任务3-分配候选部门、人【李四】', NULL, '2021-07-24 17:14:33', 'zhangsan', '2021-07-24 17:14:33', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (94, 'SP', '4', '张三', '2021-07-24 17:22:07', 'd684e991-6eb0-4579-8d8a-3124da22db24', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '张三 => 审批 => 任务3-分配候选部门、人', NULL, '2021-07-24 17:22:07', 'zhangsan', '2021-07-24 17:22:07', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (95, 'SP', '5', '李四', '2021-07-24 17:22:40', '83927731-c46c-4e20-a67a-03d9f793ed69', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '李四 => 审批 => 任务3-分配候选部门、人', '3-4', '2021-07-24 17:22:40', 'lisi', '2021-07-24 17:22:40', 'lisi', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (96, 'SP', '4', '张三', '2021-07-24 17:31:54', 'a5ae9ad3-7f9a-4e9a-90da-0fdee9367515', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '张三 => 审批 => 任务3-分配候选部门、人', NULL, '2021-07-24 17:31:54', 'zhangsan', '2021-07-24 17:31:54', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (97, 'SP', '1', '钟明晓', '2021-07-24 17:32:40', '4f075650-6694-4296-ad36-c8506dcf34cb', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '钟明晓 => 审批 => 任务3-分配候选部门、人', NULL, '2021-07-24 17:32:40', 'admin', '2021-07-24 17:32:40', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (98, 'SP', '1', '钟明晓', '2021-07-24 17:34:22', '52505', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '50005', '钟明晓 => 审批 => 任务3-分配候选部门、人', NULL, '2021-07-24 17:34:22', 'admin', '2021-07-24 17:34:22', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (99, 'BJ', '1', '钟明晓', '2021-07-24 17:34:22', NULL, NULL, NULL, NULL, '50005', NULL, NULL, '2021-07-24 17:34:22', 'admin', '2021-07-24 17:34:22', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (100, 'FQLC', '1', '钟明晓', '2021-07-24 17:35:22', NULL, NULL, 'startEvent1', NULL, '60004', NULL, NULL, '2021-07-24 17:35:22', 'admin', '2021-07-24 17:35:22', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (101, 'QJQ', '1', '钟明晓', '2021-07-24 17:35:34', '60010', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '60004', '钟明晓 => 加签 => 任务1-分配单个人【张三】', NULL, '2021-07-24 17:35:34', 'admin', '2021-07-24 17:35:34', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (102, 'QJQ', '4', '张三', '2021-07-24 17:35:58', '8be2d140-ce96-4f56-abc5-f10ccf7d4d85', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '60004', '张三 => 加签 => 任务1-分配单个人【李四】', NULL, '2021-07-24 17:35:58', 'zhangsan', '2021-07-24 17:35:58', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (103, 'SP', '5', '李四', '2021-07-24 17:36:17', '6161ef1a-e045-4263-8562-dbc5f3f29fb1', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '60004', '李四 => 审批 => 任务1-分配单个人', NULL, '2021-07-24 17:36:17', 'lisi', '2021-07-24 17:36:17', 'lisi', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (104, 'SP', '4', '张三', '2021-07-24 17:36:34', '8be2d140-ce96-4f56-abc5-f10ccf7d4d85', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '60004', '张三 => 审批 => 任务1-分配单个人', NULL, '2021-07-24 17:36:34', 'zhangsan', '2021-07-24 17:36:34', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (105, 'SP', '1', '钟明晓', '2021-07-24 17:36:53', '60010', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '60004', '钟明晓 => 审批 => 任务1-分配单个人', NULL, '2021-07-24 17:36:53', 'admin', '2021-07-24 17:36:53', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (106, 'QS', '1', '钟明晓', '2021-07-24 17:37:02', '60023', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '60004', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-24 17:37:02', 'admin', '2021-07-24 17:37:02', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (107, 'ZB', '1', '钟明晓', '2021-07-24 22:20:27', '10007', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '10001', '钟明晓 => 转办 => 任务1-分配单个人【张三】', NULL, '2021-07-24 22:20:27', 'admin', '2021-07-24 22:20:27', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (108, 'ZB', '1', '钟明晓', '2021-07-24 22:26:16', '12503', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '2501', '钟明晓 => 转办 => 任务2-分配候选角色【张三】', NULL, '2021-07-24 22:26:16', 'admin', '2021-07-24 22:26:16', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (109, 'WP', '1', '钟明晓', '2021-07-24 22:26:45', '15003', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5001', '钟明晓 => 代理 => 任务2-分配候选角色【张三】', NULL, '2021-07-24 22:26:45', 'admin', '2021-07-24 22:26:45', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (110, 'WP', '1', '钟明晓', '2021-07-24 22:27:01', '25003', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5028', '钟明晓 => 代理 => 任务2-分配候选角色【张三】', NULL, '2021-07-24 22:27:01', 'admin', '2021-07-24 22:27:01', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (111, 'ZB', '1', '钟明晓', '2021-07-24 22:27:24', '27508', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5019', '钟明晓 => 转办 => 任务2-分配候选角色【张三】', NULL, '2021-07-24 22:27:24', 'admin', '2021-07-24 22:27:24', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (112, 'ZB', '1', '钟明晓', '2021-07-24 22:27:41', '47507', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '47501', '钟明晓 => 转办 => 任务1-分配单个人【张三】', NULL, '2021-07-24 22:27:41', 'admin', '2021-07-24 22:27:41', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (113, 'SP', '4', '张三', '2021-07-24 22:28:47', '47507', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '47501', '张三 => 审批 => 任务1-分配单个人', NULL, '2021-07-24 22:28:47', 'zhangsan', '2021-07-24 22:28:47', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (114, 'SP', '4', '张三', '2021-07-24 22:28:55', '25003', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5028', '张三 => 审批 => 任务2-分配候选角色', NULL, '2021-07-24 22:28:55', 'zhangsan', '2021-07-24 22:28:55', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (115, 'FQLC', '1', '钟明晓', '2021-07-25 09:07:11', NULL, NULL, 'startevent1', 'Start', '62505', NULL, NULL, '2021-07-25 09:07:11', 'admin', '2021-07-25 09:07:11', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (118, 'FQLC', '1', '钟明晓', '2021-07-26 12:30:54', NULL, NULL, 'startEvent1', NULL, '67507', NULL, NULL, '2021-07-26 12:30:54', 'admin', '2021-07-26 12:30:54', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (119, 'SP', '1', '钟明晓', '2021-07-26 13:00:07', '67513', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '67507', '钟明晓 => 审批 => 任务1-分配单个人', '同意', '2021-07-26 13:00:07', 'admin', '2021-07-26 13:00:07', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (120, 'QS', '1', '钟明晓', '2021-07-26 13:00:48', '67518', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '67507', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-26 13:00:48', 'admin', '2021-07-26 13:00:48', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (121, 'SP', '1', '钟明晓', '2021-07-26 13:01:10', '67518', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '67507', '钟明晓 => 审批 => 任务2-分配候选角色', '新', '2021-07-26 13:01:10', 'admin', '2021-07-26 13:01:10', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (122, 'QS', '1', '钟明晓', '2021-07-26 13:01:40', '67524', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '67507', '钟明晓 => 拾取任务 => 任务3-分配候选部门、人', NULL, '2021-07-26 13:01:40', 'admin', '2021-07-26 13:01:40', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (123, 'BH', '1', '钟明晓', '2021-07-26 13:02:01', '67524', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '67507', '钟明晓 => 驳回任务 => 【任务3-分配候选部门、人=>任务1-分配单个人】', NULL, '2021-07-26 13:02:01', 'admin', '2021-07-26 13:02:01', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (124, 'SP', '1', '钟明晓', '2021-07-26 13:04:35', '67531', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '67507', '钟明晓 => 审批 => 任务1-分配单个人', '同意', '2021-07-26 13:04:35', 'admin', '2021-07-26 13:04:35', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (125, 'QS', '1', '钟明晓', '2021-07-26 13:05:39', '67535', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '67507', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-26 13:05:39', 'admin', '2021-07-26 13:05:39', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (126, 'SP', '1', '钟明晓', '2021-07-26 13:05:52', '67535', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '67507', '钟明晓 => 审批 => 任务2-分配候选角色', '同意', '2021-07-26 13:05:52', 'admin', '2021-07-26 13:05:52', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (127, 'QS', '4', '张三', '2021-07-26 13:06:59', '67541', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '67507', '张三 => 拾取任务 => 任务3-分配候选部门、人', NULL, '2021-07-26 13:06:59', 'zhangsan', '2021-07-26 13:06:59', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (128, 'SP', '4', '张三', '2021-07-26 13:07:15', '67541', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '67507', '张三 => 审批 => 任务3-分配候选部门、人', '同意', '2021-07-26 13:07:15', 'zhangsan', '2021-07-26 13:07:15', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (129, 'BJ', '4', '张三', '2021-07-26 13:07:15', NULL, NULL, NULL, NULL, '67507', NULL, NULL, '2021-07-26 13:07:15', 'zhangsan', '2021-07-26 13:07:15', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (130, 'FQLC', '1', '钟明晓', '2021-07-26 14:42:23', NULL, NULL, 'startEvent1', NULL, '67549', NULL, NULL, '2021-07-26 14:42:23', 'admin', '2021-07-26 14:42:23', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (131, 'SP', '1', '钟明晓', '2021-07-26 14:43:37', '67555', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '67549', '钟明晓 => 审批 => 任务1-分配单个人', '同意', '2021-07-26 14:43:37', 'admin', '2021-07-26 14:43:37', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (132, 'QS', '1', '钟明晓', '2021-07-26 14:44:04', '67560', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '67549', '钟明晓 => 拾取任务 => 任务2-分配候选角色', NULL, '2021-07-26 14:44:04', 'admin', '2021-07-26 14:44:04', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (133, 'ZB', '1', '钟明晓', '2021-07-26 14:44:32', '67560', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '67549', '钟明晓 => 转办 => 任务2-分配候选角色【张三】', NULL, '2021-07-26 14:44:32', 'admin', '2021-07-26 14:44:32', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (134, 'SP', '4', '张三', '2021-07-26 14:45:34', '67560', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '67549', '张三 => 审批 => 任务2-分配候选角色', '同意', '2021-07-26 14:45:34', 'zhangsan', '2021-07-26 14:45:34', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (135, 'QS', '4', '张三', '2021-07-26 14:45:56', '67571', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '67549', '张三 => 拾取任务 => 任务3-分配候选部门、人', NULL, '2021-07-26 14:45:56', 'zhangsan', '2021-07-26 14:45:56', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (136, 'SP', '4', '张三', '2021-07-26 14:46:08', '67571', '任务3-分配候选部门、人', 'Activity_0w7115l', '任务3-分配候选部门、人', '67549', '张三 => 审批 => 任务3-分配候选部门、人', '同意', '2021-07-26 14:46:08', 'zhangsan', '2021-07-26 14:46:08', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (137, 'BJ', '4', '张三', '2021-07-26 14:46:08', NULL, NULL, NULL, NULL, '67549', NULL, NULL, '2021-07-26 14:46:08', 'zhangsan', '2021-07-26 14:46:08', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (138, 'FQLC', '4', '张三', '2021-07-26 14:46:48', NULL, NULL, 'startEvent1', NULL, '67578', NULL, NULL, '2021-07-26 14:46:48', 'zhangsan', '2021-07-26 14:46:48', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (139, 'SP', '1', '钟明晓', '2021-07-26 14:47:22', '67584', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '67578', '钟明晓 => 审批 => 任务1-分配单个人', '同意', '2021-07-26 14:47:22', 'admin', '2021-07-26 14:47:22', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (140, 'CH', '1', '钟明晓', '2021-07-26 15:55:56', '67584', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '67578', '任务回撤！', NULL, '2021-07-26 15:55:56', 'admin', '2021-07-26 15:55:56', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (141, 'FQLC', '1', '钟明晓', '2021-07-26 16:10:20', NULL, NULL, 'startEvent1', NULL, '70007', NULL, NULL, '2021-07-26 16:10:20', 'admin', '2021-07-26 16:10:20', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (142, 'SP', '4', '张三', '2021-07-26 17:01:28', 'b0d94a8b-04fd-403f-85ed-671a4fb6b642', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '70007', '张三 => 审批 => 任务1-分配单个人', NULL, '2021-07-26 17:01:28', 'zhangsan', '2021-07-26 17:01:28', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (143, 'FQLC', '1', '钟明晓', '2021-07-26 20:26:30', NULL, NULL, 'startEvent1', NULL, '72506', NULL, NULL, '2021-07-26 20:26:30', 'admin', '2021-07-26 20:26:30', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (144, 'SP', '1', '钟明晓', '2021-07-26 20:33:41', '25003', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '5028', '钟明晓 => 审批 => 任务2-分配候选角色', '1', '2021-07-26 20:33:41', 'admin', '2021-07-26 20:33:41', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (145, 'QS', '1', '钟明晓', '2021-07-28 14:56:53', '72517', '任务3-分配候选角色、人', 'Activity_0w7115l', '任务3-分配候选角色、人', '5028', '钟明晓 => 拾取任务 => 任务3-分配候选角色、人', NULL, '2021-07-28 14:56:53', 'admin', '2021-07-28 14:56:53', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (147, 'FQLC', '1', '钟明晓', '2021-07-28 21:57:24', NULL, NULL, 'startevent1', 'Start', '75013', NULL, NULL, '2021-07-28 21:57:24', 'admin', '2021-07-28 21:57:24', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (150, 'SP', '1', '钟明晓', '2021-07-28 22:02:43', '75019', '提交人', 'usertask1', '提交人', '75013', '钟明晓 => 审批 => 提交人', NULL, '2021-07-28 22:02:47', 'admin', '2021-07-28 22:02:47', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (152, 'FQLC', '5', '李四', '2021-07-28 22:16:36', NULL, NULL, 'startevent1', 'Start', '75028', NULL, NULL, '2021-07-28 22:16:36', 'lisi', '2021-07-28 22:16:36', 'lisi', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (153, 'FQLC', '1', '钟明晓', '2021-08-02 16:06:56', NULL, NULL, 'startEvent1', NULL, '80013', NULL, NULL, '2021-08-02 16:06:56', 'admin', '2021-08-02 16:06:56', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (154, 'SP', '4', '张三', '2021-08-02 16:39:51', '80019', '01', 'Activity_0g99h16', '01', '80013', '张三 => 审批 => 01', '同意', '2021-08-02 16:39:51', 'zhangsan', '2021-08-02 16:39:51', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (155, 'SP', '5', '李四', '2021-08-02 16:40:48', '82503', '02', 'Activity_0jgkyim', '02', '80013', '李四 => 审批 => 02', '同意', '2021-08-02 16:40:48', 'lisi', '2021-08-02 16:40:48', 'lisi', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (156, 'SP', '6', '王五', '2021-08-02 16:41:18', '82508', '03', 'Activity_0wcvmv5', '03', '80013', '王五 => 审批 => 03', '同意5', '2021-08-02 16:41:18', 'wangwu', '2021-08-02 16:41:18', 'wangwu', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (157, 'BJ', '6', '王五', '2021-08-02 16:41:18', NULL, NULL, NULL, NULL, '80013', NULL, NULL, '2021-08-02 16:41:18', 'wangwu', '2021-08-02 16:41:18', 'wangwu', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (158, 'FQLC', '1', '钟明晓', '2021-08-04 14:19:59', NULL, NULL, 'startEvent1', NULL, '85005', NULL, NULL, '2021-08-04 14:19:59', 'admin', '2021-08-04 14:19:59', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (159, 'SP', '1', '钟明晓', '2021-08-09 15:39:46', '60023', '任务2-分配候选角色', 'Activity_16npgqr', '任务2-分配候选角色', '60004', '钟明晓 => 审批 => 任务2-分配候选角色', '11', '2021-08-09 15:39:46', 'admin', '2021-08-09 15:39:46', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (163, 'SP', '1', '钟明晓', '2021-08-09 15:41:43', '70005', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '67578', '钟明晓 => 审批 => 任务1-分配单个人', '111', '2021-08-09 15:41:43', 'admin', '2021-08-09 15:41:43', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (165, 'SP', '1', '钟明晓', '2021-08-09 16:31:40', '70013', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '70007', '钟明晓 => 审批 => 任务1-分配单个人', '11', '2021-08-09 16:31:40', 'admin', '2021-08-09 16:31:40', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (166, 'FQLC', '1', '钟明晓', '2021-08-10 15:58:14', NULL, NULL, 'startEvent1', NULL, '87522', NULL, NULL, '2021-08-10 15:58:14', 'admin', '2021-08-10 15:58:14', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (167, 'FQLC', '1', '钟明晓', '2021-08-10 16:01:20', NULL, NULL, 'startEvent1', NULL, '87533', NULL, NULL, '2021-08-10 16:01:20', 'admin', '2021-08-10 16:01:20', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (168, 'FQLC', '1', '钟明晓', '2021-08-10 16:11:58', NULL, NULL, 'startEvent1', NULL, '87540', NULL, NULL, '2021-08-10 16:11:58', 'admin', '2021-08-10 16:11:58', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (169, 'FQLC', '1', '钟明晓', '2021-08-10 16:27:21', NULL, NULL, 'startEvent1', NULL, '87547', NULL, NULL, '2021-08-10 16:27:21', 'admin', '2021-08-10 16:27:21', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (170, 'FQLC', '1', '钟明晓', '2021-08-10 16:27:26', NULL, NULL, 'startEvent1', NULL, '87556', NULL, NULL, '2021-08-10 16:27:26', 'admin', '2021-08-10 16:27:26', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (171, 'FQLC', '1', '钟明晓', '2021-08-10 16:54:29', NULL, NULL, 'startEvent1', NULL, '87569', NULL, NULL, '2021-08-10 16:54:29', 'admin', '2021-08-10 16:54:29', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (172, 'FQLC', '1', '钟明晓', '2021-08-10 17:36:44', NULL, NULL, 'startEvent1', NULL, '87580', NULL, NULL, '2021-08-10 17:36:44', 'admin', '2021-08-10 17:36:44', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (173, 'FQLC', '1', '钟明晓', '2021-08-10 17:38:05', NULL, NULL, 'startEvent1', NULL, '87591', NULL, NULL, '2021-08-10 17:38:05', 'admin', '2021-08-10 17:38:05', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (174, 'FQLC', '1', '钟明晓', '2021-08-12 21:55:21', NULL, NULL, 'startEvent1', NULL, '92505', NULL, NULL, '2021-08-12 21:55:21', 'admin', '2021-08-12 21:55:21', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (175, 'QS', '1', '钟明晓', '2021-08-12 21:55:48', '92511', '诉求（编辑、提交）', 'Activity_0sjew1q', '诉求（编辑、提交）', '92505', '钟明晓 => 拾取任务 => 诉求（编辑、提交）', NULL, '2021-08-12 21:55:49', 'admin', '2021-08-12 21:55:49', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (176, 'SP', '1', '钟明晓', '2021-08-12 21:56:13', '92511', '诉求（编辑、提交）', 'Activity_0sjew1q', '诉求（编辑、提交）', '92505', '钟明晓 => 审批 => 诉求（编辑、提交）', '11', '2021-08-12 21:56:13', 'admin', '2021-08-12 21:56:13', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (177, 'QS', '4', '张三', '2021-08-12 22:00:03', '92518', '诉求审核', 'Activity_1q077w6', '诉求审核', '92505', '张三 => 拾取任务 => 诉求审核', NULL, '2021-08-12 22:00:03', 'zhangsan', '2021-08-12 22:00:03', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (178, 'SP', '4', '张三', '2021-08-12 22:00:18', '92518', '诉求审核', 'Activity_1q077w6', '诉求审核', '92505', '张三 => 审批 => 诉求审核', '333', '2021-08-12 22:00:18', 'zhangsan', '2021-08-12 22:00:18', 'zhangsan', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (179, 'FQLC', '1', '钟明晓', '2021-08-13 10:52:29', NULL, NULL, 'startEvent1', NULL, '92527', NULL, NULL, '2021-08-13 10:52:29', 'admin', '2021-08-13 10:52:29', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (180, 'QS', '1', '钟明晓', '2021-08-13 10:53:03', '92533', '诉求（编辑、提交）', 'Activity_0sjew1q', '诉求（编辑、提交）', '92527', '钟明晓 => 拾取任务 => 诉求（编辑、提交）', NULL, '2021-08-13 10:53:03', 'admin', '2021-08-13 10:53:03', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (182, 'SP', '1', '钟明晓', '2021-08-13 10:55:33', '92533', '诉求（编辑、提交）', 'Activity_0sjew1q', '诉求（编辑、提交）', '92527', '钟明晓 => 审批 => 诉求（编辑、提交）', '11', '2021-08-13 10:55:33', 'admin', '2021-08-13 10:55:33', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (183, 'CH', '1', '钟明晓', '2021-08-13 22:07:35', '92533', '诉求（编辑、提交）', 'Activity_0sjew1q', '诉求（编辑、提交）', '92527', '任务回撤！', NULL, '2021-08-13 22:07:35', 'admin', '2021-08-13 22:07:35', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (184, 'SP', '1', '钟明晓', '2021-08-13 22:08:07', '92548', '诉求（编辑、提交）', 'Activity_0sjew1q', '诉求（编辑、提交）', '92527', '钟明晓 => 审批 => 诉求（编辑、提交）', NULL, '2021-08-13 22:08:07', 'admin', '2021-08-13 22:08:07', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (187, 'FQLC', '1', '钟明晓', '2021-08-17 16:18:54', NULL, NULL, 'startEvent1', NULL, '92558', NULL, NULL, '2021-08-17 16:18:54', 'admin', '2021-08-17 16:18:54', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (188, 'FQLC', '1', '钟明晓', '2021-08-17 16:21:20', NULL, NULL, 'startEvent1', NULL, '92573', NULL, NULL, '2021-08-17 16:21:20', 'admin', '2021-08-17 16:21:20', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (195, 'SP', '1', '钟明晓', '2021-08-21 14:49:43', '87562', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '87556', '钟明晓 => 审批 => 任务1-分配单个人', '1', '2021-08-21 14:49:43', 'admin', '2021-08-21 14:49:43', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (200, 'SP', '1', '钟明晓', '2021-08-21 15:44:49', '72512', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '72506', '钟明晓 => 审批 => 任务1-分配单个人', '1', '2021-08-21 15:44:49', 'admin', '2021-08-21 15:44:49', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (201, 'SP', '1', '钟明晓', '2021-08-21 15:52:10', '72517', '任务3-分配候选角色、人', 'Activity_0w7115l', '任务3-分配候选角色、人', '5028', '钟明晓 => 审批 => 任务3-分配候选角色、人', '1', '2021-08-21 15:52:10', 'admin', '2021-08-21 15:52:10', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (202, 'BJ', '1', '钟明晓', '2021-08-21 15:52:11', NULL, NULL, NULL, NULL, '5028', NULL, NULL, '2021-08-21 15:52:11', 'admin', '2021-08-21 15:52:11', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (204, 'SP', '1', '钟明晓', '2021-08-23 10:49:32', '62511', '提交人', 'usertask1', '提交人', '62505', '钟明晓 => 审批 => 提交人', '11', '2021-08-23 10:49:32', 'admin', '2021-08-23 10:49:32', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (205, 'SP', '1', '钟明晓', '2021-08-26 17:03:01', '3fc0339c-eff1-4a2f-afcc-758bb1b43e03', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5010', '钟明晓 => 审批 => 任务1-分配单个人', NULL, '2021-08-26 17:03:01', 'admin', '2021-08-26 17:03:01', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (206, 'SP', '1', '钟明晓', '2021-08-26 17:03:08', '8f24ec20-6258-49c0-b65f-fa311c81fe62', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5010', '钟明晓 => 审批 => 任务1-分配单个人', NULL, '2021-08-26 17:03:08', 'admin', '2021-08-26 17:03:08', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (207, 'SP', '1', '钟明晓', '2021-08-26 17:03:12', '8bfe70f9-cb1a-4975-b808-8c47fbc85780', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5010', '钟明晓 => 审批 => 任务1-分配单个人', NULL, '2021-08-26 17:03:12', 'admin', '2021-08-26 17:03:12', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (208, 'SP', '1', '钟明晓', '2021-08-26 17:03:16', '20b05e26-d689-4b5c-a917-fbc67c953d40', '任务1-分配单个人', 'Activity_0mt7co8', '任务1-分配单个人', '5010', '钟明晓 => 审批 => 任务1-分配单个人', NULL, '2021-08-26 17:03:16', 'admin', '2021-08-26 17:03:16', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (209, 'FQLC', '1', '钟明晓', '2021-08-27 11:59:49', NULL, NULL, 'startevent1', 'Start', '5', NULL, NULL, '2021-08-27 11:59:49', 'admin', '2021-08-27 11:59:49', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (210, 'SP', '1', '钟明晓', '2021-08-27 12:02:06', '11', '提交人', 'usertask1', '提交人', '5', '钟明晓 => 审批 => 提交人', '请假三天', '2021-08-27 12:02:06', 'admin', '2021-08-27 12:02:06', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (214, 'SP', '5', '李四', '2021-08-28 22:20:55', '18', '李四', 'usertask3', '李四', '5', '李四 => 审批 => 李四', '11', '2021-08-28 22:20:55', 'lisi', '2021-08-28 22:20:55', 'lisi', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (215, 'SP', '6', '王五', '2021-08-28 22:21:59', '2561', '王五,赵六', 'usertask4', '王五,赵六', '5', '王五 => 审批 => 王五,赵六', NULL, '2021-08-28 22:21:59', 'wangwu', '2021-08-28 22:21:59', 'wangwu', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (216, 'BH', '8', '陈七', '2021-08-28 22:23:16', '2572', '陈七', 'usertask7', '陈七', '5', '陈七 => 驳回任务 => 【陈七=>提交人】', NULL, '2021-08-28 22:23:16', 'chenqi', '2021-08-28 22:23:16', 'chenqi', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (217, 'FQLC', '1', '钟明晓', '2021-08-29 13:35:35', NULL, NULL, 'Event_15w2mil', NULL, '5005', NULL, NULL, '2021-08-29 13:35:35', 'admin', '2021-08-29 13:35:35', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (218, 'FQLC', '1', '钟明晓', '2021-08-30 18:22:51', NULL, NULL, 'Event_1u3tfpe', NULL, '7515', NULL, NULL, '2021-08-30 18:22:51', 'admin', '2021-08-30 18:22:51', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (219, 'FQLC', '1', '钟明晓', '2021-08-30 18:23:11', NULL, NULL, 'Event_1u3tfpe', NULL, '7524', NULL, NULL, '2021-08-30 18:23:11', 'admin', '2021-08-30 18:23:11', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (220, 'FQLC', '1', '钟明晓', '2021-08-30 19:50:29', NULL, NULL, 'Event_1u3tfpe', NULL, '10014', NULL, NULL, '2021-08-30 19:50:29', 'admin', '2021-08-30 19:50:29', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (221, 'FQLC', '1', '钟明晓', '2021-08-30 19:50:47', NULL, NULL, 'Event_1u3tfpe', NULL, '10023', NULL, NULL, '2021-08-30 19:50:47', 'admin', '2021-08-30 19:50:47', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (222, 'FQLC', '1', '钟明晓', '2021-09-02 14:09:52', NULL, NULL, 'Event_1u3tfpe', NULL, '12509', NULL, NULL, '2021-09-02 14:09:52', 'admin', '2021-09-02 14:09:52', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (223, 'FQLC', '1', '钟明晓', '2021-09-02 14:11:38', NULL, NULL, 'Event_1u3tfpe', NULL, '12518', NULL, NULL, '2021-09-02 14:11:38', 'admin', '2021-09-02 14:11:38', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (224, 'FQLC', '1', '钟明晓', '2021-09-02 14:14:37', NULL, NULL, 'Event_1u3tfpe', NULL, '12531', NULL, NULL, '2021-09-02 14:14:37', 'admin', '2021-09-02 14:14:37', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (225, 'FQLC', '1', '钟明晓', '2021-09-02 14:20:21', NULL, NULL, 'Event_1u3tfpe', NULL, '15001', NULL, NULL, '2021-09-02 14:20:21', 'admin', '2021-09-02 14:20:21', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (226, 'FQLC', '1', '钟明晓', '2021-09-03 10:13:37', NULL, NULL, 'Event_1u3tfpe', NULL, '15010', NULL, NULL, '2021-09-03 10:13:37', 'admin', '2021-09-03 10:13:37', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (227, 'FQLC', '1', '钟明晓', '2021-09-03 10:17:12', NULL, NULL, 'Event_1u3tfpe', NULL, '17501', NULL, NULL, '2021-09-03 10:17:12', 'admin', '2021-09-03 10:17:12', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (228, 'FQLC', '1', '钟明晓', '2021-09-03 10:20:59', NULL, NULL, 'Event_1u3tfpe', NULL, '20001', NULL, NULL, '2021-09-03 10:20:59', 'admin', '2021-09-03 10:20:59', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (229, 'FQLC', '1', '钟明晓', '2021-09-03 10:27:45', NULL, NULL, 'Event_1u3tfpe', NULL, '15023', NULL, NULL, '2021-09-03 10:27:45', 'admin', '2021-09-03 10:27:45', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (230, 'FQLC', '1', '钟明晓', '2021-09-03 10:28:15', NULL, NULL, 'Event_1u3tfpe', NULL, '15032', NULL, NULL, '2021-09-03 10:28:15', 'admin', '2021-09-03 10:28:15', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (231, 'FQLC', '1', '钟明晓', '2021-09-03 10:31:43', NULL, NULL, 'Event_1u3tfpe', NULL, '22501', NULL, NULL, '2021-09-03 10:31:43', 'admin', '2021-09-03 10:31:43', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (232, 'FQLC', '1', '钟明晓', '2021-09-03 10:34:54', NULL, NULL, 'Event_1u3tfpe', NULL, '25001', NULL, NULL, '2021-09-03 10:34:54', 'admin', '2021-09-03 10:34:54', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (233, 'FQLC', '1', '钟明晓', '2021-09-03 10:44:20', NULL, NULL, 'Event_1u3tfpe', NULL, '25010', NULL, NULL, '2021-09-03 10:44:20', 'admin', '2021-09-03 10:44:20', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (234, 'FQLC', '1', '钟明晓', '2021-09-03 10:48:25', NULL, NULL, 'Event_1u3tfpe', NULL, '27501', NULL, NULL, '2021-09-03 10:48:25', 'admin', '2021-09-03 10:48:25', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (235, 'FQLC', '1', '钟明晓', '2021-09-03 10:56:04', NULL, NULL, 'Event_1u3tfpe', NULL, '30001', NULL, NULL, '2021-09-03 10:56:04', 'admin', '2021-09-03 10:56:04', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (236, 'FQLC', '1', '钟明晓', '2021-09-03 10:58:35', NULL, NULL, 'Event_1u3tfpe', NULL, '30010', NULL, NULL, '2021-09-03 10:58:35', 'admin', '2021-09-03 10:58:35', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (237, 'FQLC', '1', '钟明晓', '2021-09-03 11:06:04', NULL, NULL, 'Event_1u3tfpe', NULL, '35001', NULL, NULL, '2021-09-03 11:06:04', 'admin', '2021-09-03 11:06:04', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (238, 'FQLC', '1', '钟明晓', '2021-09-03 11:06:20', NULL, NULL, 'Event_1u3tfpe', NULL, '35010', NULL, NULL, '2021-09-03 11:06:20', 'admin', '2021-09-03 11:06:20', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (239, 'FQLC', '1', '钟明晓', '2021-09-03 11:17:48', NULL, NULL, 'Event_1u3tfpe', NULL, '40001', NULL, NULL, '2021-09-03 11:17:48', 'admin', '2021-09-03 11:17:48', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (240, 'FQLC', '1', '钟明晓', '2021-09-03 11:37:53', NULL, NULL, 'Event_1u3tfpe', NULL, '42501', NULL, NULL, '2021-09-03 11:37:53', 'admin', '2021-09-03 11:37:53', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (241, 'FQLC', '1', '钟明晓', '2021-09-03 11:40:50', NULL, NULL, 'Event_1u3tfpe', NULL, '45001', NULL, NULL, '2021-09-03 11:40:50', 'admin', '2021-09-03 11:40:50', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (242, 'FQLC', '1', '钟明晓', '2021-09-03 11:50:18', NULL, NULL, 'Event_1u3tfpe', NULL, '47501', NULL, NULL, '2021-09-03 11:50:18', 'admin', '2021-09-03 11:50:18', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (243, 'FQLC', '1', '钟明晓', '2021-09-03 11:51:40', NULL, NULL, 'Event_1u3tfpe', NULL, '47510', NULL, NULL, '2021-09-03 11:51:40', 'admin', '2021-09-03 11:51:40', 'admin', 0, NULL);
-INSERT INTO `work_flow_hi_comment` VALUES (244, 'FQLC', '1', '钟明晓', '2021-09-03 11:52:59', NULL, NULL, 'Event_1u3tfpe', NULL, '50001', NULL, NULL, '2021-09-03 11:52:59', 'admin', '2021-09-03 11:52:59', 'admin', 0, NULL);
 INSERT INTO `work_flow_hi_comment` VALUES (245, 'FQLC', '1', '管理员', '2021-09-10 09:41:31', NULL, NULL, 'startevent1', 'Start', '5', NULL, NULL, '2021-09-10 09:41:31', 'admin', '2021-09-10 09:41:31', 'admin', 0, NULL);
 
 -- ----------------------------
@@ -3488,7 +3288,7 @@ CREATE TABLE `work_flow_model_info`  (
 -- ----------------------------
 -- Records of work_flow_model_info
 -- ----------------------------
-INSERT INTO `work_flow_model_info` VALUES (29, '28811b5b46e6c22e90c910c28dce4152', '测试请假', 'CSQJ', 0, 1, 3, 100, NULL, NULL, NULL, 1, 'CSLC', 'admin', '2021-08-27 04:01:40', '2021-09-12 22:31:21', 'admin', 0);
+INSERT INTO `work_flow_model_info` VALUES (29, '28811b5b46e6c22e90c910c28dce4152', '测试请假', 'CSQJ', 0, 1, 3, 100, NULL, NULL, NULL, 1, 'CSLC', 'admin', '2021-08-27 04:01:40', '2021-09-13 19:32:57', 'admin', 0);
 
 -- ----------------------------
 -- Table structure for work_flow_model_re_form
@@ -3645,7 +3445,7 @@ CREATE TABLE `work_flow_tenant`  (
   `id` int(32) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `tennat_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '系统标示',
   `tenant_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
-  `status` int(11) NULL DEFAULT 0 COMMENT '租户状态值',
+  `status` int(11) NULL DEFAULT 0 COMMENT '租户状态值(0-上线 1-下线)',
   `secret_key` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '租户密钥',
   `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '系统url前缀',
   `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '系统的图标',
@@ -3656,7 +3456,7 @@ CREATE TABLE `work_flow_tenant`  (
   `updator` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新人',
   `del_flag` int(1) NULL DEFAULT 0 COMMENT '删除标识1表示删除0表示存在',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '租户' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '租户' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of work_flow_tenant
@@ -3665,94 +3465,74 @@ INSERT INTO `work_flow_tenant` VALUES (1, 'ZZMT', '土豆科技人事管理', 0,
 INSERT INTO `work_flow_tenant` VALUES (2, 'CSLC', '土豆科技物流管理', 0, NULL, NULL, NULL, NULL, NULL, '2021-07-21 06:51:11', '2021-09-03 21:35:40', 'admin', 0);
 INSERT INTO `work_flow_tenant` VALUES (3, '111', '0', 1, '111', '111', 'http://47.96.74.120:9090/process/2021/08/12/98802c00-045f-47ef-a2a5-d70820285f38.gif', '111', 'admin', '2021-08-12 09:21:58', '2021-08-12 09:21:58', 'admin', 1);
 INSERT INTO `work_flow_tenant` VALUES (4, '1', '1', 0, NULL, NULL, NULL, NULL, NULL, '2021-09-03 13:35:12', '2021-09-03 13:35:12', NULL, 1);
+INSERT INTO `work_flow_tenant` VALUES (5, '111', '11', 0, '11', '11', NULL, '11', 'admin', '2021-09-16 06:21:33', '2021-09-16 06:21:33', 'admin', 1);
+
+-- ----------------------------
+-- Function structure for FuncGroupCompare
+-- ----------------------------
+DROP FUNCTION IF EXISTS `FuncGroupCompare`;
+delimiter ;;
+CREATE FUNCTION `FuncGroupCompare`(`configGroup` varchar(20),`userGroup` varchar(20))
+ RETURNS int(1)
+BEGIN
+
+declare cArea varchar(100);
+declare cDept varchar(100);
+declare cRole varchar(100);
+
+declare uArea varchar(100);
+declare uDept varchar(100);
+declare uRole varchar(100);
+
+SET cArea = substring_index(configGroup,'+',1);
+SET cDept = substring_index(substring_index(configGroup,'+',2),'+',1);
+SET cRole = substring_index(configGroup,'+',-1);
+
+SET uArea = substring_index(userGroup,'+',1);
+SET uDept = substring_index(substring_index(userGroup,'+',2),'+',1);
+SET uRole = substring_index(userGroup,'+',-1);
 
 
-CREATE TABLE `work_flow_form_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code` varchar(255) NOT NULL COMMENT '分类编码',
-  `category_name` varchar(100) DEFAULT NULL COMMENT '分类名称',
-  `order_num` int(11) DEFAULT NULL COMMENT '排序',
-  `parent_id` int(11) DEFAULT NULL COMMENT '上级分类id',
-  `desc` varchar(255) DEFAULT NULL COMMENT '描述',
-  `creator` varchar(255) DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updator` varchar(255) DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COMMENT='表单分类表'
+ IF ((ISNULL(configGroup)=1) || (LENGTH(trim(configGroup))=0)  || (ISNULL(userGroup)=1) || (LENGTH(trim(userGroup))=0) )
 
+      THEN
+			RETURN	 0;
+	END IF;
 
+    IF
+				(
+				(
+				(ISNULL(cArea)=1) || (LENGTH(trim(cArea))=0)
+				||
+				(
+				((ISNULL(uArea)!=1) || (LENGTH(trim(uArea))!=0)) && STRCMP(cArea,uArea) = 0
+				)
+				)
+				&&
+				(
+				(ISNULL(cDept)=1) || (LENGTH(trim(cDept))=0)
+				||
+				(
+				((ISNULL(uDept)!=1) || (LENGTH(trim(uDept))!=0)) && 	(STRCMP(cDept,uDept) = 0)
+				)
+				)
+				&&
+				(
+				(ISNULL(cRole)=1) || (LENGTH(trim(cRole))=0)
+				||
+				(
+				((ISNULL(uRole)!=1) || (LENGTH(trim(uRole))!=0)) && (STRCMP(cRole,uRole) = 0)
+				)
+			)
+			)
+			THEN
+			RETURN	 1;
+	END IF;
 
-CREATE TABLE `work_flow_form_model` (
-  `model_id` int(11) NOT NULL AUTO_INCREMENT,
-  `model_info_id` int(11) DEFAULT NULL COMMENT '表单模型id',
-  `form_key` varchar(200) DEFAULT NULL COMMENT '表单唯一标识Key：用于关联流程',
-  `form_json` longtext COMMENT '表单配置json',
-  `form_type` tinyint(1) DEFAULT '0' COMMENT '状态值-0：pc表单 1：移动端表单',
-  `status` varchar(255) DEFAULT NULL COMMENT '状态1-未发布，2-已发布',
-  `main_version` tinyint(1) DEFAULT '0' COMMENT '是否为主版本',
-  `config_json` longtext CHARACTER SET utf8 COMMENT '表单表头字段配置',
-  `release_note` varchar(255) DEFAULT NULL COMMENT '版本说明',
-  `version` int(11) DEFAULT NULL COMMENT '版本号',
-  `creator` varchar(255) DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updator` varchar(255) DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  PRIMARY KEY (`model_id`) USING BTREE,
-  UNIQUE KEY `idx_unique_form_key` (`form_key`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='自定义表单模型表'
+RETURN	 0;
 
-
-CREATE TABLE `work_flow_form_model_info` (
-  `model_info_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '表单模型信息主键',
-  `category_id` int(11) DEFAULT NULL COMMENT '表单分类ID',
-  `category_name` varchar(200) DEFAULT NULL COMMENT '表单分类名称',
-  `form_name` varchar(200) DEFAULT NULL COMMENT '表单名称',
-  `form_key` varchar(255) DEFAULT NULL COMMENT '主版本formKey=》用于关联工作流',
-  `version` int(11) DEFAULT '1' COMMENT '主版本版本号',
-  `form_model_type` tinyint(1) DEFAULT '0' COMMENT '默认：0-外部表单 1-自定义表单',
-  `creator` varchar(11) DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updator` varchar(255) DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `del_flag` int(1) DEFAULT '0' COMMENT '删除标识1表示删除0表示存在',
-  PRIMARY KEY (`model_info_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='表单模型信息表'
-
-
-
---字典表
-
-CREATE TABLE `dict_type` (
-  `dict_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典主键',
-  `dict_name` varchar(100) DEFAULT '' COMMENT '字典名称',
-  `dict_type` varchar(100) DEFAULT '' COMMENT '字典类型',
-  `status` char(1) DEFAULT '0' COMMENT '状态（0正常 1停用）',
-  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`dict_id`) USING BTREE,
-  UNIQUE KEY `dict_type` (`dict_type`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='字典类型表'
-
-CREATE TABLE `dict_data` (
-  `dict_code` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典编码',
-  `dict_sort` int(4) DEFAULT '0' COMMENT '字典排序',
-  `dict_label` varchar(100) DEFAULT '' COMMENT '字典标签',
-  `dict_value` varchar(100) DEFAULT '' COMMENT '字典键值',
-  `dict_type` varchar(100) DEFAULT '' COMMENT '字典类型',
-  `css_class` varchar(100) DEFAULT NULL COMMENT '样式属性（其他样式扩展）',
-  `list_class` varchar(100) DEFAULT NULL COMMENT '表格回显样式',
-  `is_default` char(1) DEFAULT 'N' COMMENT '是否默认（Y是 N否）',
-  `status` char(1) DEFAULT '0' COMMENT '状态（0正常 1停用）',
-  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`dict_code`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='字典数据表'
+END
+;;
+delimiter ;
 
 SET FOREIGN_KEY_CHECKS = 1;

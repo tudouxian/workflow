@@ -82,10 +82,14 @@
       <el-table-column label="主键" align="center" prop="id" />
       <el-table-column label="租户KEY" align="center" prop="tennatId" />
       <el-table-column label="租户名称" align="center" prop="tenantName" />
-      <el-table-column label="状态" align="center" prop="status" />
+      <el-table-column label="状态" align="center" prop="status"  :formatter="formatterStatus"/>
       <el-table-column label="密钥" align="center" prop="secretKey" />
       <el-table-column label="系统首页路径" align="center" prop="url" />
-      <el-table-column label="系统的图标" align="center" prop="image" />
+      <el-table-column label="系统的图标" align="center" prop="image" >
+        <template width="90" slot-scope="scope">
+        <img :src="scope.row.image" height="30px" width="30px">
+        </template>
+      </el-table-column>
       <el-table-column label="系统备注" align="center" prop="note" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -158,9 +162,10 @@
 <script>
   import { listProcessTenant, getProcessTenant, delProcessTenant, addProcessTenant, updateProcessTenant } from "@/api/processManagement/processTenant";
   import ImageUpload from '@/components/ImageUpload';
-
+  import dict from "./dict";
   export default {
     name: "ProcessTenant",
+    mixins: [dict],
     components: {
       ImageUpload,
     },
