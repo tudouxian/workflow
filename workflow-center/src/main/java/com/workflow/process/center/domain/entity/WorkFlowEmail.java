@@ -3,6 +3,7 @@ package com.workflow.process.center.domain.entity;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.workflow.process.center.common.enums.entity.CommonTypeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -41,8 +42,8 @@ public class WorkFlowEmail implements Serializable {
      * 租户标示
      */
     @ApiModelProperty(value = "租户标示")
-    @TableField("tennat_id")
-    private String tennatId;
+    @TableField("tenant_id")
+    private String tenantId;
 
     /**
      * 邮箱服务eg:smtp.163.com
@@ -80,11 +81,11 @@ public class WorkFlowEmail implements Serializable {
     private String mailPassword;
 
     /**
-     * 是否使用SSL-0-是  1-否
+     * 是否使用SSL-1-是  0-否
      */
-    @ApiModelProperty(value = "是否使用SSL-0-是  1-否")
+    @ApiModelProperty(value = "是否使用SSL-1-是  0-否")
     @TableField("mail_ssl")
-    private Boolean mailSsl;
+    private CommonTypeEnum mailSsl;
 
     /**
      * 邮箱备注

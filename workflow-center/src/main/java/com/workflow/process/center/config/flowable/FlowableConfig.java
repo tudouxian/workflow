@@ -86,7 +86,7 @@ public class FlowableConfig implements EngineConfigurationConfigurer<SpringProce
         log.info("初始化租户邮箱服务配置！");
         List<WorkFlowEmail> list = workFlowEmailService.list();
         if (CollectionUtils.isNotEmpty(list)){
-            Map<String, MailServerInfo> collect = list.stream().collect(Collectors.toMap(WorkFlowEmail::getTennatId, workFlowEmail -> {
+            Map<String, MailServerInfo> collect = list.stream().collect(Collectors.toMap(WorkFlowEmail::getTenantId, workFlowEmail -> {
                 MailServerInfo mailServerInfo = new MailServerInfo();
                 //设置邮箱服务参数
                 mailServerInfo.setMailServerDefaultFrom(workFlowEmail.getMailDefaultFrom());
@@ -94,7 +94,7 @@ public class FlowableConfig implements EngineConfigurationConfigurer<SpringProce
                 mailServerInfo.setMailServerPort(workFlowEmail.getMailServerPort());
                 mailServerInfo.setMailServerUsername(workFlowEmail.getMailUsername());
                 mailServerInfo.setMailServerPassword(workFlowEmail.getMailPassword());
-                mailServerInfo.setMailServerUseSSL(workFlowEmail.getMailSsl());
+                mailServerInfo.setMailServerUseSSL(workFlowEmail.getMailSsl().getKey() == 1);
                 //mailServerInfo.setMailServerUseSSL();
                 //mailServerInfo.setMailServerForceTo();
                 //mailServerInfo.setMailServerUseTLS();
