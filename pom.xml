@@ -250,6 +250,7 @@
         <module>workflow-common</module>
         <module>workflow-center</module>
         <module>workflow-idm-api</module>
+        <module>workflow-process-common</module>
         <module>workflow-center-api</module>
     </modules>
     <packaging>pom</packaging>
