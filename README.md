@@ -36,9 +36,10 @@ workflow
 * 启动项目
 
 ## 架构图
-![](http://image.zmxblog92.com/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
+![架构图](http://image.zmxblog92.com/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
+
 ## 特色功能
-![](http://image.zmxblog92.com/%E6%B5%81%E7%A8%8B%E8%B5%B0%E5%90%91%E5%9B%BE.png)
+![特色功能](http://image.zmxblog92.com/%E6%B5%81%E7%A8%8B%E8%B5%B0%E5%90%91%E5%9B%BE.png)
 
 1.  辅助模型设计：将流程分类、流程表达式、流程监听器、流程审核按钮外置表单化，便于设计阶段选择。
 2.  模型设计器：重新设计用户任务、服务任务、分支条件、表单挂载。
