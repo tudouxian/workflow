@@ -249,6 +249,7 @@
         <module>workflow-generator</module>
         <module>workflow-common</module>
         <module>workflow-center</module>
+        <module>workflow-form</module>
         <module>workflow-idm-api</module>
         <module>workflow-process-common</module>
         <module>workflow-center-api</module>

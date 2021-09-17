@@ -2866,8 +2866,8 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '管理员', '00', 'ry@163.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-09-16 15:18:22', 'admin', '2021-09-10 12:12:34', '', '2021-09-16 07:18:21', '管理员');
-INSERT INTO `sys_user` VALUES (2, 105, 'ry', '管理员', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-09-10 12:12:34', 'admin', '2021-09-10 12:12:34', '', NULL, '测试员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '管理员', '00', 'admin@163.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-09-16 15:18:22', 'admin', '2021-09-10 12:12:34', '', '2021-09-16 07:18:21', '管理员');
+INSERT INTO `sys_user` VALUES (2, 105, 'tdx', '土豆仙', '00', 'tdx@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-09-10 12:12:34', 'admin', '2021-09-10 12:12:34', '', NULL, '测试员');
 
 -- ----------------------------
 -- Table structure for sys_user_post

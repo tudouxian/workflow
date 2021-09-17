@@ -1,7 +1,7 @@
 package com.workflow.process.center.utils;
 
 
-import com.workflow.process.center.utils.text.UUID;
+import com.workflow.common.utils.uuid.UUID;
 
 /**
  * ID生成器工具类

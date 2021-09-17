@@ -19,7 +19,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="流程执行实例ID" prop="executionId">
+      <el-form-item label="流程执行实例" prop="executionId">
         <el-input
           v-model="queryParams.executionId"
           placeholder="请输入流程执行实例ID"
@@ -28,7 +28,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="流程实例ID" prop="procInstId">
+      <el-form-item label="流程实例" prop="procInstId">
         <el-input
           v-model="queryParams.procInstId"
           placeholder="请输入流程实例ID"
@@ -37,7 +37,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="任务ID" prop="taskId">
+      <el-form-item label="任务" prop="taskId">
         <el-input
           v-model="queryParams.taskId"
           placeholder="请输入任务ID"
