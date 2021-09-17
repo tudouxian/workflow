@@ -142,7 +142,7 @@
         open: false,
         // 查询参数
         queryParams: {
-          pageNum: 1,
+          pageIndex: 1,
           pageSize: 10,
           categoryName: null,
         },
@@ -160,7 +160,6 @@
       /** 查询流程分类列表 */
       getList() {
         this.loading = true;
-        this.queryParams.pageIndex = this.queryParams.pageNum
         listProcessCategory(this.queryParams).then(response => {
           this.processCategoryList = response.data;
           this.total = response.totalNum;

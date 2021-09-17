@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workflow.process.center.mapper.WorkFlowVariableMapper">
+
+    <resultMap type="com.workflow.process.center.domain.entity.WorkFlowVariable" id="WorkFlowVariableBaseResultMap">
+        <result property="id_" column="ID_"/>
+        <result property="rev_" column="REV_"/>
+        <result property="type_" column="TYPE_"/>
+        <result property="name_" column="NAME_"/>
+        <result property="executionId_" column="EXECUTION_ID_"/>
+        <result property="procInstId_" column="PROC_INST_ID_"/>
+        <result property="taskId_" column="TASK_ID_"/>
+        <result property="scopeId_" column="SCOPE_ID_"/>
+        <result property="subScopeId_" column="SUB_SCOPE_ID_"/>
+        <result property="scopeType_" column="SCOPE_TYPE_"/>
+        <result property="bytearrayId_" column="BYTEARRAY_ID_"/>
+        <result property="double_" column="DOUBLE_"/>
+        <result property="long_" column="LONG_"/>
+        <result property="text_" column="TEXT_"/>
+        <result property="text2_" column="TEXT2_"/>
+    </resultMap>
+
+    <!-- 查询条件 -->
+    <sql id="whereSql">
+        <where>
+            <if test="id_ != null and id_ != ''">
+                and a.ID_ = #{id_}
+            </if>
+            <if test="rev_ != null">
+                and a.REV_ = #{rev_}
+            </if>
+            <if test="type_ != null and type_ != ''">
+                and a.TYPE_ = #{type_}
+            </if>
+            <if test="name_ != null and name_ != ''">
+                and a.NAME_ = #{name_}
+            </if>
+            <if test="executionId_ != null and executionId_ != ''">
+                and a.EXECUTION_ID_ = #{executionId_}
+            </if>
+            <if test="procInstId_ != null and procInstId_ != ''">
+                and a.PROC_INST_ID_ = #{procInstId_}
+            </if>
+            <if test="taskId_ != null and taskId_ != ''">
+                and a.TASK_ID_ = #{taskId_}
+            </if>
+            <if test="scopeId_ != null and scopeId_ != ''">
+                and a.SCOPE_ID_ = #{scopeId_}
+            </if>
+            <if test="subScopeId_ != null and subScopeId_ != ''">
+                and a.SUB_SCOPE_ID_ = #{subScopeId_}
+            </if>
+            <if test="scopeType_ != null and scopeType_ != ''">
+                and a.SCOPE_TYPE_ = #{scopeType_}
+            </if>
+            <if test="bytearrayId_ != null and bytearrayId_ != ''">
+                and a.BYTEARRAY_ID_ = #{bytearrayId_}
+            </if>
+            <if test="double_ != null">
+                and a.DOUBLE_ = #{double_}
+            </if>
+            <if test="long_ != null">
+                and a.LONG_ = #{long_}
+            </if>
+            <if test="text_ != null and text_ != ''">
+                and a.TEXT_ = #{text_}
+            </if>
+            <if test="text2_ != null and text2_ != ''">
+                and a.TEXT2_ = #{text2_}
+            </if>
+        </where>
+    </sql>
+
+</mapper>

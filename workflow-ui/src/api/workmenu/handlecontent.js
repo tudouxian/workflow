@@ -24,8 +24,9 @@ export const getUserList = async (params) => {
 }
 
 export const handleActions = async ({ url, params }) => {
+
   return await request({
-    url: `/${url}`,
+    url: `${url}`,
     method: 'post',
     data: params
   })

@@ -11,7 +11,7 @@ import request from '@/utils/request'
 // 查询流程审核按钮管理列表
 export function listProcessButton(query) {
   return request({
-    url: '/workFlowButton/list',
+    url: '/workFlowButton/selectAll',
     method: 'get',
     params: query
   })

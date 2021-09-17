@@ -126,7 +126,7 @@
     <pagination
       v-show="total>0"
       :total="total"
-      :page.sync="queryParams.pageNum"
+      :page.sync="queryParams.pageIndex"
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
@@ -200,7 +200,7 @@ export default {
       open: false,
       // 查询参数
       queryParams: {
-        pageNum: 1,
+        pageIndex: 1,
         pageSize: 10,
         buttonName: null,
         buttonCode: null,
@@ -255,7 +255,7 @@ export default {
     },
     /** 搜索按钮操作 */
     handleQuery() {
-      this.queryParams.pageNum = 1;
+      this.queryParams.pageIndex = 1;
       this.getList();
     },
     /** 重置按钮操作 */
