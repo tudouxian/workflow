@@ -52,6 +52,7 @@ import static com.workflow.process.center.common.contant.CommonContant.BPMN_EXTE
 import static com.workflow.process.center.common.contant.CommonContant.NODE_TYPE;
 import static com.workflow.process.center.common.enums.ModelStatusEnum.DFB;
 import static com.workflow.process.center.common.enums.ModelStatusEnum.YFB;
+import static com.workflow.process.center.utils.date.DateUtils.getDatePoor;
 import static com.workflow.process.center.utils.date.DateUtils.getDuration;
 
 @Slf4j
@@ -591,7 +592,7 @@ public class FlowableModelServiceImpl implements FlowableModelService {
                 //正常任务
                 duration = historicTaskInstance.getDurationInMillis();
             }
-            vo.setDuration(getDuration(duration));
+            vo.setDuration(getDatePoor(vo.getEndDate(),vo.getStartDate()));
         }
         return vo;
     }
