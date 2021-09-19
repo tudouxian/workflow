@@ -1,14 +1,11 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="110px">
-      <el-form-item label="类型" prop="type">
-        <el-input
-          v-model="queryParams.type"
-          placeholder="请输入类型"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
+      <el-form-item label="是否运行时" prop="isRunTimeVariable">
+        <el-select v-model="queryParams.isRunTimeVariable" placeholder="请选择是否是运行时变量" clearable size="small">
+          <el-option label="是" value="true" />
+          <el-option label="否" value="false" />
+        </el-select>
       </el-form-item>
       <el-form-item label="名称" prop="name">
         <el-input
@@ -204,6 +201,7 @@ export default {
         rev: null,
         type: null,
         name: null,
+        isRunTimeVariable: null,
         executionId: null,
         procInstId: null,
         taskId: null,
@@ -237,8 +235,8 @@ export default {
     getList() {
       this.loading = true;
       listRuVariable(this.queryParams).then(response => {
-        this.ruVariableList = response.rows;
-        this.total = response.total;
+        this.ruVariableList = response.data;
+        this.total = response.totalNum;
         this.loading = false;
       });
     },

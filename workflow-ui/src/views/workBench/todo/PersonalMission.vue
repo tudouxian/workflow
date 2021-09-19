@@ -104,14 +104,28 @@
 
     <el-dialog :title="dialogTitle" :visible.sync="viewOpen" width="900px" append-to-body>
       <div class="flow-view">
+        <el-card class="form-card" style="min-height:600px;height:auto;" >
+          <div class="flow-view-title mb10">
+            表单信息
+            <el-button style="float: right;" type="primary" @click="saveFormData">暂存表单</el-button>
+          </div>
+          <!--初始化流程加载表单信息-->
+          <el-col :span="16" :offset="4" v-if="formConfOpen">
+            <div class="test-form">
+              <parser :key="new Date().getTime()"  :form-conf="formConf"  ref="parser" @getData="getFormDataList" />
+            </div>
+          </el-col>
+        </el-card>
+
         <!-- <el-skeleton class="mb10" :rows="10" /> -->
+        <el-card class="form-card" >
         <div class="flow-timeline" v-if="timelineList && timelineList.length > 0">
           <div class="flow-view-title mb10">审核记录</div>
           <el-timeline>
             <el-timeline-item v-for="item in timelineList" :key="item.id" :timestamp="`${item.taskName}  ${item.createTime}`" placement="top">
               <el-card>
                 <label v-if="item.userName" style="font-weight: normal;margin-right: 30px;">办理人： {{item.userName}}
-                  <el-tag type="info" size="mini">办理人部门：{{item.deptName}}</el-tag>
+                  <el-tag v-if="item.deptName" type="info" size="mini">办理人部门：{{item.deptName}}</el-tag>
                   <el-tag v-if="item.claimTime" type="info" size="mini">签收时间：{{item.claimTime}}</el-tag>
                 </label>
                 <label style="font-weight: normal">接收时间： </label><label style="color:#8a909c;font-weight: normal">{{item.createTime}}</label>
@@ -139,7 +153,9 @@
             </el-timeline-item>
           </el-timeline>
         </div>
+        </el-card>
       </div>
+
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" class="mb10 btn" v-for="item in buttonList" :key="item.id" @click="handleButtons(item)">{{ item.buttonName }}</el-button>
         <!-- <el-button type="primary" @click="agreeAdvice">同 意</el-button>
@@ -155,14 +171,17 @@
   </div>
 </template>
 <script>
+import { getFormConfByProcInsId } from '@/api/formGenerator/form'
 import { getTableData, getTodoTabelData, getFlowType, getTimelineList, getButton, getProcessImg } from '@/api/workmenu/personalmission'
 import dict from './dict'
+import Parser from '@/components/parser/Parser'
 import HandleContent from '../homePage/components/handlecontent.vue'
 import BpmnViewer from '@/components/package/bpmnViewer/index.vue'
 export default {
   name: 'workMenuTodo',
   mixins: [dict],
   components: {
+    Parser,
     HandleContent,
     BpmnViewer
   },
@@ -201,6 +220,8 @@ export default {
       // 处理弹窗内当前按钮的状态
       buttonCode: '',
       modelProcessInstanceId: '',
+      formConf:'',
+      formConfOpen: false, // 是否加载默认表单数据
     }
   },
   created() {
@@ -235,6 +256,44 @@ export default {
       }
       this.dateRange = null
     },
+    /** 根据流程实例ID获取表单信息 */
+    getFormConfByProcInsId(procInsId) {
+      const params = {procInsId: procInsId}
+      getFormConfByProcInsId(params).then(res => {
+       /* this.flowRecordList = res.data.flowList;
+        // 流程过程中不存在初始化表单 直接读取的流程变量中存储的表单值
+        if (res.data.formData) {
+          this.formConf = res.data.formData;
+          this.formConfOpen = true
+        }*/
+      }).catch(res => {
+      })
+    },
+    saveFormData(procInsId) {
+
+    },
+      /** 接收子组件传的值 */
+      getFormDataList(data) {
+        if (data) {
+          const variables = [];
+          data.fields.forEach(item => {
+            let variableData = {};
+            variableData.label = item.__config__.label
+            // 表单值为多个选项时
+            if (item.__config__.defaultValue instanceof Array) {
+              const array = [];
+              item.__config__.defaultValue.forEach(val => {
+                array.push(val)
+              })
+              variableData.val = array;
+            } else {
+              variableData.val = item.__config__.defaultValue
+            }
+            variables.push(variableData)
+          })
+          this.variables = variables;
+        }
+      },
     async handleView(row) {
       this.dialogTitle = row.taskName
       this.viewOpen = true

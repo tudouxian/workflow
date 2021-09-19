@@ -29,10 +29,10 @@ import com.workflow.framework.datasource.DynamicDataSource;
  * 
  * @author workflow
  */
-@Configuration
+//@Configuration
 public class DruidConfig
 {
-    @Bean
+    /*@Bean
     @ConfigurationProperties("spring.datasource.druid.master")
     public DataSource masterDataSource(DruidProperties druidProperties)
     {
@@ -59,13 +59,13 @@ public class DruidConfig
         return new DynamicDataSource(masterDataSource, targetDataSources);
     }
     
-    /**
+    *//**
      * 设置数据源
      * 
      * @param targetDataSources 备选数据源集合
      * @param sourceName 数据源名称
      * @param beanName bean名称
-     */
+     *//*
     public void setDataSource(Map<Object, Object> targetDataSources, String sourceName, String beanName)
     {
         try
@@ -76,7 +76,7 @@ public class DruidConfig
         catch (Exception e)
         {
         }
-    }
+    }*/
 
     /**
      * 去除监控页面底部的广告

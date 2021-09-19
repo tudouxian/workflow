@@ -123,7 +123,19 @@
     <!-- 处理弹窗 -->
     <el-dialog :title="dialogTitle" :visible.sync="viewOpen" width="900px" append-to-body>
       <div class="flow-view">
+        <el-card class="form-card" style="min-height:600px;height:auto;" >
+          <div class="flow-view-title mb10">
+            表单信息
+          </div>
+          <!--初始化流程加载表单信息-->
+          <el-col :span="16" :offset="4" v-if="formConfOpen">
+            <div class="test-form">
+              <parser :key="new Date().getTime()"  :form-conf="formConf"  ref="parser" @getData="getFormDataList" />
+            </div>
+          </el-col>
+        </el-card>
         <!-- <el-skeleton class="mb10" :rows="10" /> -->
+        <el-card class="form-card" >
         <div class="flow-timeline" v-if="timelineList && timelineList.length > 0">
           <div class="flow-view-title mb10">审核记录</div>
           <el-timeline>
@@ -158,6 +170,7 @@
             </el-timeline-item>
           </el-timeline>
         </div>
+        </el-card>
       </div>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" class="mb10" v-for="item in buttonList" :key="item.id" @click="handleButtons(item)">{{ item.buttonName }}</el-button>
@@ -214,6 +227,8 @@ export default {
       // 处理弹窗内当前按钮的状态
       buttonCode: '',
       modelProcessInstanceId: '',
+      formConf:'',
+      formConfOpen: false, // 是否加载默认表单数据
     }
   },
   created() {
@@ -244,13 +259,35 @@ export default {
       }
       this.dateRange = null
     },
+    /** 接收子组件传的值 */
+    getFormDataList(data) {
+      if (data) {
+        const variables = [];
+        data.fields.forEach(item => {
+          let variableData = {};
+          variableData.label = item.__config__.label
+          // 表单值为多个选项时
+          if (item.__config__.defaultValue instanceof Array) {
+            const array = [];
+            item.__config__.defaultValue.forEach(val => {
+              array.push(val)
+            })
+            variableData.val = array;
+          } else {
+            variableData.val = item.__config__.defaultValue
+          }
+          variables.push(variableData)
+        })
+        this.variables = variables;
+      }
+    },
     handleQuery() {
       this.queryParams.pageIndex = 1;
       this.getList();
     },
     async handleAdd() {
       this.$router.push({ path: 'homePageAdd'})
-      
+
       // this.open = true;
       // this.title = "发起流程";
       // const { data } = await getFlowType()

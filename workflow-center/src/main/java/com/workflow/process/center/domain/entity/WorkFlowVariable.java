@@ -17,25 +17,30 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class WorkFlowVariable
 {
 
+    /** 运行时|历史 */
+    @ApiModelProperty(value = "运行时|历史")
+    @TableField(exist = false)
+    private Boolean isRunTimeVariable  = true;
+
     /** 主键 */
     @ApiModelProperty(value = "主键")
-    @TableId(value = "id",type = IdType.ASSIGN_UUID)
+    @TableId(value = "ID_",type = IdType.ASSIGN_UUID)
     private String id;
 
     /** 版本 */
     @ApiModelProperty(value = "版本")
-    @TableField("rev")
+    @TableField("REV_")
     @Version
     private Long rev;
 
     /** 变量类型 */
     @ApiModelProperty(value = "变量类型")
-    @TableField("type")
+    @TableField("TYPE_")
     private String type;
 
     /** 变量名称 */
     @ApiModelProperty(value = "变量名称")
-    @TableField("name")
+    @TableField("NAME_")
     private String name;
 
     /** 变量值 */
@@ -45,57 +50,57 @@ public class WorkFlowVariable
 
     /** 流程实例ID */
     @ApiModelProperty(value = "流程实例ID")
-    @TableField("procInstId")
+    @TableField("PROC_INST_ID_")
     private String procInstId;
 
     /** 流程执行实例ID */
     @ApiModelProperty(value = "流程执行实例ID")
-    @TableField("executionId")
+    @TableField("EXECUTION_ID_")
     private String executionId;
 
     /** 任务ID */
     @ApiModelProperty(value = "任务ID")
-    @TableField("taskId")
+    @TableField("TASK_ID_")
     private String taskId;
 
     /** 作用域ID */
     @ApiModelProperty(value = "作用域ID")
-    @TableField("scopeId")
+    @TableField("SCOPE_ID_")
     private String scopeId;
 
     /** 子作用域ID */
     @ApiModelProperty(value = "子作用域ID")
-    @TableField("subScopeId")
+    @TableField("SUB_SCOPE_ID_")
     private String subScopeId;
 
     /** 作用域类型 */
     @ApiModelProperty(value = "作用域类型")
-    @TableField("scopeType")
+    @TableField("SCOPE_TYPE_")
     private String scopeType;
 
     /** 字节表ID */
     @ApiModelProperty(value = "字节表ID")
-    @TableField("bytearrayId")
+    @TableField("BYTEARRAY_ID_")
     private String bytearrayId;
 
     /** 存储值double类型 */
     @ApiModelProperty(value = "存储值double类型")
-    @TableField("double_")
+    @TableField("DOUBLE_")
     private Long double_;
 
     /** 存储值long类型 */
     @ApiModelProperty(value = "存储值long类型")
-    @TableField("long_")
+    @TableField("LONG_")
     private Long long_;
 
     /** 存储值字符串类型 */
     @ApiModelProperty(value = "存储值字符串类型")
-    @TableField("text")
+    @TableField("TEXT_")
     private String text;
 
     /** 存储值字符串类型2 */
     @ApiModelProperty(value = "存储值字符串类型2")
-    @TableField("text2")
+    @TableField("TEXT2_")
     private String text2;
 
     @Override

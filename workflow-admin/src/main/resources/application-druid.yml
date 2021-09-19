@@ -1,41 +1,93 @@
 # 数据源配置
 spring:
+#    datasource:
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        driverClassName: com.mysql.cj.jdbc.Driver
+#        druid:
+#            # 主库数据源
+#            master:
+#                url: jdbc:mysql://localhost:3306/workflow_alone?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+#                username: root
+#                password: 123456
+#            # 从库数据源
+#            slave:
+#                # 从数据源开关/默认关闭
+#                enabled: false
+#                url:
+#                username:
+#                password:
+#            # 初始连接数
+#            initialSize: 5
+#            # 最小连接池数量
+#            minIdle: 10
+#            # 最大连接池数量
+#            maxActive: 20
+#            # 配置获取连接等待超时的时间
+#            maxWait: 60000
+#            # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+#            timeBetweenEvictionRunsMillis: 60000
+#            # 配置一个连接在池中最小生存的时间，单位是毫秒
+#            minEvictableIdleTimeMillis: 300000
+#            # 配置一个连接在池中最大生存的时间，单位是毫秒
+#            maxEvictableIdleTimeMillis: 900000
+#            # 配置检测连接是否有效
+#            validationQuery: SELECT 1 FROM DUAL
+#            testWhileIdle: true
+#            testOnBorrow: false
+#            testOnReturn: false
+#            webStatFilter:
+#                enabled: true
+#            statViewServlet:
+#                enabled: true
+#                # 设置白名单，不填则允许所有访问
+#                allow:
+#                url-pattern: /druid/*
+#                # 控制台管理用户名和密码
+#                login-username: workflow
+#                login-password: 123456
+#            filter:
+#                stat:
+#                    enabled: true
+#                    # 慢SQL记录
+#                    log-slow-sql: true
+#                    slow-sql-millis: 1000
+#                    merge-sql: true
+#                wall:
+#                    config:
+#                        multi-statement-allow: true
+
     datasource:
+        driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+        url: jdbc:p6spy:mysql://localhost:3306/workflow_alone?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=true&nullCatalogMeansCurrent=true
+        username: root
+        password: 123456
         type: com.alibaba.druid.pool.DruidDataSource
-        driverClassName: com.mysql.cj.jdbc.Driver
         druid:
-            # 主库数据源
-            master:
-                url: jdbc:mysql://localhost:3306/workflow_alone?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-                username: root
-                password: 123456
-            # 从库数据源
-            slave:
-                # 从数据源开关/默认关闭
-                enabled: false
-                url: 
-                username: 
-                password: 
-            # 初始连接数
-            initialSize: 5
-            # 最小连接池数量
-            minIdle: 10
-            # 最大连接池数量
-            maxActive: 20
-            # 配置获取连接等待超时的时间
-            maxWait: 60000
-            # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-            timeBetweenEvictionRunsMillis: 60000
-            # 配置一个连接在池中最小生存的时间，单位是毫秒
-            minEvictableIdleTimeMillis: 300000
-            # 配置一个连接在池中最大生存的时间，单位是毫秒
-            maxEvictableIdleTimeMillis: 900000
-            # 配置检测连接是否有效
-            validationQuery: SELECT 1 FROM DUAL
-            testWhileIdle: true
-            testOnBorrow: false
-            testOnReturn: false
-            webStatFilter: 
+            #连接池配置
+            initial-size: 1
+            min-idle: 5
+            max-active: 20
+            #配置从连接池获取连接等待超时的时间
+            max-wait: 1000
+            #配置间隔多久启动一次DestroyThread，对连接池内的连接才进行一次检测，单位是毫秒
+            time-between-eviction-runs-millis: 600000
+            #配置一个连接在池中最大空闲时间，单位是毫秒
+            min-evictable-idle-time-millis: 600000
+            #设置从连接池获取连接时是否检查连接有效性，true时，每次都检查;false时，不检查
+            test-on-borrow: false
+            #设置往连接池归还连接时是否检查连接有效性，true时，每次都检查;false时，不检查
+            test-on-return: false
+            #设置从连接池获取连接时是否检查连接有效性，true时，如果连接空闲时间超过minEvictableIdleTimeMillis进行检查，否则不检查;false时，不检查
+            test-while-idle: true
+            #检验连接是否有效的查询语句。如果数据库Driver支持ping()方法，则优先使用ping()方法进行检查，否则使用validationQuery查询进行检查。(Oracle jdbc Driver目前不支持ping方法)
+            validation-query: SELECT 1 FROM DUAL
+            #检测连接是否有效的超时时间。底层调用jdbc Statement对象的void setQueryTimeout(int seconds)方法,单位是秒
+            validation-query-timeout: 1
+            #打开PSCache，并且指定每个连接上PSCache的大小，Oracle等支持游标的数据库，打开此开关，会以数量级提升性能，具体查阅PSCache相关资料
+            pool-prepared-statements: true
+            max-pool-prepared-statement-per-connection-size: 20
+            #配置监控统计拦截的filters
+            webStatFilter:
                 enabled: true
             statViewServlet:
                 enabled: true
@@ -43,7 +95,7 @@ spring:
                 allow:
                 url-pattern: /druid/*
                 # 控制台管理用户名和密码
-                login-username: workflow
+                login-username: admin
                 login-password: 123456
             filter:
                 stat:

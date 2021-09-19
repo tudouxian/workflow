@@ -10,11 +10,16 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.flowable.engine.ProcessEngine;
+import org.flowable.variable.api.history.HistoricVariableInstance;
+import org.flowable.variable.api.history.HistoricVariableInstanceQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 运行时变量信息Controller
@@ -31,6 +36,9 @@ public class WorkFlowVariableController extends BaseController {
      */
     @Autowired
     WorkFlowVariableService workFlowVariableService;
+
+    @Autowired
+    private ProcessEngine processEngine;
 
     /**
      * 查询所有不分页
@@ -57,24 +65,58 @@ public class WorkFlowVariableController extends BaseController {
                                                    @RequestParam(value = "pageIndex", defaultValue = "1") Integer pageIndex,
                                                    @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         PageHelper.startPage(pageIndex, pageSize, true);
-        List<WorkFlowVariable> list = workFlowVariableService.list(new QueryWrapper<>(workFlowVariable));
-        if (CollectionUtils.isNotEmpty(list)) {
-            list.stream()
-                    .forEach(_workFlowVariable -> {
 
-                        if (ObjectUtils.isNotEmpty(_workFlowVariable.getDouble_())) {
-                            _workFlowVariable.setVariableValue(_workFlowVariable.getDouble_());
-                        } else if (ObjectUtils.isNotEmpty(_workFlowVariable.getLong_())) {
-                            _workFlowVariable.setVariableValue(_workFlowVariable.getLong_());
+        List<WorkFlowVariable> list = null;
+        if (workFlowVariable.getIsRunTimeVariable()) {
+            list = workFlowVariableService.list(new QueryWrapper<>(workFlowVariable));
+            if (CollectionUtils.isNotEmpty(list)) {
+                list.stream()
+                        .forEach(_workFlowVariable -> {
 
-                        } else if (ObjectUtils.isNotEmpty(_workFlowVariable.getText())) {
-                            _workFlowVariable.setVariableValue(_workFlowVariable.getText());
-                        } else {
-                            _workFlowVariable.setVariableValue(_workFlowVariable.getText2());
-                        }
+                            if (ObjectUtils.isNotEmpty(_workFlowVariable.getDouble_())) {
+                                _workFlowVariable.setVariableValue(_workFlowVariable.getDouble_());
+                            } else if (ObjectUtils.isNotEmpty(_workFlowVariable.getLong_())) {
+                                _workFlowVariable.setVariableValue(_workFlowVariable.getLong_());
 
-                    });
+                            } else if (ObjectUtils.isNotEmpty(_workFlowVariable.getText())) {
+                                _workFlowVariable.setVariableValue(_workFlowVariable.getText());
+                            } else {
+                                _workFlowVariable.setVariableValue(_workFlowVariable.getText2());
+                            }
+
+                        });
+            }
+        }else {
+            HistoricVariableInstanceQuery historicVariableInstanceQuery = processEngine.getHistoryService().createHistoricVariableInstanceQuery();
+
+            if (StringUtils.isNotEmpty(workFlowVariable.getProcInstId())){
+                historicVariableInstanceQuery.processInstanceId(workFlowVariable.getProcInstId());
+            }
+            if (StringUtils.isNotEmpty(workFlowVariable.getExecutionId())){
+                historicVariableInstanceQuery.executionId(workFlowVariable.getExecutionId());
+            }
+            if (StringUtils.isNotEmpty(workFlowVariable.getTaskId())){
+                historicVariableInstanceQuery.taskId(workFlowVariable.getTaskId());
+            }
+            if (StringUtils.isNotEmpty(workFlowVariable.getName())){
+                historicVariableInstanceQuery.variableNameLike(workFlowVariable.getName());
+            }
+            List<HistoricVariableInstance> historicVariableInstanceList = historicVariableInstanceQuery.list();
+
+            list = historicVariableInstanceList.stream().map(_historicVariableInstance -> {
+                WorkFlowVariable _workFlowVariable = new WorkFlowVariable();
+                _workFlowVariable.setId(_historicVariableInstance.getId());
+                _workFlowVariable.setProcInstId(_historicVariableInstance.getProcessInstanceId());
+                _workFlowVariable.setTaskId(_historicVariableInstance.getTaskId());
+                _workFlowVariable.setName(_historicVariableInstance.getVariableName());
+                _workFlowVariable.setVariableValue(_historicVariableInstance.getValue());
+                _workFlowVariable.setType(_historicVariableInstance.getVariableTypeName());
+
+                return _workFlowVariable;
+            }).collect(Collectors.toList());
         }
+
+
         PageInfo<WorkFlowVariable> pageInfo = new PageInfo<>(list);
         return ResultBean.ofSuccess(list, pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize());
 

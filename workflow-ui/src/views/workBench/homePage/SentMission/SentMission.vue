@@ -8,7 +8,7 @@
 -->
 <template>
   <div class="done-mission">
-    
+
     <el-form class="search-form" :model="queryParams" ref="queryForm" inline label-width="68px" v-show="showSearch">
       <el-form-item label="业务主键" prop="businessKey">
         <el-input
@@ -139,7 +139,19 @@
     <!-- 处理弹窗 -->
     <el-dialog :title="dialogTitle" :visible.sync="viewOpen" width="900px" append-to-body>
       <div class="flow-view">
+        <el-card class="form-card" style="min-height:600px;height:auto;" >
+          <div class="flow-view-title mb10">
+            表单信息
+          </div>
+          <!--初始化流程加载表单信息-->
+          <el-col :span="16" :offset="4" v-if="formConfOpen">
+            <div class="test-form">
+              <parser :key="new Date().getTime()"  :form-conf="formConf"  ref="parser" @getData="getFormDataList" />
+            </div>
+          </el-col>
+        </el-card>
         <!-- <el-skeleton class="mb10" :rows="10" /> -->
+        <el-card class="form-card" >
         <div class="flow-timeline" v-if="timelineList && timelineList.length > 0">
           <div class="flow-view-title mb10">审核记录</div>
           <el-timeline>
@@ -174,6 +186,7 @@
             </el-timeline-item>
           </el-timeline>
         </div>
+        </el-card>
         <HandleContent ref="HandleContent" :buttonCode="this.buttonCode" :taskId="this.adviceForm.taskId" :processInstanceId="this.adviceForm.processInstanceId" :title="dialogTitle" @off="viewClose" />
       </div>
       <div slot="footer" class="dialog-footer">
@@ -229,7 +242,9 @@ export default {
       processOpen: false,
       // 处理弹窗内当前按钮的状态
       buttonCode: '',
-      modelProcessInstanceId: ''
+      modelProcessInstanceId: '',
+      formConf:'',
+      formConfOpen: false, // 是否加载默认表单数据
     }
   },
   created() {
@@ -240,7 +255,7 @@ export default {
       this.loading = true;
       const { data, totalNum } = await getTableData(this.queryParams)
       // let currentCandidate = Object.keys(data.currentCandidateGroups);
-      
+
       this.personalMissionList = data;
       this.personalMissionList && this.personalMissionList.forEach((item, index) => {
         item.currentCandidate = item.currentCandidateGroups ? Object.keys(item.currentCandidateGroups) : []
@@ -271,11 +286,33 @@ export default {
     },
     async handleAdd() {
       this.$router.push({ path: 'homePageAdd'})
-      
+
       // this.open = true;
       // this.title = "发起流程";
       // const { data } = await getFlowType()
       // this.treeData = this.handleTree(data)
+    },
+    /** 接收子组件传的值 */
+    getFormDataList(data) {
+      if (data) {
+        const variables = [];
+        data.fields.forEach(item => {
+          let variableData = {};
+          variableData.label = item.__config__.label
+          // 表单值为多个选项时
+          if (item.__config__.defaultValue instanceof Array) {
+            const array = [];
+            item.__config__.defaultValue.forEach(val => {
+              array.push(val)
+            })
+            variableData.val = array;
+          } else {
+            variableData.val = item.__config__.defaultValue
+          }
+          variables.push(variableData)
+        })
+        this.variables = variables;
+      }
     },
     async handleView(row) {
       this.dialogTitle = row.processInstanceName

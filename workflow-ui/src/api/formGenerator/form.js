@@ -34,3 +34,13 @@ export function updateForm(data) {
     data: data
   })
 }
+
+
+// 根据流程实例ID获取表单信息
+export function getFormConfByProcInsId(data) {
+  return request({
+    url: '/workFlowFormModelInfo/getFormConfByProcInsId',
+    method: 'post',
+    data: data
+  })
+}
