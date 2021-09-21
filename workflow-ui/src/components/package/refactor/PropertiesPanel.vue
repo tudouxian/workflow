@@ -18,7 +18,7 @@
         <element-form :id="elementId" :type="elementType" />
       </el-collapse-item>
       <el-collapse-item name="button"  v-if="elementType === 'UserTask'" key="button">
-        <div slot="title" class="panel-tab__title"><i class="el-icon-rank"></i>审核操作</div>
+        <div slot="title" class="panel-tab__title"><i class="el-icon-s-check"></i>审核操作</div>
       </el-collapse-item>
       <el-collapse-item name="task" v-if="elementType && elementType.indexOf('Task') !== -1" key="task">
         <div slot="title" class="panel-tab__title"><i class="el-icon-s-claim"></i>任务</div>
