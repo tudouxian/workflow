@@ -81,7 +81,7 @@
     </resultMap>
 
     <sql id="selectRoleSql">
-    select  r.role_id, r.role_name, r.role_key  as roleKey, r.role_sort,
+    select  r.role_id, r.role_name, r.role_key, r.role_sort,
             r.status, r.del_flag
         from sys_role r
     </sql>

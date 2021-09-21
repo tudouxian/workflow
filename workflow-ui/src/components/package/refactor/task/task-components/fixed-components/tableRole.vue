@@ -19,6 +19,8 @@
             width="55">
           </el-table-column>
           <el-table-column prop="nickName" label="名称"></el-table-column>
+          <el-table-column prop="email" label="邮箱"></el-table-column>
+          <el-table-column prop="phonenumber" label="手机号"></el-table-column>
           <el-table-column prop="userId" label="变量名"></el-table-column>
         </el-table>
         <pagination
