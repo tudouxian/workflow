@@ -7,6 +7,13 @@ export function getCategoryDict() {
   })
 }
 
+export function getFormCategoryDict() {
+  return request({
+    url: '/workFlowFormCategory/list',
+    method: 'get'
+  })
+}
+
 // 字典项-部门
 export function getDeptDict() {
   return request({

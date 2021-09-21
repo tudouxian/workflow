@@ -132,8 +132,9 @@ export default {
       [this.formConf.formModel]: {},
       [this.formConf.formRules]: {}
     }
-    this.initFormData(data.formConfCopy.fields, data[this.formConf.formModel])
-    this.buildRules(data.formConfCopy.fields, data[this.formConf.formRules])
+      this.initFormData(data.formConfCopy.fields, data[this.formConf.formModel])
+      this.buildRules(data.formConfCopy.fields, data[this.formConf.formRules])
+
     return data
   },
   methods: {

@@ -53,9 +53,9 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="表单主键" align="center" prop="modelInfoId" />
       <el-table-column label="表单KEY" align="center" prop="formKey" />
-      <el-table-column label="表单分类" align="center" prop="categoryName" />
-      <el-table-column label="表单名称" align="center" prop="formName" />
       <el-table-column label="主版本号" align="center" prop="version" />
+      <el-table-column label="表单分类" align="center" prop="categoryId" :formatter="formatterFormCategory" />
+      <el-table-column label="表单名称" align="center" prop="formName" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -90,16 +90,26 @@
 
     <!-- 添加或修改流程表单对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
         <el-form-item label="表单名称" prop="formName">
           <el-input v-model="form.formName" placeholder="请输入表单名称" />
         </el-form-item>
-        <el-form-item label="表单KEY" prop="formName">
-          <el-input v-model="form.formKey" placeholder="请输入表单KEY" />
+        <el-form-item label="表单分类" prop="formCategory">
+          <el-select v-model.number="form.categoryId" placeholder="请选择表单分类">
+            <el-option v-for="item in formCategoryList" :key="item.id" :label="item.categoryName" :value="item.id" />
+          </el-select>
         </el-form-item>
-        <el-form-item label="表单内容">
+        <el-form-item label="绑定表单模型" prop="formName"  :inline="true">
+          <el-select v-model.number="form.formKey" placeholder="请选择表单模型" style="width: 260px">
+          <!--<el-option    label="表单模型"  value="" />-->
+          </el-select>
+         <!-- <el-input v-model="form.formKey" placeholder="请输入表单KEY" />
+          <el-input v-model="form.version" placeholder="请输入表单版本" />-->
+          <el-button @click="handleDesign">设计模型</el-button>
+        </el-form-item>
+       <!-- <el-form-item label="表单内容">
           <editor v-model="form.formContent" :min-height="192"/>
-        </el-form-item>
+        </el-form-item>-->
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" placeholder="请输入备注" />
         </el-form-item>
@@ -121,8 +131,11 @@
 
 <script>
 import { listForm, getForm, delForm, addForm, updateForm, exportForm } from "@/api/formGenerator/form";
+import { listFormModelByKeyAndVersion } from "@/api/formGenerator/formModel";
+
 import Editor from '@/components/Editor';
 import Parser from '@/components/parser/Parser'
+import { getFormCategoryDict } from '@/api/dict'
 export default {
   name: "Form",
   components: {
@@ -145,6 +158,7 @@ export default {
       total: 0,
       // 流程表单表格数据
       formList: [],
+      formCategoryList:[],
       // 弹出层标题
       title: "",
       formConf: {}, // 默认表单数据
@@ -168,13 +182,14 @@ export default {
   },
   created() {
     this.getList();
+    this.getFormCategoryList();
   },
   methods: {
     /** 查询流程表单列表 */
     getList() {
       this.loading = true;
       listForm(this.queryParams).then(response => {
-        this.formList = response.rows;
+        this.formList = response.data;
         this.total = response.totalNum;
         this.loading = false;
       });
@@ -194,6 +209,13 @@ export default {
       };
       this.resetForm("form");
     },
+    async getFormCategoryList () {
+      const { data } = await getFormCategoryDict();
+      this.formCategoryList = data;
+    },
+    formatterFormCategory(row, column, cellValue) {
+      return this.formCategoryList.find(item => item.id === cellValue)?.categoryName ?? ''
+    },
     /** 搜索按钮操作 */
     handleQuery() {
       this.queryParams.pageIndex = 1;
@@ -206,39 +228,46 @@ export default {
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.formId)
+      this.ids = selection.map(item => item.modelInfoId)
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
     /** 表单配置信息 */
     handleDetail(row){
       this.formConfOpen = true;
-      this.formTitle = "流程表单配置详细";
-      this.formConf = JSON.parse(row.formContent)
+      this.formTitle = "表单【"+row.formName+"】配置详细";
+
+      //根据formKey和version查询模型信息
+      listFormModelByKeyAndVersion(row.formKey,row.version).then(response => {
+        this.formConf = JSON.parse(response.data.formJson)
+      });
     },
     /** 新增按钮操作 */
     handleAdd() {
-      // this.reset();
-      // this.open = true;
-      // this.title = "添加流程表单";
-      this.$router.push({ path: '/tool/build', query: {formId: null }})
+       this.reset();
+       this.open = true;
+       this.title = "添加流程表单";
+    },
+    /** 设计模型 */
+    handleDesign() {
+       this.$router.push({ path: '/tool/build', query: {formId: null }})
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
-      // this.reset();
-      // const formId = row.formId || this.ids
-      // getForm(formId).then(response => {
-      //   this.form = response.data;
-      //   this.open = true;
-      //   this.title = "修改流程表单";
-      // });
-      this.$router.push({ path: '/tool/build', query: {formId: row.formId }})
+       this.reset();
+       const modelInfoId = row.modelInfoId || this.ids
+       getForm(modelInfoId).then(response => {
+         this.form = response.data;
+         this.open = true;
+         this.title = "修改流程表单";
+       });
+     // this.$router.push({ path: '/tool/build', query: {formId: row.formId }})
     },
     /** 提交按钮 */
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.formId != null) {
+          if (this.form.categoryId != null) {
             updateForm(this.form).then(response => {
               this.msgSuccess("修改成功");
               this.open = false;

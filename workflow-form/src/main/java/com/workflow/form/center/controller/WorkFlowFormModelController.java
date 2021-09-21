@@ -1,5 +1,6 @@
 package com.workflow.form.center.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.workflow.form.center.domain.entity.WorkFlowFormModel;
 import com.workflow.form.center.service.WorkFlowFormModelService;
 
@@ -74,6 +75,17 @@ public class WorkFlowFormModelController {
     @GetMapping("/{id}")
     public ResultBean<WorkFlowFormModel> selectOne(@PathVariable Serializable id) {
         return ResultBean.ofSuccess(workFlowFormModelService.getById(id));
+    }
+
+    @ApiOperation("通过FormKey和version查询单条数据")
+    @GetMapping("/listFormModelByKeyAndVersion/{formKey}/{version}")
+    public ResultBean<WorkFlowFormModel> selectOne(@PathVariable String formKey,@PathVariable Integer version) {
+        LambdaQueryWrapper<WorkFlowFormModel> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+
+        lambdaQueryWrapper.eq(WorkFlowFormModel::getFormKey,formKey);
+        lambdaQueryWrapper.eq(WorkFlowFormModel::getVersion,version);
+        WorkFlowFormModel exit = workFlowFormModelService.getOne(lambdaQueryWrapper);
+        return ResultBean.ofSuccess(exit);
     }
 
     /**

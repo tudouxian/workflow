@@ -17,6 +17,13 @@ export function getForm(formId) {
   })
 }
 
+export function listFormModelByKeyAndVersion(formKey,version) {
+  return request({
+    url: '/workFlowFormModel/listFormModelByKeyAndVersion/'+formKey+"/"+version,
+    method: 'get'
+  })
+}
+
 // 新增流程表单
 export function addForm(data) {
   return request({
