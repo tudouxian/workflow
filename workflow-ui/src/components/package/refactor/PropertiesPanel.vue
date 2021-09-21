@@ -17,6 +17,9 @@
         <div slot="title" class="panel-tab__title"><i class="el-icon-s-order"></i>表单</div>
         <element-form :id="elementId" :type="elementType" />
       </el-collapse-item>
+      <el-collapse-item name="button"  v-if="elementType === 'UserTask'" key="button">
+        <div slot="title" class="panel-tab__title"><i class="el-icon-rank"></i>审核操作</div>
+      </el-collapse-item>
       <el-collapse-item name="task" v-if="elementType && elementType.indexOf('Task') !== -1" key="task">
         <div slot="title" class="panel-tab__title"><i class="el-icon-s-claim"></i>任务</div>
         <element-task :id="elementId" :type="elementType" />
@@ -179,7 +182,7 @@ export default {
       this.elementBusinessObject = JSON.parse(JSON.stringify(activatedElement.businessObject));
       this.conditionFormVisible = !!(
         this.elementType === "SequenceFlow" &&
-        activatedElement.source 
+        activatedElement.source
         // 从开始的第一个节点就显示流转条件
         // &&
         // activatedElement.source.type.indexOf("StartEvent") === -1
