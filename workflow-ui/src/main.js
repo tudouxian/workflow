@@ -1,7 +1,8 @@
 import Vue from 'vue'
 
 import Cookies from 'js-cookie'
-
+import formCreate from '@form-create/element-ui'
+import FcDesigner from '@form-create/designer'
 import Element from 'element-ui'
 import './assets/styles/element-variables.scss'
 
@@ -74,6 +75,8 @@ Vue.component('ImageUpload', ImageUpload)
 Vue.use(vuePlugin)
 Vue.use(directive)
 Vue.use(VueMeta)
+Vue.use(formCreate)
+Vue.use(FcDesigner)
 
 /**
  * If you don't want to use mock-server

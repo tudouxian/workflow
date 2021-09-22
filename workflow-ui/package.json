@@ -36,6 +36,7 @@
     "url": "https://gitee.com/y_project/workflow-Vue.git"
   },
   "dependencies": {
+    "@form-create/designer": "^1.0.3",
     "@riophae/vue-treeselect": "0.4.0",
     "axios": "0.21.0",
     "bpmn-js-token-simulation": "^0.10.0",

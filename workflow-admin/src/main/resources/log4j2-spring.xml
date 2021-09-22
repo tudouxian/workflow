@@ -11,7 +11,7 @@
         <property name="LOG_PATTERN" value="%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
         <!-- 定义日志存储的路径 -->
         <property name="FILE_PATH" value="logs/" />
-        <property name="FILE_NAME" value="portal" />
+        <property name="FILE_NAME" value="workflow" />
     </Properties>
 
     <appenders>
