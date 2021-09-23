@@ -33,8 +33,7 @@ public class WorkFlowModelReForm extends BaseEntity implements Serializable {
      * 模型关联表单主键
      */
     @ApiModelProperty(value = "模型关联表单主键")
-    @TableId(type = IdType.AUTO)
-    @TableField("id")
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
 
     /**

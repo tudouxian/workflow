@@ -35,8 +35,7 @@ public class WorkFlowModel implements Serializable {
      * id
      */
     @ApiModelProperty(value = "id")
-    @TableId(type = IdType.ASSIGN_UUID)
-    @TableField("id")
+    @TableId(value = "id",type = IdType.ASSIGN_UUID)
     private String id;
 
 

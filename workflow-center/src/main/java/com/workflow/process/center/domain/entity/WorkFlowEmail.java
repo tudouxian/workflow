@@ -34,8 +34,7 @@ public class WorkFlowEmail implements Serializable {
      * 主键
      */
     @ApiModelProperty(value = "主键")
-    @TableId(type = IdType.AUTO)
-    @TableField("id")
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
 
     /**
