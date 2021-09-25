@@ -162,7 +162,7 @@ flowable:
 
 # Minio配置
 minio:
-  url: http://localhost:9090
+  url: http://47.96.74.120:9090
   accessKey: cykj
   secretKey: cykj123456
   bucketName: process

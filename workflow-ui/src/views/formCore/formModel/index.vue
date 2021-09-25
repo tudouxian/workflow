@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div class="form-container">
     <fc-designer ref="designer"/>
   </div>
 </template>

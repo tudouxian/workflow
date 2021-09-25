@@ -121,10 +121,14 @@
     </el-dialog>
 
     <!--表单配置详情-->
-    <el-dialog :title="formTitle" :visible.sync="formConfOpen" width="60%" append-to-body>
+   <!-- <el-dialog :title="formTitle" :visible.sync="formConfOpen" width="60%" append-to-body>
       <div class="test-form">
         <parser :key="new Date().getTime()"  :form-conf="formConf" />
       </div>
+    </el-dialog>-->
+
+    <el-dialog :title="formTitle" :visible.sync="formConfOpen" width="90%"  append-to-body>
+        <fc-designer ref="designer" height="2360px" />
     </el-dialog>
   </div>
 </template>
@@ -250,7 +254,7 @@ export default {
     },
     /** 设计模型 */
     handleDesign() {
-       this.$router.push({ path: '/tool/build', query: {formId: null }})
+      this.$router.push({ path: '/processCore/formModel/formModel', query: {formId: null }})
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
@@ -319,5 +323,9 @@ export default {
   margin: 15px auto;
   width: 800px;
   padding: 15px;
+}
+
+.el-dialog__body {
+  max-height: 100vh;
 }
 </style>
