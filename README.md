@@ -67,7 +67,7 @@ workflow
 - admin/123456
 - 新的更新第一时间会在体验服务上出现
 
-演示地址：http://localhost  
+演示地址：http://47.96.74.120/index  
 ## 演示图
 ![](http://image.zmxblog92.com/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8.png)
 ![](http://image.zmxblog92.com/%E7%AE%A1%E7%90%86%E5%88%97%E8%A1%A8.png)
