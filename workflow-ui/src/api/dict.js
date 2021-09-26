@@ -7,13 +7,6 @@ export function getCategoryDict() {
   })
 }
 
-export function getFormCategoryDict() {
-  return request({
-    url: '/workFlowFormCategory/list',
-    method: 'get'
-  })
-}
-
 // 字典项-部门
 export function getDeptDict() {
   return request({
@@ -34,6 +27,13 @@ export function getTenantDict() {
 export const getToDoUsers = () => {
   return request({
     url: '/flowable/workBench/findToDoUsers',
+    method: 'get'
+  })
+}
+
+export function getFormCategoryDict() {
+  return request({
+    url: '/workFlowFormCategory/list',
     method: 'get'
   })
 }

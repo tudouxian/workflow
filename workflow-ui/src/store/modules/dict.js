@@ -67,7 +67,9 @@ export default {
   },
   actions: {
     async getDictData({ commit }) {
+      console.log("=====初始化字典")
       const data = await Promise.all(requestArr.map(item => item()))
+      console.log("=====初始化字典",data)
       commit('SET_DICT', data)
     }
   }
