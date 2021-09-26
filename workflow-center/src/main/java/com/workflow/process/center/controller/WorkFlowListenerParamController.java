@@ -41,7 +41,7 @@ public class WorkFlowListenerParamController {
     @GetMapping("/list")
     public ResultBean<List<WorkFlowListenerParam>> list(WorkFlowListenerParam workFlowListenerParam) {
 
-        List<WorkFlowListenerParam> list = workFlowListenerParamService.list();
+        List<WorkFlowListenerParam> list = workFlowListenerParamService.list(new QueryWrapper<>(workFlowListenerParam));
         return ResultBean.ofSuccess(list);
     }
 
